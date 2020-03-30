@@ -10,3 +10,6 @@
   background-color: rgb(149, 179, 189);
   color: black;
 }
+.navbar-bar-list{
+  display: flex;
+}
