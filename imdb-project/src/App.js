@@ -5,22 +5,29 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import  Home  from './pages/HomePage/HomePage';
 import  Search  from './pages/SearchPage/SearchPage';
 import  Details from './pages/MoviesDetailsPage/MovieDetailsPage';
+import Logo from "./logo-img.PNG"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component {
   render() {
     return (
     <Router>
-        <div>
-          <h2>MY IMDB</h2>
+        <div className="generalContainer">
+          <div className="header">
+          {/* <h2 className="name">MY IMDB</h2> */}
+          <img className= "logo" src={Logo} alt="logoImg"/>
           <nav className="navbar">
           <div className="navbar-bar-list">
-            <p><Link to={'/'} className="nav-link"> Home </Link></p>
-            <p><Link to={'/search-movie'} className="nav-link">Search Movie</Link></p>
-            <p><Link to={'/movie-details'} className="nav-link">Movie details</Link></p>
+            <button><Link to={'/'} className="nav-link"> Home </Link></button>
+            <button><Link to={'/search-movie'} className="nav-link">Search Movie</Link></button>
+            <button><Link to={'/movie-details'} className="nav-link">Movie details</Link></button>
           </div>
           </nav>
-          <hr />
-          <Switch>
+          
+          </div>
+          
+        <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/search-movie' component={Search} />
               <Route path='/movie-details' component={Details} />
@@ -28,6 +35,7 @@ class App extends Component {
         </div>
       </Router>
     );
+    
   }
 }
 
