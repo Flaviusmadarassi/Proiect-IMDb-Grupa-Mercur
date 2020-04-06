@@ -1,27 +1,48 @@
 import React, { Component } from 'react';
-import "./SearchPage.css";
+import { fetchMovie } from './FetchMovies';
+import "./Container.css";
+import  MovieRow from './MovieRow'
 
 
 class Search extends Component {
+
+  constructor(props) {
+      super(props);
+      this.state = {
+        movies: [],
+        isLoaded: false,
+      }
+  }
+
+  componentDidMount() {
+    console.log("mounted");
+
+    fetchMovie().then(json => {
+      console.log(json);
+
+      this.setState({ isLoaded: true,
+                      movies: json.results,
+                    })
+    });
+  }
+ 
   render() {
-    return (
-        <div className="searchPage">
-          <div className="searchContainer">
-            <h3>Search by:</h3>
-            <div className="inputContainer">
-              <input className="input" type="text" placeholder="Name"/>
-              <input className="input" type="text"placeholder="Year"/>
-              <input className="input" type="text"placeholder="Genre"/>
-              <input className="input" type="text"placeholder="Language"/>
-              <input className="input" type="text"placeholder="Country"/>
-              <input className="input" type="text"placeholder="Run Time"/>
-            </div>
+    const { isLoaded, movies} = this.state;
+  
+    if (!isLoaded){
+      return <div>Loading...</div>
+    }
+    else {
+      
+      return (
+          <div className ="container-content">
+            {
+            movies.map((movie,index) => 
+            <MovieRow movie_details = {movie} movie_index={index} />
+            )}
           </div>
-          <div className="allMoviesContainer">
-            <h2>ALL MOOVIES</h2>
-          </div>
-        </div>
-    );
+      );
+    }
   }
 }
 
