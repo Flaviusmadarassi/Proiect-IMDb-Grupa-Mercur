@@ -4,12 +4,12 @@
 }
 .search-page-container {
   padding-left: 30px;
-  background-color: #04042b;
+  background-color: #e8e8ec;
 }
 .content-container-movies {
   width: 18%;
   box-sizing: border-box;
-  background-color: rgb(12, 12, 44);
+  background-color: rgb(187, 187, 201);
   margin: 10px 10px;
   /* border-radius: 10px; */
   /* border: 0.5px solid grey; */

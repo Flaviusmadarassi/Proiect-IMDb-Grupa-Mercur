@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { fetchMovie } from "./FetchMovies";
+import { fetchMovies } from "./FetchMovies";
 import "./SearchPage.css";
 import MovieBox from "./MovieBox.js";
+import WillPaginate from "./WillPaginate.js";
+
 
 class Search extends Component {
   constructor(props) {
@@ -12,36 +14,60 @@ class Search extends Component {
       isLoaded: false,
       loading: false,
       message: "",
+      pageCount: 0,
+      currentPage: 0,
+      totalItemsCount: 0
     };
   }
 
-  handleOnInputChange = (event) => {
-    const query = event.target.value;
+  handleOnInputChange = (event, skip = undefined) => {
+    console.log(event);
+    let query = '';
+    if (typeof event === 'string') {
+      query = event;
+    } else {
+      query = event.target.value;
+    }
+
     this.setState({ inputContent: query, loading: true, message: "" });
     const all_movies = "https://movies-api-siit.herokuapp.com/movies";
-    const searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
+    let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
+    if (skip) { searched_movies = searched_movies + `&skip=${skip * 10 - 10}`}
 
-    fetchMovie(searched_movies).then((json) => {
+    fetchMovies(searched_movies).then((json) => {
       console.log("Results after search" + json);
 
-      this.setState({ isLoaded: true, movies: json.results });
+      this.setState({ 
+        isLoaded: true, 
+        movies: json.results,
+        pageCount: json.pagination.numberOfPages, 
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        inputContent: query
+      });
     });
   };
 
   componentDidMount() {
     console.log("mounted");
 
-    fetchMovie().then((json) => {
+    fetchMovies().then((json) => {
       console.log(json);
 
-      this.setState({ isLoaded: true, movies: json.results });
+      this.setState({ 
+        isLoaded: true, 
+        movies: json.results, 
+        pageCount: json.pagination.numberOfPages, 
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+      });
     });
   }
 
-  render() {
+  render() { 
     const { isLoaded, movies } = this.state;
     const { inputContent } = this.state;
-    //console.warn(this.state);
+    // console.warn(this.state);
 
     if (!isLoaded) {
       return <div>Loading...</div>;
@@ -52,7 +78,7 @@ class Search extends Component {
             <input
               className="search-input"
               type="text"
-              value={inputContent}
+              value={this.state.inputContent}
               placeholder="Enter a movie title"
               onChange={this.handleOnInputChange}
             ></input>
@@ -61,7 +87,19 @@ class Search extends Component {
           <div className="all-movies-container">
             {movies.map((movie, index) => (
               <MovieBox movie_details={movie} movie_index={index} />
+
             ))}
+            
+  
+          </div>
+          <div>
+            <WillPaginate
+            parentFetch={this.handleOnInputChange}
+            pageCount={this.state.pageCount} 
+            currentPage={this.state.currentPage}
+            totalItemsCount={this.state.totalItemsCount}
+            inputContent={this.state.inputContent}
+            ></WillPaginate>
           </div>
         </div>
       );
