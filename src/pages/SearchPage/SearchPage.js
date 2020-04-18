@@ -22,17 +22,74 @@ class Search extends Component {
       isLoaded: false,
       loading: false,
       message: '',
+      filters: {
+        'Title': 'titlu-test',
+        'Genre': '',
+        'Year': '',
+        'Language': '',
+        'Country': '',
+        'Runtime': '',
+        'Rating': ''
+      },
+      movieUrl: 'https://movies-api-siit.herokuapp.com/movies?'
     }
   }
 
+  handleMovieUrl = () => {
+    const { filters, movieUrl } = this.state;
+    let partialUrl = ''
+
+    for (let k in filters) {
+      if (filters[k] !== '') {
+        if (movieUrl.slice(-1) === '?') {
+          partialUrl = k + `=${filters[k]}`; //If is the first condition
+
+        }
+        else {
+          partialUrl = '&' + k + `=${filters[k]}`; //If we have another condition before
+
+        }
+        const finalUrl = movieUrl + partialUrl;
+        this.setState({
+          movieUrl: finalUrl
+        })
+        console.log('2.MOvie URL: ' + movieUrl);
+        console.log('Partial URL: ' + partialUrl);
+        console.log('Final URL: ' + finalUrl);
+      }
+    }
+  }
+
+
+
   handleOnSearchChange = (event) => {
+    const { movieUrl, filters } = this.state;
     const query = event.target.value;
     this.setState({ inputContent: query, loading: true, message: '' });
     const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
     const searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
 
-    fetchMovie(searched_movies).then(json => {
-      console.log('Results after search' + json);
+    //Update dictionary
+    this.setState(
+      prevState => {
+        // Taking a copy of the initial filters obj         
+        const { filters } = prevState;
+        // Updating it's property as per the key, value pair retrieved (key being the filter, value being "on" or "off")        
+        filters['Title'] = query;
+        // Returning the updated object         
+        return { filters };
+      },
+      // Since setState is async, all operations that require the updated state, should be done here       
+      () => {
+        console.log('1.Dictionar updatat');
+        console.log(this.state.filters);
+      }
+    );
+    console.log(filters);
+    this.handleMovieUrl();
+
+    fetchMovie(movieUrl).then(json => {
+      console.log('3.Results after search' + json);
 
       this.setState({
         isLoaded: true,
@@ -41,6 +98,9 @@ class Search extends Component {
     });
 
   }
+
+
+
   handleGenreChange = selectedGenre => {
 
     const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
