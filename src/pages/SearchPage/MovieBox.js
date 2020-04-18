@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import './SearchPage.css';
+import React, { Component } from "react";
+import "./SearchPage.css";
 
 class MovieBox extends Component {
+
     render() {
         return <div className='content-container-movies' >
             <p className='movie-title'>{this.props.movie_details.Title}</p>
@@ -13,6 +14,7 @@ class MovieBox extends Component {
 
         </div>
     }
+
 }
 
 export default MovieBox;

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { fetchMovie } from './FetchMovies';
+import React, { Component } from "react";
+import { fetchMovies } from "./FetchMovies";
 import "./SearchPage.css";
+import WillPaginate from "./WillPaginate.js";
 import MovieBox from './MovieBox.js';
 import Genre from './GenreFilter.js';
 import Year from './YearFilter.js';
@@ -12,19 +13,50 @@ import { ImdbRatingFilter } from './ImdbRatingFilter.js';
 
 
 class Search extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
+
       inputContent: '',
       inputYearContent: '',
       movies: [],
       isLoaded: false,
       loading: false,
       message: '',
+      pageCount: 0,
+      currentPage: 0,
+      totalItemsCount: 0
     }
   }
+  
+  handleOnInputChange = (event, skip = undefined) => {
+    console.log(event);
+    let query = '';
+    if (typeof event === 'string') {
+      query = event;
+    } else {
+      query = event.target.value;
+    }
 
+    this.setState({ inputContent: query, loading: true, message: "" });
+    const all_movies = "https://movies-api-siit.herokuapp.com/movies";
+    let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
+    if (skip) { searched_movies = searched_movies + `&skip=${skip * 10 - 10}`}
+
+    fetchMovies(searched_movies).then((json) => {
+      console.log("Results after search" + json);
+
+      this.setState({ 
+        isLoaded: true, 
+        movies: json.results,
+        pageCount: json.pagination.numberOfPages, 
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        inputContent: query
+      });
+    });
+  };
+  
   handleOnSearchChange = (event) => {
     const query = event.target.value;
     this.setState({ inputContent: query, loading: true, message: '' });
@@ -100,6 +132,7 @@ class Search extends Component {
     const chosen_country_url = all_movies + `?Country=${selectedCountry.value}`; // returns the first 10 movies whose genre contains searched genre
     console.log(selectedCountry.value);
 
+
     fetchMovie(chosen_country_url).then(json => {
       console.log('Results after option is selected' + json);
 
@@ -147,19 +180,23 @@ class Search extends Component {
   componentDidMount() {
     console.log("mounted");
 
-    fetchMovie().then(json => {
+    fetchMovies().then((json) => {
       console.log(json);
+
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages, 
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
       })
     });
   }
 
   render() {
     const { isLoaded, movies } = this.state;
-
+    const { inputContent } = this.state;
     //console.warn(this.state);
 
 
@@ -187,6 +224,16 @@ class Search extends Component {
                   <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
                 )}
             </div>
+            <div>
+            <WillPaginate
+            parentFetch={this.handleOnInputChange}
+            pageCount={this.state.pageCount} 
+            currentPage={this.state.currentPage}
+            totalItemsCount={this.state.totalItemsCount}
+            inputContent={this.state.inputContent}
+            ></WillPaginate>
+             </div>
+
           </div>
         </div>
       );
