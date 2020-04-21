@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Carousel from "../../components/carousel";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class Home extends Component {
   render() {
     return (
-        <div className="contentHome">
-          <h2>Home</h2>
-        </div>
+      <div>
+        <h1>Home</h1>;
+        <Carousel />;
+      </div>
     );
   }
 }

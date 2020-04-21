@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { fetchMovie } from './FetchMovies';
+import React, { Component } from "react";
+import { fetchMovies } from "./FetchMovies";
 import "./SearchPage.css";
+import WillPaginate from "./WillPaginate.js";
 import MovieBox from './MovieBox.js';
 import Genre from './GenreFilter.js';
 import Year from './YearFilter.js';
@@ -14,16 +15,20 @@ import { dictToURL, generateUrl } from './SearchPageUtils'
 
 
 class Search extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
+
       inputContent: '',
       inputYearContent: '',
       movies: [],
       isLoaded: false,
       loading: false,
-      filters: {
+      message: '',
+      pageCount: 0,
+      currentPage: 0,
+      totalItemsCount: 0,
+              filters: {
         'Title': '',
         'Genre': '',
         'Year': '',
@@ -32,13 +37,11 @@ class Search extends Component {
         'Runtime': '',
         'imdbRating': ''
       },
-      movieUrl: '',
-      secondUrlPart: ''
+     
 
     }
   }
-
-  //Updates dictionary valyes with selected options
+   //Updates dictionary valyes with selected options
   updateDictionary = function (filterOption, newValue) {
     //Update dictionary
     this.setState(
@@ -71,7 +74,34 @@ class Search extends Component {
     );
 
   }
+ 
+  handleOnInputChange = (event, skip = undefined) => {
+    console.log(event);
+    let query = '';
+    if (typeof event === 'string') {
+      query = event;
+    } else {
+      query = event.target.value;
+    }
 
+    this.setState({ inputContent: query, loading: true, message: "" });
+    const all_movies = "https://movies-api-siit.herokuapp.com/movies";
+    let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
+    if (skip) { searched_movies = searched_movies + `&skip=${skip * 10 - 10}` }
+
+    fetchMovies(searched_movies).then((json) => {
+      console.log("Results after search" + json);
+
+      this.setState({
+        isLoaded: true,
+        movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        inputContent: query
+      });
+    });
+  };
 
   handleOnSearchChange = (inputValue) => {
 
@@ -81,8 +111,6 @@ class Search extends Component {
     this.updateDictionary('Title', inputValue);
 
   }
-
-
 
   handleGenreChange = selectedGenre => {
 
@@ -110,6 +138,7 @@ class Search extends Component {
 
   handleCountryChange = selectedCountry => {
 
+
     //Update dictionary with custom filters
     this.updateDictionary('Country', selectedCountry.value);
 
@@ -129,21 +158,28 @@ class Search extends Component {
     this.updateDictionary('imdbRating', changeEvent);
 
   };
+
   componentDidMount() {
     console.log("mounted");
 
-    fetchMovie().then(json => {
+    fetchMovies().then((json) => {
       console.log(json);
+
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
       })
     });
   }
 
   render() {
     const { isLoaded, movies } = this.state;
+
+    const { inputContent } = this.state;
 
     if (!isLoaded) {
       return <div>Loading...</div>
@@ -169,6 +205,16 @@ class Search extends Component {
                   <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
                 )}
             </div>
+            <div>
+              <WillPaginate
+                parentFetch={this.handleOnInputChange}
+                pageCount={this.state.pageCount}
+                currentPage={this.state.currentPage}
+                totalItemsCount={this.state.totalItemsCount}
+                inputContent={this.state.inputContent}
+              ></WillPaginate>
+            </div>
+
           </div>
         </div >
       );
