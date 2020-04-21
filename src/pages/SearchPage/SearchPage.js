@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchMovies } from "./FetchMovies";
+import { fetchMovies } from "./FetchMovies.js";
 import "./SearchPage.css";
 import WillPaginate from "./WillPaginate.js";
 import MovieBox from './MovieBox.js';
@@ -28,7 +28,7 @@ class Search extends Component {
       pageCount: 0,
       currentPage: 0,
       totalItemsCount: 0,
-              filters: {
+      filters: {
         'Title': '',
         'Genre': '',
         'Year': '',
@@ -37,11 +37,11 @@ class Search extends Component {
         'Runtime': '',
         'imdbRating': ''
       },
-     
+
 
     }
   }
-   //Updates dictionary valyes with selected options
+  //Updates dictionary valyes with selected options
   updateDictionary = function (filterOption, newValue) {
     //Update dictionary
     this.setState(
@@ -62,7 +62,7 @@ class Search extends Component {
         const url = generateUrl(this.state.filters);
         console.log(url);
         //Fetch movies based on the new url (which contains selected filters)
-        fetchMovie(url).then(json => {
+        fetchMovies(url).then(json => {
           console.log('3.Results after search' + json);
 
           this.setState({
@@ -74,7 +74,7 @@ class Search extends Component {
     );
 
   }
- 
+
   handleOnInputChange = (event, skip = undefined) => {
     console.log(event);
     let query = '';
