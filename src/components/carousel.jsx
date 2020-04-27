@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 import Carousel from "react-bootstrap/Carousel";
 
 class CarouselComponent extends Component {
@@ -9,7 +8,7 @@ class CarouselComponent extends Component {
   };
 
   componentDidMount() {
-    fetch("https://movies-api-siit.herokuapp.com/movies")
+    fetch("https://movies-app-siit.herokuapp.com/movies")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);

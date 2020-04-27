@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/HomePage/HomePage";
 import Search from "./pages/SearchPage/SearchPage";
 import Details from "./pages/MoviesDetailsPage/MovieDetailsPage";
+import LogIn from "./components/LogIn/LogIn.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/search-movie" exact component={Search} />
             <Route path="/movie-details" exact component={Details} />
+            <Route path="/login-page" exact component={LogIn} />
           </Switch>
         </Router>
       </React.Fragment>

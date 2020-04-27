@@ -68,8 +68,10 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-
         document.cookie = `token=${json.accessToken}`;
+        json.authenticated === true
+          ? this.setState({ logInUsername: "", logInPassword: "" })
+          : console.log("not logged in");
       });
     event.preventDefault();
   };

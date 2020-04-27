@@ -17,6 +17,7 @@ class Navigation extends Component {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/movie-details">Movie Details</Nav.Link>
             <Nav.Link href="/search-movie">Search Movie</Nav.Link>
+            <Nav.Link href="/login-page">Authentication</Nav.Link>
           </Nav>
 
           <Form inline>
