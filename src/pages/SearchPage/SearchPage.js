@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchMovies } from "./FetchMovies";
+import { fetchMovies } from "./FetchMovies.js";
 import "./SearchPage.css";
 import WillPaginate from "./WillPaginate.js";
 import MovieBox from './MovieBox.js';
