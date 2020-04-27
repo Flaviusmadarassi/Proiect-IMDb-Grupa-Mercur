@@ -10,7 +10,7 @@
   background-color: rgb(149, 179, 189);
   color: black;
 }
-.navbar-bar-list{
+.navbar-bar-list {
   width: 500px;
   display: flex;
   justify-content: space-around;
@@ -18,31 +18,25 @@
 }
 
 .name {
-  color:rgb(67, 67, 128);
-  font-family: 'Akronim';font-size: 22px;
-  
-  
-  
+  color: rgb(67, 67, 128);
+  font-family: "Akronim";
+  font-size: 22px;
 }
-.navbar{
- 
-}
-.nav-link{
-  text-decoration: none;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  
-  color: white;
 
+.nav-link {
+  text-decoration: none;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+  color: white;
 }
 
 .header {
- height: 70px;
- width: 100%;
- background-color: rgb(163, 143, 116);
- border-bottom: 2px solid gray;
- display: flex;
-align-items: center;
-
+  height: 70px;
+  width: 100%;
+  background-color: rgb(163, 143, 116);
+  border-bottom: 2px solid gray;
+  display: flex;
+  align-items: center;
 }
 
 button {
@@ -56,8 +50,8 @@ button {
 .logo {
   width: 150px;
   height: 50px;
- border-radius: 100px;
- margin-left: 10px;
+  border-radius: 100px;
+  margin-left: 10px;
 }
 
 body {
