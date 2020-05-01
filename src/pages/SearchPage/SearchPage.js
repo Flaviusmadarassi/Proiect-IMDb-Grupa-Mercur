@@ -39,7 +39,7 @@ class Search extends Component {
     }
 
     this.setState({ inputContent: query, loading: true, message: "" });
-    const all_movies = "https://movies-api-siit.herokuapp.com/movies";
+    const all_movies = "https://movies-app-siit.herokuapp.com/movies";
     let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
     if (skip) { searched_movies = searched_movies + `&skip=${skip * 10 - 10}`}
 
@@ -60,10 +60,10 @@ class Search extends Component {
   handleOnSearchChange = (event) => {
     const query = event.target.value;
     this.setState({ inputContent: query, loading: true, message: '' });
-    const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
+    const all_movies = 'https://movies-app-siit.herokuapp.com/movies';
     const searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
 
-    fetchMovie(searched_movies).then(json => {
+    fetchMovies(searched_movies).then(json => {
       console.log('Results after search' + json);
 
       this.setState({
@@ -75,11 +75,11 @@ class Search extends Component {
   }
   handleGenreChange = selectedGenre => {
 
-    const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
+    const all_movies = 'https://movies-app-siit.herokuapp.com/movies';
     const searched_genre = all_movies + `?Genre=${selectedGenre.value}`; // returns the first 10 movies whose genre contains searched genre
     console.log(selectedGenre.value);
 
-    fetchMovie(searched_genre).then(json => {
+    fetchMovies(searched_genre).then(json => {
       console.log('Results after option is selected' + json);
 
       this.setState({
@@ -93,12 +93,12 @@ class Search extends Component {
   handleYearChange = (event) => {
     const query = event.target.value;
     this.setState({ inputYearContent: query, loading: true });
-    const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
+    const all_movies = 'https://movies-app-siit.herokuapp.com/movies';
     const chosen_year_url = all_movies + `?Year=${query}`; // returns the first 10 movies whose year of production is the searched year from the input
     console.log('ce am scris ' + query);
     console.log('url cu year ' + chosen_year_url);
 
-    fetchMovie(chosen_year_url).then(json => {
+    fetchMovies(chosen_year_url).then(json => {
       console.log('Results after year is selected' + json);
 
       this.setState({
@@ -110,11 +110,11 @@ class Search extends Component {
   };
   handleLanguageChange = selectedLanguage => {
 
-    const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
+    const all_movies = 'https://movies-app-siit.herokuapp.com/movies';
     const chosen_language_url = all_movies + `?Language=${selectedLanguage.value}`; // returns the first 10 movies whose Title contains searched movie
     console.log(chosen_language_url);
 
-    fetchMovie(chosen_language_url).then(json => {
+    fetchMovies(chosen_language_url).then(json => {
       console.log('Results after option is selected' + json);
 
       this.setState({
@@ -128,12 +128,12 @@ class Search extends Component {
   };
   handleCountryChange = selectedCountry => {
 
-    const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
+    const all_movies = 'https://movies-app-siit.herokuapp.com/movies';
     const chosen_country_url = all_movies + `?Country=${selectedCountry.value}`; // returns the first 10 movies whose genre contains searched genre
     console.log(selectedCountry.value);
 
 
-    fetchMovie(chosen_country_url).then(json => {
+    fetchMovies(chosen_country_url).then(json => {
       console.log('Results after option is selected' + json);
 
       this.setState({
@@ -146,11 +146,11 @@ class Search extends Component {
 
   handleRuntimeChange = changeEvent => {
 
-    const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
+    const all_movies = 'https://movies-app-siit.herokuapp.com/movies';
     const chosen_runtime_url = all_movies + `?Runtime=${changeEvent} min`; // returns the first 10 movies whose genre contains searched genre
     console.log(changeEvent);
 
-    fetchMovie(chosen_runtime_url).then(json => {
+    fetchMovies(chosen_runtime_url).then(json => {
       console.log('Results after option is selected' + json);
 
       this.setState({
@@ -163,11 +163,11 @@ class Search extends Component {
 
   handleImdbRatingChange = changeEvent => {
 
-    const all_movies = 'https://movies-api-siit.herokuapp.com/movies';
+    const all_movies = 'https://movies-app-siit.herokuapp.com/movies';
     const chosen_ImdbRating_url = all_movies + `?imdbRating=${changeEvent} `; // returns the first 10 movies whose genre contains searched genre
     console.log(changeEvent);
 
-    fetchMovie(chosen_ImdbRating_url).then(json => {
+    fetchMovies(chosen_ImdbRating_url).then(json => {
       console.log('Results after option is selected' + json);
 
       this.setState({
@@ -189,7 +189,7 @@ class Search extends Component {
         movies: json.results,
         pageCount: json.pagination.numberOfPages, 
         currentPage: json.pagination.currentPage,
-        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages
       })
     });
   }
@@ -218,13 +218,14 @@ class Search extends Component {
               <RuntimeFilter onRuntimeChange={this.handleRuntimeChange} />
               <ImdbRatingFilter onImdbRatingChange={this.handleImdbRatingChange} />
             </div>
+            <div className="moviePaginationContainer">
             <div className="all-movies-container">
               {
                 movies.map((movie, index) =>
                   <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
                 )}
             </div>
-            <div>
+            <div className = "paginationContainer">
             <WillPaginate
             parentFetch={this.handleOnInputChange}
             pageCount={this.state.pageCount} 
@@ -233,6 +234,8 @@ class Search extends Component {
             inputContent={this.state.inputContent}
             ></WillPaginate>
              </div>
+            </div>
+            
 
           </div>
         </div>

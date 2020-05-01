@@ -10,19 +10,19 @@ class Navigation extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="./logo-img.PNG">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand >My IMDb</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/movie-details">Movie Details</Nav.Link>
+            <Nav.Link href="/" activeStyle={{color:"red"}}>Home</Nav.Link>
             <Nav.Link href="/search-movie">Search Movie</Nav.Link>
+            <Nav.Link href="/movie-details">Movie Details</Nav.Link>
           </Nav>
 
-          <Form inline>
+          {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
         </Navbar.Collapse>
       </Navbar>
     );

@@ -22,6 +22,7 @@ class App extends Component {
             <Route path="/movie-details" exact component={Details} />
           </Switch>
         </Router>
+        
       </React.Fragment>
     );
   }
