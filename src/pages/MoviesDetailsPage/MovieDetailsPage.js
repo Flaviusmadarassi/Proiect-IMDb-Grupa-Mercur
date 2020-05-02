@@ -1,40 +1,49 @@
 import React, { Component } from 'react';
-import MovieBox from "../SearchPage/MovieBox";
-import { fetchMovies } from "../SearchPage/FetchMovies";
+import { fetchMovies, generateUrl } from "../SearchPage/FetchMovies";
+import "./MovieDetails.css";
+
 class Details extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movie: [],
+  state = {
+    movie:{}
+  }
 
+  componentDidMount() {
+    const search= this.props.location.search;
+    console.log(search);
+    const [_,id] = search.split("=");
+    console.log(id);
 
-    }
-  }}
-
-  const all_movies = "https://movies-app-siit.herokuapp.com/movies";
-  let movieID = all_movies + `?_id`;
-  fetchMovies(movieID).then((json) => {
-    console.log("Results after search" + json);
-
-    this.setState ({
-      movie: json.results
+    fetchMovies(generateUrl() +`/${id}`).then(json  => {
+      this.setState({movie:json})
     })
-  });
+  }
+
   render(){
     const {movie} = this.state;
     return (
         <div className="MovieContainer">
-          <p className="MovieTitle">{this.state.movie.Title} </p>
-          <img className="MovieImage"></img>
-          <p className="MovieYear"></p>
+          <div className="imageContainer">
+          <img  className="MovieImage" src = {movie.Poster} alt="text"></img>
+          </div>
+          <div className="detailsContainer">
+            <div className="movieTitleContainer">
+              <p className="MovieTitle">{movie.Title} </p>
+            </div>
+            <div className="movieInfoContainer">
+            <p className="MovieYear">Movie year:  {movie.Year}</p>
           <p className="MovieRated"></p>
           <p className="MovieReleased"></p>
           <p className="MovieRunTime"></p>
           <p className="MovieGenre"></p>
 
+            </div>
+          
+          </div>
+          
+
           
         </div>
     )
     }
-  
+  }
 export default Details; 

@@ -196,7 +196,7 @@ class Search extends Component {
 
   render() {
     const { isLoaded, movies } = this.state;
-    const { inputContent } = this.state;
+    // const { inputContent } = this.state;
     //console.warn(this.state);
 
 
