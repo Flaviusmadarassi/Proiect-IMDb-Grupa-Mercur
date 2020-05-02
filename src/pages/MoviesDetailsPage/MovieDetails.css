@@ -23,13 +23,23 @@
      display: flex;
      justify-content: center;
  }
-.movieInfoContainer {}
+.movieInfoContainer {
+    margin-left: 30px;
+}
  .MovieTitle {
      font-size: xx-large;
      font-weight: bolder;
+     text-shadow: 4px 4px #132510;
  }
-.MovieYear {
+.MovieInfo {
     color: white;
     font-size: x-large;
+    text-shadow: 2px 2px #000000;
+}
+
+span {
+    font-weight: bolder;
+    color: rgb(197, 197, 197);
+    
 }
  

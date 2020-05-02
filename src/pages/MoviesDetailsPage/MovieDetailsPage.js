@@ -30,11 +30,14 @@ class Details extends Component {
               <p className="MovieTitle">{movie.Title} </p>
             </div>
             <div className="movieInfoContainer">
-            <p className="MovieYear">Movie year:  {movie.Year}</p>
-          <p className="MovieRated"></p>
-          <p className="MovieReleased"></p>
-          <p className="MovieRunTime"></p>
-          <p className="MovieGenre"></p>
+            <p className="MovieInfo"><span>Year:</span>  {movie.Year}</p>
+    <p className="MovieInfo"> <span>Run Time:</span>    {movie.Runtime}</p>
+    <p className="MovieInfo"> <span>Genre:</span> {movie.Genre}</p>
+    <p className="MovieInfo"><span>Language: </span>{movie.Language}</p>
+    <p className="MovieInfo"><span>Country:</span> {movie.Country}</p>
+    <p className="MovieInfo"><span>IMBd Rating:</span> {movie.imdbRating}</p>
+    <p className="MovieInfo"><span>IMBd Votes:</span> {movie.imdbVotes}</p>
+    <p className="MovieInfo"><span>IMBd ID:  </span> {movie.imdbID}</p>
 
             </div>
           
