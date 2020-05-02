@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { fetchMovies, generateUrl } from "../SearchPage/FetchMovies";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import "./MovieDetails.css";
 
 class Details extends Component {
@@ -23,7 +24,7 @@ class Details extends Component {
     return (
         <div className="MovieContainer">
           <div className="imageContainer">
-          <img  className="MovieImage" src = {movie.Poster} alt="text"></img>
+          <img  className="MovieImage" src = {movie.Poster} alt="text"  ></img>
           </div>
           <div className="detailsContainer">
             <div className="movieTitleContainer">
@@ -35,10 +36,11 @@ class Details extends Component {
     <p className="MovieInfo"> <span>Genre:</span> {movie.Genre}</p>
     <p className="MovieInfo"><span>Language: </span>{movie.Language}</p>
     <p className="MovieInfo"><span>Country:</span> {movie.Country}</p>
-    <p className="MovieInfo"><span>IMBd Rating:</span> {movie.imdbRating}</p>
-    <p className="MovieInfo"><span>IMBd Votes:</span> {movie.imdbVotes}</p>
-    <p className="MovieInfo"><span>IMBd ID:  </span> {movie.imdbID}</p>
-
+    <p className="MovieInfo"><span>IMDb Rating:</span> {movie.imdbRating}</p>
+    <p className="MovieInfo"><span>IMDb Votes:</span> {movie.imdbVotes}</p>
+    <p className="MovieInfo"><span>IMDb ID:  </span> {movie.imdbID}</p>
+    <Link to ={"/search-movie"}><button className="goBackButton">Go Back</button></Link>
+   
             </div>
           
           </div>

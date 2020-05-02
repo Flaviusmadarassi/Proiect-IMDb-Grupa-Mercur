@@ -6,6 +6,8 @@
     height: 50%;
     
     
+    
+    
 }
 .search-page-container{
     padding-left: 30px;
@@ -74,6 +76,9 @@
 .buttonMovieDetails {
     width: 120px;
     height: 40px;
+}
+.buttonMovieDetails:hover {
+    background-color: rgb(93, 119, 93);
 }
 .containerButtonMovieDetails {
     width: 100%;

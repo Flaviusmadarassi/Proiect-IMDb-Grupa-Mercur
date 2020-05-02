@@ -42,4 +42,11 @@ span {
     color: rgb(197, 197, 197);
     
 }
- 
+
+.goBackButton{
+    color: white;
+    background-color: rgb(119, 119, 119);
+}
+.goBackButton:hover {
+    background-color: rgb(93, 119, 93);
+}

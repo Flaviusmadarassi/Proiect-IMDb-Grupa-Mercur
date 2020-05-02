@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import "../App.css"
 // import Form from "react-bootstrap/Form";
 // import FormControl from "react-bootstrap/FormControl";
 // import Button from "react-bootstrap/Button";
@@ -16,7 +17,7 @@ class Navigation extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="/" activeStyle={{color:"red"}}>Home</Nav.Link>
             <Nav.Link href="/search-movie">Search Movie</Nav.Link>
-            <Nav.Link href="/movie-details">Movie Details</Nav.Link>
+            <Nav.Link href="/movie-details" className="detailsButton">Movie Details</Nav.Link>
           </Nav>
 
           {/* <Form inline>
