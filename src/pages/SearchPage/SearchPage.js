@@ -85,7 +85,7 @@ class Search extends Component {
     }
 
     this.setState({ inputContent: query, loading: true, message: "" });
-    const all_movies = "https://movies-api-siit.herokuapp.com/movies";
+    const all_movies = "https://movies-app-siit.herokuapp.com/movies";
     let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
     if (skip) { searched_movies = searched_movies + `&skip=${skip * 10 - 10}` }
 
