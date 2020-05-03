@@ -16,7 +16,14 @@ class EditMoviePage extends Component {
     });
   };
 
-  addMovie = () => {
+  addMovie = (event) => {
+    const token = document.cookie
+      .split(";")
+      .find((element) => {
+        if (element.includes("token")) return true;
+      })
+      .split("=")[1];
+
     fetch(`https://movies-app-siit.herokuapp.com/movies`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
@@ -24,7 +31,7 @@ class EditMoviePage extends Component {
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
         "Content-Type": "application/json",
-        "X-Auth-Token": document.cookie,
+        "X-Auth-Token": token,
       },
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *client
@@ -40,14 +47,16 @@ class EditMoviePage extends Component {
       .then((json) => {
         console.log(json);
       });
+    // event.preventDefault();
   };
 
   render() {
     return (
       <div>
         <h2>Add Movie</h2>
-        <form className="addMovieForm">
+        <form className="addMovieForm" onSubmit={this.addMovie}>
           <input
+            type="text"
             name="Title"
             placeholder="Insert movie title"
             value={this.state.Title}
@@ -55,6 +64,7 @@ class EditMoviePage extends Component {
             required
           />
           <input
+            type="text"
             name="Year"
             placeholder="Insert movie year"
             value={this.state.Year}
@@ -62,6 +72,7 @@ class EditMoviePage extends Component {
             required
           />
           <input
+            type="text"
             name="imdbID"
             placeholder="Insert movie ID"
             value={this.state.imdbID}
@@ -69,13 +80,24 @@ class EditMoviePage extends Component {
             required
           />
           <input
+            type="text"
             name="Type"
             placeholder="Insert movie genre"
             value={this.state.Type}
             onChange={this.handleChange}
             required
           />
-          <button onSubmit={this.addMovie}>Submit Movie</button>
+          <input
+            type="text"
+            name="Poster"
+            placeholder="Insert poster URL"
+            value={this.state.Poster}
+            onChange={this.handleChange}
+            required
+          />
+          <button type="button" className="btn btn-primary">
+            Submit Movie
+          </button>
         </form>
       </div>
     );

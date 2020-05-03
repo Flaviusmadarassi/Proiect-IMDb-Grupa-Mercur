@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./LogIn.css";
-import fetchData from "./LogInUtils";
 import EditMoviePage from "../EditMoviePage/EditMoviePage";
 
 class LogIn extends Component {
