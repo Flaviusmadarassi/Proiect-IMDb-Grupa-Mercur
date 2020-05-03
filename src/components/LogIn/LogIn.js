@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./LogIn.css";
+import fetchData from "./LogInUtils";
 
 class LogIn extends Component {
   state = {
@@ -10,7 +11,16 @@ class LogIn extends Component {
     formState: "signIn",
   };
 
-  componentDidMount() {}
+  onSubmit = (data) => {
+    this.setState({
+      signUpUsername: "",
+      signUpPassword: "",
+      logInUsername: "",
+      logInPassword: "",
+    });
+
+    console.log(data.message);
+  };
 
   handleChangeFormState = (formState) => {
     this.setState({
@@ -42,7 +52,9 @@ class LogIn extends Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        json.authenticated === true
+          ? this.props.history.push("/")
+          : this.onSubmit(json);
 
         document.cookie = `token=${json.accessToken}`;
       });
@@ -67,11 +79,11 @@ class LogIn extends Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
-        document.cookie = `token=${json.accessToken}`;
         json.authenticated === true
-          ? this.setState({ logInUsername: "", logInPassword: "" })
-          : console.log("not logged in");
+          ? this.props.history.push("/")
+          : this.onSubmit(json);
+
+        document.cookie = `token=${json.accessToken}`;
       });
     event.preventDefault();
   };
@@ -107,9 +119,7 @@ class LogIn extends Component {
                 onChange={this.handleChange}
                 required
               />
-              <button className="button" type="submit">
-                Sign Up
-              </button>
+              <button className="button">Sign Up</button>
             </form>
           </div>
           <div className="form-container sign-in-container">
@@ -136,6 +146,9 @@ class LogIn extends Component {
               <button className="button">Sign In</button>
             </form>
           </div>
+
+          {/* This is the overlay content. */}
+
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">
