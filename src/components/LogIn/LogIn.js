@@ -1,22 +1,19 @@
 import React, { Component } from "react";
 import "./LogIn.css";
 import fetchData from "./LogInUtils";
+import EditMoviePage from "../EditMoviePage/EditMoviePage";
 
 class LogIn extends Component {
   state = {
-    signUpUsername: "",
-    signUpPassword: "",
-    logInUsername: "",
-    logInPassword: "",
+    username: "",
+    password: "",
     formState: "signIn",
   };
 
   onSubmit = (data) => {
     this.setState({
-      signUpUsername: "",
-      signUpPassword: "",
-      logInUsername: "",
-      logInPassword: "",
+      username: "",
+      password: "",
     });
 
     console.log(data.message);
@@ -46,8 +43,8 @@ class LogIn extends Component {
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *client
       body: JSON.stringify({
-        username: this.state.signUpUsername,
-        password: this.state.signUpPassword,
+        username: this.state.username,
+        password: this.state.password,
       }),
     })
       .then((response) => response.json())
@@ -73,8 +70,8 @@ class LogIn extends Component {
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *client
       body: JSON.stringify({
-        username: this.state.logInUsername,
-        password: this.state.logInPassword,
+        username: this.state.username,
+        password: this.state.password,
       }),
     })
       .then((response) => response.json())
@@ -105,7 +102,7 @@ class LogIn extends Component {
                 className="register-input"
                 type="text"
                 placeholder="Username"
-                name="signUpUsername"
+                name="username"
                 value={this.state.username}
                 onChange={this.handleChange}
                 required
@@ -114,7 +111,7 @@ class LogIn extends Component {
                 className="register-input"
                 type="password"
                 placeholder="Password"
-                name="signUpPassword"
+                name="password"
                 value={this.state.password}
                 onChange={this.handleChange}
                 required
@@ -129,8 +126,8 @@ class LogIn extends Component {
                 className="register-input"
                 type="text"
                 placeholder="Username"
-                name="logInUsername"
-                value={this.state.logInUsername}
+                name="username"
+                value={this.state.username}
                 onChange={this.handleChange}
                 required
               />
@@ -138,8 +135,8 @@ class LogIn extends Component {
                 className="register-input"
                 type="password"
                 placeholder="Password"
-                name="logInPassword"
-                value={this.state.logInPassword}
+                name="password"
+                value={this.state.password}
                 onChange={this.handleChange}
                 required
               />
@@ -180,6 +177,7 @@ class LogIn extends Component {
             </div>
           </div>
         </div>
+        <EditMoviePage />
       </div>
     );
   }
