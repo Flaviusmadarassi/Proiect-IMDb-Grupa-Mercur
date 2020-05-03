@@ -11,7 +11,7 @@
 // }
 
 export function generateUrl(filters) {
-    let url = 'https://movies-api-siit.herokuapp.com/movies';
+    let url = 'https://movies-app-siit.herokuapp.com/movies';
 
     const searchQuery = Object.keys(filters).reduce((acc, key) => {
         const filterValue = filters[key];
