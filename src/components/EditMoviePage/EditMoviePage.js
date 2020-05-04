@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./EditMoviePage.css";
 
-class EditMoviePage extends Component {
+class AddMovie extends Component {
   state = {
     Title: "",
     Year: "",
@@ -16,7 +16,7 @@ class EditMoviePage extends Component {
     });
   };
 
-  addMovie = (event) => {
+  addMovie = () => {
     const token = document.cookie
       .split(";")
       .find((element) => {
@@ -47,14 +47,13 @@ class EditMoviePage extends Component {
       .then((json) => {
         console.log(json);
       });
-    // event.preventDefault();
   };
 
   render() {
     return (
       <div>
         <h2>Add Movie</h2>
-        <form className="addMovieForm" onSubmit={this.addMovie}>
+        <form className="addMovieForm">
           <input
             type="text"
             name="Title"
@@ -95,8 +94,12 @@ class EditMoviePage extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="button" className="btn btn-primary">
-            Submit Movie
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.addMovie}
+          >
+            Add new Movie
           </button>
         </form>
       </div>
@@ -104,4 +107,4 @@ class EditMoviePage extends Component {
   }
 }
 
-export default EditMoviePage;
+export default AddMovie;

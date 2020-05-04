@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./LogIn.css";
-import EditMoviePage from "../EditMoviePage/EditMoviePage";
+import AddMovie from "../EditMoviePage/EditMoviePage";
 
 class LogIn extends Component {
   state = {
@@ -176,7 +176,7 @@ class LogIn extends Component {
             </div>
           </div>
         </div>
-        <EditMoviePage />
+        <AddMovie />
       </div>
     );
   }
