@@ -1,18 +1,33 @@
 import React, { Component } from "react";
 import "./LogIn.css";
-import AddMovie from "../EditMoviePage/EditMoviePage";
+import AddMovie from "../EditMoviePage/AddMovie";
 
 class LogIn extends Component {
   state = {
-    username: "",
-    password: "",
+    signUpUsername: "",
+    signUpPassword: "",
+    logInUsername: "",
+    logInPassword: "",
+    signUpMessage: "",
+    logInMessage: "",
     formState: "signIn",
   };
 
-  onSubmit = (data) => {
+  onSubmitSignUp = (data) => {
     this.setState({
-      username: "",
-      password: "",
+      signUpUsername: "",
+      signUpPassword: "",
+      signUpMessage: data.message,
+    });
+
+    console.log(data.message);
+  };
+
+  onSubmitLogIn = (data) => {
+    this.setState({
+      logInUsername: "",
+      logInPassword: "",
+      logInMessage: data.message,
     });
 
     console.log(data.message);
@@ -42,15 +57,15 @@ class LogIn extends Component {
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *client
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
+        username: this.state.signUpUsername,
+        password: this.state.signUpPassword,
       }),
     })
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
           ? this.props.history.push("/")
-          : this.onSubmit(json);
+          : this.onSubmitSignUp(json);
 
         document.cookie = `token=${json.accessToken}`;
       });
@@ -69,15 +84,15 @@ class LogIn extends Component {
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *client
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
+        username: this.state.logInUsername,
+        password: this.state.logInPassword,
       }),
     })
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
           ? this.props.history.push("/")
-          : this.onSubmit(json);
+          : this.onSubmitLogIn(json);
 
         document.cookie = `token=${json.accessToken}`;
       });
@@ -101,8 +116,8 @@ class LogIn extends Component {
                 className="register-input"
                 type="text"
                 placeholder="Username"
-                name="username"
-                value={this.state.username}
+                name="signUpUsername"
+                value={this.state.signUpUsername}
                 onChange={this.handleChange}
                 required
               />
@@ -110,11 +125,12 @@ class LogIn extends Component {
                 className="register-input"
                 type="password"
                 placeholder="Password"
-                name="password"
-                value={this.state.password}
+                name="signUpPassword"
+                value={this.state.signUpPassword}
                 onChange={this.handleChange}
                 required
               />
+              <p className="response-message">{this.state.signUpMessage}</p>
               <button className="button">Sign Up</button>
             </form>
           </div>
@@ -125,8 +141,8 @@ class LogIn extends Component {
                 className="register-input"
                 type="text"
                 placeholder="Username"
-                name="username"
-                value={this.state.username}
+                name="logInUsername"
+                value={this.state.logInUsername}
                 onChange={this.handleChange}
                 required
               />
@@ -134,11 +150,12 @@ class LogIn extends Component {
                 className="register-input"
                 type="password"
                 placeholder="Password"
-                name="password"
-                value={this.state.password}
+                name="logInPassword"
+                value={this.state.logInPassword}
                 onChange={this.handleChange}
                 required
               />
+              <p className="response-message">{this.state.logInMessage}</p>
               <button className="button">Sign In</button>
             </form>
           </div>

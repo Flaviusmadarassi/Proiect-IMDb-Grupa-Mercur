@@ -191,3 +191,8 @@
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
+
+.response-message {
+  color: red;
+  text-decoration: underline;
+}
