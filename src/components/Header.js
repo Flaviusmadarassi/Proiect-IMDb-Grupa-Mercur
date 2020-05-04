@@ -20,12 +20,16 @@ class Navigation extends Component {
             <Nav.Link href="/movie-details">Movie Details</Nav.Link>
             <Nav.Link href="/search-movie">Search Movie</Nav.Link>
 
+            <Nav.Link href="/login-page">Authentication</Nav.Link>
+
+
 
             <NavDropdown title="Edit Movie" id="nav-dropdown">
               <NavDropdown.Item href="/edit-movie/add">Add Movie</NavDropdown.Item>
               <NavDropdown.Item href="/edit-movie/delete">Delete Movie</NavDropdown.Item>
               <NavDropdown.Item href="/edit-movie/edit">Edit Movie</NavDropdown.Item>
             </NavDropdown>
+
 
           </Nav>
 

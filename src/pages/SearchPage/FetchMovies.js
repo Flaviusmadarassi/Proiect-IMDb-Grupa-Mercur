@@ -7,3 +7,5 @@ export function fetchMovies(url = generateUrl()) {
     return fetch(url).then(response => response.json());
 }
 
+  return fetch(url).then((response) => response.json());
+}
