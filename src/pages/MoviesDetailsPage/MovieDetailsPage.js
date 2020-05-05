@@ -18,6 +18,7 @@ class Details extends Component {
       this.setState({movie:json})
     })
   }
+ 
 
   render(){
     const {movie} = this.state;
@@ -40,7 +41,6 @@ class Details extends Component {
     <p className="MovieInfo"><span>IMDb Votes:</span> {movie.imdbVotes}</p>
     <p className="MovieInfo"><span>IMDb ID:  </span> {movie.imdbID}</p>
     <Link to ={"/search-movie"}><button className="goBackButton">Go Back</button></Link>
-   
             </div>
           
           </div>

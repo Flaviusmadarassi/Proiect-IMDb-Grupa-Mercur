@@ -12,6 +12,7 @@ import { RuntimeFilter } from './RuntimeFilter.js';
 import { ImdbRatingFilter } from './ImdbRatingFilter.js';
 
 
+
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -41,10 +42,11 @@ class Search extends Component {
     this.setState({ inputContent: query, loading: true, message: "" });
     const all_movies = "https://movies-app-siit.herokuapp.com/movies";
     let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
-    if (skip) { searched_movies = searched_movies + `&skip=${skip * 10 - 10}`}
+    if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}`}
 
     fetchMovies(searched_movies).then((json) => {
-      console.log("Results after search" + json);
+      console.log("Results after search", json);
+      
 
       this.setState({ 
         isLoaded: true, 
@@ -54,6 +56,10 @@ class Search extends Component {
         totalItemsCount: json.results.length * json.pagination.numberOfPages,
         inputContent: query
       });
+      console.log(this.state.numberOfPages);
+      if (this.state.numberOfPages === 0) {
+        console.log();
+      }
     });
   };
   
@@ -64,13 +70,22 @@ class Search extends Component {
     const searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
 
     fetchMovies(searched_movies).then(json => {
-      console.log('Results after search' + json);
+      console.log('Results after search', json);
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        inputContent: query
       })
-    });
+      console.log(this.state.numberOfPages);
+      if (this.state.numberOfPages === undefined) {
+        console.log("no result")
+        
+      return <NoResult />
+    }});
 
   }
   handleGenreChange = selectedGenre => {
@@ -80,11 +95,15 @@ class Search extends Component {
     console.log(selectedGenre.value);
 
     fetchMovies(searched_genre).then(json => {
-      console.log('Results after option is selected' + json);
+      console.log('Results after option is selected', json);
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        // inputContent: query
       })
     });
 
@@ -99,11 +118,14 @@ class Search extends Component {
     console.log('url cu year ' + chosen_year_url);
 
     fetchMovies(chosen_year_url).then(json => {
-      console.log('Results after year is selected' + json);
+      console.log('Results after year is selected', json);
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
       })
     });
 
@@ -115,11 +137,14 @@ class Search extends Component {
     console.log(chosen_language_url);
 
     fetchMovies(chosen_language_url).then(json => {
-      console.log('Results after option is selected' + json);
+      console.log('Results after option is selected', json);
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
       })
 
       console.log('movies ' + this.movies);
@@ -134,11 +159,14 @@ class Search extends Component {
 
 
     fetchMovies(chosen_country_url).then(json => {
-      console.log('Results after option is selected' + json);
+      console.log('Results after option is selected', json);
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
       })
     });
 
@@ -151,11 +179,14 @@ class Search extends Component {
     console.log(changeEvent);
 
     fetchMovies(chosen_runtime_url).then(json => {
-      console.log('Results after option is selected' + json);
+      console.log('Results after option is selected', json);
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
       })
     });
 
@@ -168,11 +199,14 @@ class Search extends Component {
     console.log(changeEvent);
 
     fetchMovies(chosen_ImdbRating_url).then(json => {
-      console.log('Results after option is selected' + json);
+      console.log('Results after option is selected',json);
 
       this.setState({
         isLoaded: true,
         movies: json.results,
+        pageCount: json.pagination.numberOfPages,
+        currentPage: json.pagination.currentPage,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
       })
     });
 
@@ -206,7 +240,6 @@ class Search extends Component {
     else {
 
       return (
-
         <div className="search-page-container">
           <SearchFilter onSearchFilter={this.handleOnSearchChange} searchInput={this.inputContent} />
           <div className="content">
