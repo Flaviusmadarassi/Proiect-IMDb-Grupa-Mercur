@@ -1,0 +1,23 @@
+.input-container-2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.search-input-2 {
+    width: 40%;
+    border: 2px solid lightgrey;
+    border-radius: 5px;
+    /* outline: none; */
+    text-indent: 10px;
+}
+
+.search-icon-2{
+    position: absolute;
+    right: 330px;
+    color: grey;
+    font-size: 20px;
+}

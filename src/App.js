@@ -6,7 +6,9 @@ import Home from "./pages/HomePage/HomePage";
 import Search from "./pages/SearchPage/SearchPage";
 import Details from "./pages/MoviesDetailsPage/MovieDetailsPage";
 import Edit from "./pages/EditPage/EditPage";
-import Add from "./pages/EditPage/AddPage"
+import Add from "./pages/EditPage/AddPage";
+import Delete from "./pages/EditPage/DeletePage";
+import EditMovie from "./pages/EditPage/EditMovie";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -23,8 +25,8 @@ class App extends Component {
             <Route path="/search-movie" exact component={Search} />
             <Route path="/movie-details" exact component={Details} />
             <Route path="/edit-movie/add" exact component={Add} />
-            <Route path="/edit-movie/edit" exact component={Add} />
-            <Route path="/edit-movie/delete" exact component={Add} />
+            <Route path="/edit-movie/edit" exact component={EditMovie} />
+            <Route path="/edit-movie/delete" exact component={Delete} />
           </Switch>
         </Router>
       </React.Fragment>
