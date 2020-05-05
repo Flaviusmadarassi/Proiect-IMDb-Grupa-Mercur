@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-import "./AddPage.css";
+import "./EditForm.css";
+import { createMovieUpdate } from './MovieFetchUpdate';
 
 class EditForm extends Component {
 
@@ -20,6 +21,17 @@ class EditForm extends Component {
     //     this.setState({ [e.target.name]: e.target.value })
     // }
 
+    handleFetchOnClick = () => {
+        const token = document.cookie
+            .split(";")
+            .find((element) => {
+                if (element.includes("token")) return true;
+            })
+            .split("=")[1];
+        const data = { Year: 2009 }
+        createMovieUpdate(data, token);
+    }
+
     render() {
 
 
@@ -31,32 +43,42 @@ class EditForm extends Component {
                     onSubmit={this.submitHandler}
                     noValidate
                 >
-                    <div className='container-row'>
-                        <MDBRow>
-                            <MDBCol md="4" >
-                                <label
-                                    htmlFor="defaultFormRegistertitle"
-                                    className="grey-text"
-                                >
-                                    Movie title :
+
+                    <MDBRow className='title-col-container'>
+
+                        <MDBCol md="4" >
+                            <label
+                                htmlFor="defaultFormRegistertitle"
+                                className="grey-text"
+                            >
+                                Movie title :
                             </label>
-                                <input
-                                    defaultValue={this.state.Title}
-                                    name="Title"
-                                    onChange={(value) => {
-                                        this.setState({ Title: value });
-                                        console.log(this.state)
-                                    }}
-                                    type="text"
-                                    id="defaultFormRegistertitle"
-                                    className="form-control"
-                                    placeholder="Movie title"
-                                    required
-                                />
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </MDBCol>
-                        </MDBRow>
-                    </div>
+                            <input
+                                defaultValue={this.state.Title}
+                                name="Title"
+                                onChange={(value) => {
+                                    this.setState({ Title: value });
+                                    console.log(this.state)
+                                }}
+                                type="text"
+                                id="defaultFormRegistertitle"
+                                className="form-control"
+                                placeholder="Movie title"
+                                required
+                            />
+                            <div class="invalid-feedback">Please fill out this field.</div>
+
+                        </MDBCol>
+
+
+                        <MDBCol>
+                            <img src={this.state.Poster} ></img>
+                        </MDBCol>
+
+                    </MDBRow>
+
+
+
                     <div className='container-row'>
                         <MDBRow>
                             <MDBCol md="4">
@@ -223,7 +245,7 @@ class EditForm extends Component {
                         </MDBRow>
                     </div>
                     <div className="add-button-container">
-                        <MDBBtn color="success" type="submit" >
+                        <MDBBtn color="success" type="submit"  >
                             Edit movie
                     </MDBBtn>
                     </div>
