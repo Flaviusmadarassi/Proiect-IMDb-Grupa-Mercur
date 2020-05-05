@@ -1,69 +1,31 @@
 import React, { Component } from 'react';
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import "./AddPage.css";
-import { createMoviePost } from "./MoviePost";
-import axios from 'axios';
 
-
-class Add extends Component {
+class EditForm extends Component {
 
     state = {
-        Title: "",
-        Country: "",
-        Year: "",
-        Genre: "",
-        Language: "",
-        Runtime: "",
-        ImdbVotes: "",
-        ImdbRating: "",
-        Poster: "",
+        Title: this.props.searchedMovieResult.Title,
+        Country: this.props.searchedMovieResult.Country,
+        Year: this.props.searchedMovieResult.Year,
+        Genre: this.props.searchedMovieResult.Genre,
+        Language: this.props.searchedMovieResult.Language,
+        Runtime: this.props.searchedMovieResult.Runtime,
+        imdbVotes: this.props.searchedMovieResult.imdbVotes,
+        imdbRating: this.props.searchedMovieResult.imdbRating,
+        Poster: this.props.searchedMovieResult.Poster,
     };
 
-    submitHandler = (event) => {
-        event.preventDefault();
-        event.target.className += " was-validated";
-        console.log(this.state);
-
-        // axios
-        //     .post('https://movies-app-siit.herokuapp.com/movies', this.state)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
-        let data = this.createData();
-
-        createMoviePost(data);
-        console.log(data);
-
-    };
-
-    createData = () => {
-        let data = {
-            Title: this.state.Title,
-            Country: this.state.Country,
-            Year: this.state.Year,
-            Genre: this.state.Genre,
-            Language: this.state.Language,
-            Runtime: this.state.Runtime,
-            ImdbVotes: this.state.ImdbVotes,
-            ImdbRating: this.state.ImdbRating,
-            Poster: this.state.Poster,
-        }
-
-        return data;
-    }
-
-    changeHandler = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
+    // onChange(e) {
+    //     this.setState({ [e.target.name]: e.target.value })
+    // }
 
     render() {
-        console.log('blalbla');
+
 
         return (
-            <div className="container">
+
+            <div >
                 <form
                     className="needs-validation"
                     onSubmit={this.submitHandler}
@@ -79,9 +41,12 @@ class Add extends Component {
                                     Movie title :
                             </label>
                                 <input
-                                    value={this.state.Title}
+                                    defaultValue={this.state.Title}
                                     name="Title"
-                                    onChange={this.changeHandler}
+                                    onChange={(value) => {
+                                        this.setState({ Title: value });
+                                        console.log(this.state)
+                                    }}
                                     type="text"
                                     id="defaultFormRegistertitle"
                                     className="form-control"
@@ -102,7 +67,7 @@ class Add extends Component {
                                     Genre :
                             </label>
                                 <input
-                                    value={this.state.Genre}
+                                    defaultValue={this.state.Genre}
                                     name="Genre"
                                     onChange={this.changeHandler}
                                     type="text"
@@ -121,7 +86,7 @@ class Add extends Component {
                                     Year :
                             </label>
                                 <input
-                                    value={this.state.Year}
+                                    defaultValue={this.state.Year}
                                     name="Year"
                                     onChange={this.changeHandler}
                                     type="number"
@@ -140,7 +105,7 @@ class Add extends Component {
                                     Country :
                             </label>
                                 <input
-                                    value={this.state.Country}
+                                    defaultValue={this.state.Country}
                                     name="Country"
                                     onChange={this.changeHandler}
                                     type="text"
@@ -164,7 +129,7 @@ class Add extends Component {
                                     Poster URL :
                             </label>
                                 <input
-                                    value={this.state.Poster}
+                                    defaultValue={this.state.Poster}
                                     name="Poster"
                                     onChange={this.changeHandler}
                                     type="text"
@@ -187,7 +152,7 @@ class Add extends Component {
                                     Language :
                             </label>
                                 <input
-                                    value={this.state.Language}
+                                    defaultValue={this.state.Language}
                                     name="Language"
                                     onChange={this.changeHandler}
                                     type="text"
@@ -206,10 +171,10 @@ class Add extends Component {
                                     Runtime :
                             </label>
                                 <input
-                                    value={this.state.Runtime}
+                                    defaultValue={this.state.Runtime}
                                     name="Runtime"
                                     onChange={this.changeHandler}
-                                    type="number"
+                                    type="text"
                                     id="defaultFormRegisterRuntime"
                                     className="form-control"
                                     placeholder="Runtime"
@@ -225,10 +190,10 @@ class Add extends Component {
                                     Imdb Votes :
                             </label>
                                 <input
-                                    value={this.state.ImdbVotes}
+                                    defaultValue={this.state.imdbVotes}
                                     name="ImdbVotes"
                                     onChange={this.changeHandler}
-                                    type="number"
+                                    type="text"
                                     id="defaultFormRegisterImdbVotes"
                                     className="form-control"
                                     placeholder="Imdb Votes"
@@ -244,7 +209,7 @@ class Add extends Component {
                                     Imdb Rating :
                             </label>
                                 <input
-                                    value={this.state.ImdbRating}
+                                    defaultValue={this.state.imdbRating}
                                     name="ImdbRating"
                                     onChange={this.changeHandler}
                                     type="number"
@@ -258,8 +223,8 @@ class Add extends Component {
                         </MDBRow>
                     </div>
                     <div className="add-button-container">
-                        <MDBBtn color="success" type="submit">
-                            Add movie
+                        <MDBBtn color="success" type="submit" >
+                            Edit movie
                     </MDBBtn>
                     </div>
                 </form>
@@ -269,4 +234,4 @@ class Add extends Component {
 }
 
 
-export default Add;
+export default EditForm;

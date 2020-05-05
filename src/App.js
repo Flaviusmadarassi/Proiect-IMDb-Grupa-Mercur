@@ -9,7 +9,9 @@ import Details from "./pages/MoviesDetailsPage/MovieDetailsPage";
 import LogIn from "./components/LogIn/LogIn.js";
 
 import Edit from "./pages/EditPage/EditPage";
-import Add from "./pages/EditPage/AddPage"
+import Add from "./pages/EditPage/AddPage";
+import Delete from "./pages/EditPage/DeletePage";
+import EditMovie from "./pages/EditPage/EditMovie";
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,8 +30,8 @@ class App extends Component {
             <Route path="/movie-details" exact component={Details} />
             <Route path="/login-page" exact component={LogIn} />
             <Route path="/edit-movie/add" exact component={Add} />
-            <Route path="/edit-movie/edit" exact component={Add} />
-            <Route path="/edit-movie/delete" exact component={Add} />
+            <Route path="/edit-movie/edit" exact component={EditMovie} />
+            <Route path="/edit-movie/delete" exact component={Delete} />
 
           </Switch>
         </Router>

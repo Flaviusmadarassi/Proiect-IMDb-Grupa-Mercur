@@ -5,6 +5,8 @@ import "./MovieBox.css";
 class MovieBox extends Component {
 
     render() {
+
+
         return <div className='content-container-movies' >
             <p className='movie-title'>{this.props.movie_details.Title}</p>
             <img src={this.props.movie_details.Poster}></img>

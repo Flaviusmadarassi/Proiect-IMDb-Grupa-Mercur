@@ -1,0 +1,10 @@
+
+.search-movie-input-container input {
+    margin-top:  40px;
+    width: 60%;
+    border: 2px solid lightgrey;
+    border-radius: 5px;
+    /* outline: none; */
+    text-indent: 10px;
+    
+}
