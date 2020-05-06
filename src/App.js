@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./pages/HomePage/HomePage";
 import Search from "./pages/SearchPage/SearchPage";
@@ -35,6 +35,7 @@ class App extends Component {
 
           </Switch>
         </Router>
+        
       </React.Fragment>
     );
   }

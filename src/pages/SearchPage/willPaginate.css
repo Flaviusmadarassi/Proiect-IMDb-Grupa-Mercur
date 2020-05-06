@@ -1,0 +1,39 @@
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.active a {
+    color:white;
+    background-color: rgb(93, 119, 93);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-size: larger;
+    
+    
+}
+
+.pagination {
+    display: flex;
+}
+.pagination li {
+    
+    display: flex;
+    justify-content: center;
+    width: 37px;
+    height: 35x;
+    border: solid 1px rgb(63, 62, 62);
+    margin: 3px;
+    background-color: rgb(105, 104, 102);
+    font-size: larger;
+    
+}
+
+.pagination li a {
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    text-decoration: none;
+    
+}

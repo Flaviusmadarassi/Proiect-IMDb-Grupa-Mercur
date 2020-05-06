@@ -6,6 +6,8 @@
     height: 50%;
     
     
+    
+    
 }
 .search-page-container{
     padding-left: 30px;
@@ -33,4 +35,24 @@
 }
 .filters-container{
     width:20%;
+}
+
+.buttonMovieDetails {
+    width: 120px;
+    height: 40px;
+}
+.buttonMovieDetails:hover {
+    background-color: rgb(93, 119, 93);
+}
+.containerButtonMovieDetails {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.content-container-movies button {
+    justify-content: center;
+    background-color: rgb(121, 121, 121);
+    color: white;
+    /* margin-left: 10px; */
+    
 }
