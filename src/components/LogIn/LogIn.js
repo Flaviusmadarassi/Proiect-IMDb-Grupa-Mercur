@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./LogIn.css";
 import AddMovie from "../EditMoviePage/AddMovie";
+import Footer from "../Footer";
 
 class LogIn extends Component {
   state = {
@@ -193,8 +194,15 @@ class LogIn extends Component {
             </div>
           </div>
         </div>
+        <div>
         <AddMovie />
+        </div>
+        <div className="Footer">
+            <Footer />
+          </div> 
+        
       </div>
+      
     );
   }
 }

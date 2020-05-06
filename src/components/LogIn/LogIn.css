@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.body{
+  background-image:url("../../img/search-page-background.jpg");
+}
+
 .p {
   font-size: 14px;
   font-weight: 100;
