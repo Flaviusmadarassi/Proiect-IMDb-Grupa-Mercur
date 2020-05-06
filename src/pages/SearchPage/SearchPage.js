@@ -10,7 +10,8 @@ import Language from './LanguageFilter.js';
 import Country from './CountryFilter.js';
 import { RuntimeFilter } from './RuntimeFilter.js';
 import { ImdbRatingFilter } from './ImdbRatingFilter.js';
-import { dictToURL, generateUrl } from './SearchPageUtils'
+import { dictToURL, generateUrl } from './SearchPageUtils'; 
+import Footer from "../../components/Footer"
 
 
 
@@ -62,6 +63,7 @@ class Search extends Component {
         //Generates the url after the dictionary was updated
         const url = generateUrl(this.state.filters);
         console.log(url);
+        console.log(url.numberOfPages);
         //Fetch movies based on the new url (which contains selected filters)
         fetchMovies(url).then(json => {
           console.log('3.Results after search' + json);
@@ -225,7 +227,13 @@ class Search extends Component {
             
 
           </div>
+          <div className="Footer">
+            <Footer />
+            </div>
+          
         </div >
+        
+        
       );
     }
   }
