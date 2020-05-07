@@ -10,7 +10,7 @@ import Language from './LanguageFilter.js';
 import Country from './CountryFilter.js';
 import { RuntimeFilter } from './RuntimeFilter.js';
 import { ImdbRatingFilter } from './ImdbRatingFilter.js';
-import { dictToURL, generateUrl } from './SearchPageUtils'
+import { generateUrl } from './SearchPageUtils'
 
 
 
@@ -179,7 +179,7 @@ class Search extends Component {
   render() {
     const { isLoaded, movies } = this.state;
 
-    const { inputContent } = this.state;
+
 
     if (!isLoaded) {
       return <div>Loading...</div>

@@ -8,7 +8,22 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 
 class Navigation extends Component {
-  state = {};
+  state = {
+    isLoggedIn: false,
+  };
+
+
+  componentDidMount() {
+    let token = document.cookie;
+    if (token.includes('token')) {
+      this.setState({ isLoggedIn: true })
+    }
+  }
+
+  componentDidUpdate() {
+
+  }
+
   render() {
     return (
       <Navbar bg="light" expand="lg">
@@ -23,12 +38,12 @@ class Navigation extends Component {
             <Nav.Link href="/login-page">Authentication</Nav.Link>
 
 
-
-            <NavDropdown title="Edit Movie" id="nav-dropdown">
-              <NavDropdown.Item href="/edit-movie/add">Add Movie</NavDropdown.Item>
-              <NavDropdown.Item href="/edit-movie/delete">Delete Movie</NavDropdown.Item>
-              <NavDropdown.Item href="/edit-movie/edit">Edit Movie</NavDropdown.Item>
-            </NavDropdown>
+            {this.state.isLoggedIn ?
+              <NavDropdown title="Edit Movie" id="nav-dropdown">
+                <NavDropdown.Item href="/edit-movie/add">Add Movie</NavDropdown.Item>
+                <NavDropdown.Item href="/edit-movie/delete">Delete Movie</NavDropdown.Item>
+                <NavDropdown.Item href="/edit-movie/edit">Edit Movie</NavDropdown.Item>
+              </NavDropdown> : null}
 
 
           </Nav>
@@ -42,5 +57,6 @@ class Navigation extends Component {
     );
   }
 }
+
 
 export default Navigation;

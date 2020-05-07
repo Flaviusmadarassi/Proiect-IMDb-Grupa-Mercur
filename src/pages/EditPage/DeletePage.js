@@ -1,76 +1,75 @@
-import React, { Component } from 'react';
-import SearchInput from './SearchInputDeletePage';
+import React, { Component } from 'react'
+import ReactSearchBox from 'react-search-box'
 import { fetchMovies } from "../SearchPage/FetchMovies";
-import MovieBox from '../SearchPage/MovieBox.js';
-import '../SearchPage/SearchPage.css';
-import "./DeletePage.css";
+import './DeletePage.css';
+import DeleteForm from './DeleteForm';
 
-
-class Delete extends Component {
+export default class Delete extends Component {
     state = {
-        movies: [],
-        inputContainer: '',
-        isLoaded: false,
+        data: [],
+        searchedMovieDictionary: {},
+        showForm: false,
+    }
+
+    _onSelect = () => {
+        this.setState({
+            showForm: true,
+        });
+
+    }
+
+    returnedMovieObject = () => {
+
+        for (let movie of this.state.data) {
+
+            if (movie['value'] === this.state.searchedMovieDictionary.value) {
+
+                return movie.allInfo;
+            }
+        }
     }
 
 
-    // componentDidMount() {
-    //     console.log("mounted");
 
-    //     fetchMovies().then((json) => {
-    //         console.log(json);
+    componentDidMount() {
+        console.log("mounted");
 
+        fetchMovies(`https://movies-app-siit.herokuapp.com/movies?take=100000`).then((json) => {
+            console.log(json);
 
-    //         this.setState({
-    //             isLoaded: true,
-    //             movies: json.results,
-
-    //         })
-    //     });
-    // }
-
-    handleOnSearchChange = (inputValue) => {
-
-        this.setState({ inputContainer: inputValue });
-        const all_movies = "https://movies-app-siit.herokuapp.com/movies";
-        let searched_movie = all_movies + `?Title=^${inputValue}`; // returns the first 10 movies whose Title contains searched movie
-        console.log(searched_movie);
-
-        fetchMovies(searched_movie).then(json => {
-            console.log('Results after search', json.results);
-            console.log(json.results.Title);
+            let serverData = [];
+            json.results.map((movie, index) => serverData.push({ key: index, value: movie.Title, allInfo: movie }))
+            console.log(serverData);
 
             this.setState({
-                movie: json.results,
+                data: serverData,
             })
-
-
-        })
+        });
     }
 
     render() {
-        const { movies } = this.state;
-
-
+        const { data } = this.state;
         return (
             <div className="container" >
-                <div className="search-page-container" >
-                    <SearchInput onSearchInput={this.handleOnSearchChange} />
-                    <div className='all-movies-container'>
-                        {
-                            movies.map((movie, index) =>
-                                <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
-                            )}
+                <div className="search-movie-input-container">
+                    <ReactSearchBox
+                        placeholder="Search for a movie"
+                        data={data}
+                        onSelect={record => {
+                            this.setState({ searchedMovieDictionary: record })
+                            this._onSelect()
+                        }
+                        }
+                        fuseConfigs={{
+                            threshold: 0.05,
+                        }}
+                    />
 
-                    </div>
-                    <div className="delete-button-container">
-                        <button className="delete-button">Delete movie</button>
-                    </div>
                 </div>
-            </div >
+                {this.state.showForm ? <DeleteForm searchedMovieResult={this.returnedMovieObject()} /> : null}
+
+            </div>
+
         )
     }
 }
-
-
-export default Delete;
