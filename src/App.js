@@ -8,7 +8,9 @@ import Details from "./pages/MoviesDetailsPage/MovieDetailsPage";
 
 import LogIn from "./components/LogIn/LogIn.js";
 
+
 // import Edit from "./pages/EditPage/EditPage";
+
 import Add from "./pages/EditPage/AddPage";
 import Delete from "./pages/EditPage/DeletePage";
 import EditMovie from "./pages/EditPage/EditMovie";

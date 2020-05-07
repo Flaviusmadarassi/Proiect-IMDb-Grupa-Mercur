@@ -58,11 +58,6 @@ export default class EditMovie extends Component {
                             this._onSelect()
                         }
                         }
-
-                        onFocus={() => {
-                            console.log('This function is called when is focussed')
-                        }}
-                        onChange={value => console.log(value)}
                         fuseConfigs={{
                             threshold: 0.05,
                         }}

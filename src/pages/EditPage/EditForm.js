@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-import "./AddPage.css";
+import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import "./EditForm.css";
+import { createMovieUpdate } from './MovieFetchUpdate';
 
 class EditForm extends Component {
 
@@ -14,14 +15,61 @@ class EditForm extends Component {
         imdbVotes: this.props.searchedMovieResult.imdbVotes,
         imdbRating: this.props.searchedMovieResult.imdbRating,
         Poster: this.props.searchedMovieResult.Poster,
+        selectedMovie: this.props.searchedMovieResult,
     };
 
-    // onChange(e) {
-    //     this.setState({ [e.target.name]: e.target.value })
-    // }
+    onChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    handleFetchOnClick = () => {
+        const token = document.cookie
+            .split(";")
+            .find((element) => {
+                if (element.includes("token"))
+                    return true;
+            })
+            .split("=")[1];
+        const data = {
+            Title: this.state.Title,
+            Country: this.state.Country,
+            Year: this.state.Year,
+            Genre: this.state.Genre,
+            Language: this.state.Language,
+            Runtime: this.state.Runtime,
+            imdbVotes: this.state.imdbVotes,
+            imdbRating: this.state.imdbRating,
+            Poster: this.state.Poster,
+        };
+        console.log(this.state);
+        console.log(this.props.searchedMovieResult._id);
+        createMovieUpdate(this.props.searchedMovieResult._id, data, token);
+
+
+    }
+
+
+    componentDidUpdate() {
+        // If previous movie selected is different from actual movie selected then all inputs will be updated
+        // and also the actual movie selected
+        if (this.state.selectedMovie !== this.props.searchedMovieResult) {
+
+            this.setState({
+                Title: this.props.searchedMovieResult.Title,
+                Country: this.props.searchedMovieResult.Country,
+                Year: this.props.searchedMovieResult.Year,
+                Genre: this.props.searchedMovieResult.Genre,
+                Language: this.props.searchedMovieResult.Language,
+                Runtime: this.props.searchedMovieResult.Runtime,
+                imdbVotes: this.props.searchedMovieResult.imdbVotes,
+                imdbRating: this.props.searchedMovieResult.imdbRating,
+                Poster: this.props.searchedMovieResult.Poster,
+                selectedMovie: this.props.searchedMovieResult,
+            })
+        }
+    }
 
     render() {
-
 
         return (
 
@@ -31,32 +79,39 @@ class EditForm extends Component {
                     onSubmit={this.submitHandler}
                     noValidate
                 >
-                    <div className='container-row'>
-                        <MDBRow>
-                            <MDBCol md="4" >
-                                <label
-                                    htmlFor="defaultFormRegistertitle"
-                                    className="grey-text"
-                                >
-                                    Movie title :
+
+                    <MDBRow className='title-col-container'>
+
+                        <MDBCol md="4" >
+                            <label
+                                htmlFor="defaultFormRegistertitle"
+                                className="grey-text"
+                            >
+                                Movie title :
                             </label>
-                                <input
-                                    defaultValue={this.state.Title}
-                                    name="Title"
-                                    onChange={(value) => {
-                                        this.setState({ Title: value });
-                                        console.log(this.state)
-                                    }}
-                                    type="text"
-                                    id="defaultFormRegistertitle"
-                                    className="form-control"
-                                    placeholder="Movie title"
-                                    required
-                                />
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </MDBCol>
-                        </MDBRow>
-                    </div>
+                            <input
+                                value={this.state.Title}
+                                name="Title"
+                                onChange={this.onChange}
+                                type="text"
+                                id="defaultFormRegistertitle"
+                                className="form-control"
+                                placeholder="Movie title"
+                                required
+                            />
+                            <div className="invalid-feedback">Please fill out this field.</div>
+
+                        </MDBCol>
+
+
+                        <MDBCol>
+                            <img src={this.state.Poster} ></img>
+                        </MDBCol>
+
+                    </MDBRow>
+
+
+
                     <div className='container-row'>
                         <MDBRow>
                             <MDBCol md="4">
@@ -67,16 +122,16 @@ class EditForm extends Component {
                                     Genre :
                             </label>
                                 <input
-                                    defaultValue={this.state.Genre}
+                                    value={this.state.Genre}
                                     name="Genre"
-                                    onChange={this.changeHandler}
+                                    onChange={this.onChange}
                                     type="text"
                                     id="defaultFormRegistergenre"
                                     className="form-control"
                                     placeholder="Genre"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
                             <MDBCol md="4">
                                 <label
@@ -86,16 +141,16 @@ class EditForm extends Component {
                                     Year :
                             </label>
                                 <input
-                                    defaultValue={this.state.Year}
+                                    value={this.state.Year}
                                     name="Year"
-                                    onChange={this.changeHandler}
+                                    onChange={this.onChange}
                                     type="number"
                                     id="defaultFormRegisterYear"
                                     className="form-control"
                                     placeholder="Year"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
                             <MDBCol md="4">
                                 <label
@@ -105,16 +160,16 @@ class EditForm extends Component {
                                     Country :
                             </label>
                                 <input
-                                    defaultValue={this.state.Country}
+                                    value={this.state.Country}
                                     name="Country"
-                                    onChange={this.changeHandler}
+                                    onChange={this.onChange}
                                     type="text"
                                     id="defaultFormRegisterCountry"
                                     className="form-control"
                                     placeholder="Country"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
 
                         </MDBRow>
@@ -129,16 +184,16 @@ class EditForm extends Component {
                                     Poster URL :
                             </label>
                                 <input
-                                    defaultValue={this.state.Poster}
+                                    value={this.state.Poster}
                                     name="Poster"
-                                    onChange={this.changeHandler}
+                                    onChange={this.onChange}
                                     type="text"
                                     id="defaultFormRegisterPoster"
                                     className="form-control"
                                     placeholder="Poster URL"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
                         </MDBRow>
                     </div>
@@ -152,16 +207,16 @@ class EditForm extends Component {
                                     Language :
                             </label>
                                 <input
-                                    defaultValue={this.state.Language}
+                                    value={this.state.Language}
                                     name="Language"
-                                    onChange={this.changeHandler}
+                                    onChange={this.onChange}
                                     type="text"
                                     id="defaultFormRegisterLanguage"
                                     className="form-control"
                                     placeholder="Language"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
                             <MDBCol md="3">
                                 <label
@@ -171,16 +226,16 @@ class EditForm extends Component {
                                     Runtime :
                             </label>
                                 <input
-                                    defaultValue={this.state.Runtime}
+                                    value={this.state.Runtime}
                                     name="Runtime"
-                                    onChange={this.changeHandler}
+                                    onChange={this.onChange}
                                     type="text"
                                     id="defaultFormRegisterRuntime"
                                     className="form-control"
                                     placeholder="Runtime"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
                             <MDBCol md="3">
                                 <label
@@ -190,16 +245,16 @@ class EditForm extends Component {
                                     Imdb Votes :
                             </label>
                                 <input
-                                    defaultValue={this.state.imdbVotes}
-                                    name="ImdbVotes"
-                                    onChange={this.changeHandler}
+                                    value={this.state.imdbVotes}
+                                    name="imdbVotes"
+                                    onChange={this.onChange}
                                     type="text"
                                     id="defaultFormRegisterImdbVotes"
                                     className="form-control"
                                     placeholder="Imdb Votes"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
                             <MDBCol md="3">
                                 <label
@@ -209,21 +264,21 @@ class EditForm extends Component {
                                     Imdb Rating :
                             </label>
                                 <input
-                                    defaultValue={this.state.imdbRating}
-                                    name="ImdbRating"
-                                    onChange={this.changeHandler}
+                                    value={this.state.imdbRating}
+                                    name="imdbRating"
+                                    onChange={this.onChange}
                                     type="number"
                                     id="defaultFormRegisterImdbRating"
                                     className="form-control"
                                     placeholder="Imdb Rating"
                                     required
                                 />
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div className="invalid-feedback">Please fill out this field.</div>
                             </MDBCol>
                         </MDBRow>
                     </div>
                     <div className="add-button-container">
-                        <MDBBtn color="success" type="submit" >
+                        <MDBBtn color="success" type="submit" onClick={this.handleFetchOnClick} >
                             Edit movie
                     </MDBBtn>
                     </div>

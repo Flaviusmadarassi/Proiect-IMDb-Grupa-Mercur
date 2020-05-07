@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import "./AddPage.css";
 import { createMoviePost } from "./MoviePost";
-import axios from 'axios';
+
 
 
 class Add extends Component {
