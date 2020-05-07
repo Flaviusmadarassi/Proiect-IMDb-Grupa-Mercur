@@ -1,5 +1,6 @@
 .contentHome {
     display: flex; 
     flex-direction: column;
-    background-image:url("../../img/search-page-background.jpg");
+    /* background-image:url("../../img/search-page-background.jpg"); */
+    background-color: #2b2b31;
 }

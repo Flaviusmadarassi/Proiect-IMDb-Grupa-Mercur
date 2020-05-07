@@ -10,7 +10,7 @@
     margin-top: 30px;
     
     height: 250px;
-    border-top: solid 4px rgb(93, 119, 93);
+    border-top: solid 4px #ff5860
 
 }
 .titleTags {
@@ -18,7 +18,7 @@
     /* background-color: teal; */
     display: flex;
     justify-content: center;
-    border-bottom: solid 2px rgb(93, 119, 93);
+    border-bottom: solid 2px  #ff5860;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -48,7 +48,8 @@ a.social {
 
 a.social:hover {
     transform: translateY(-4px);
-    color: rgb(33, 119, 122)
+    color: #ff5860;
+    box-shadow: 0 5px 15px #ff5860;
 }
 
 a.youtube{
@@ -77,8 +78,9 @@ a.links p {
 
 a.links p:hover {
     transform: translateY(-3px);
-    color: rgb(33, 119, 122);
+    color: #ff5860;
     text-decoration: none;
+    text-shadow: 0 5px 15px #ff5860;;
     
 }
 
