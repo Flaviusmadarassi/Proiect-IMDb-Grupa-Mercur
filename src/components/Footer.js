@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FollowUs from "./FollowUs";
 // import { SocialIcon } from 'react-social-icons';
 import "./Footer.css";
 
@@ -23,7 +24,7 @@ class Footer extends Component {
                 <div className = "followUs" className="infoContainer">
                     <div className="titleTags"><h3>FOLLOW US</h3></div>
                     <div className="detailsContainer">
-                    
+                    <div><FollowUs /></div>
                     </div>
                 </div>
             </div>
