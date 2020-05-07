@@ -29,7 +29,7 @@ class Details extends Component {
           <div className="imageContainer">
           <img  className="MovieImage" src = {movie.Poster} alt="text"  ></img>
           </div>
-          <div className="detailsContainer">
+          <div className="descriprionContainer">
             <div className="movieTitleContainer">
               <p className="MovieTitle">{movie.Title} </p>
             </div>
