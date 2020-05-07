@@ -1,0 +1,5 @@
+.contentHome {
+    display: flex; 
+    flex-direction: column;
+    background-image:url("../../img/search-page-background.jpg");
+}

@@ -6,9 +6,11 @@
     height: 50%;
     
     
+    
+    
 }
 .search-page-container{
-    padding-left: 30px;
+    /* padding-left: 30px; */
     /* background-color: #04042b; */
     background-image:url("../../img/search-page-background.jpg");
 }
@@ -30,7 +32,29 @@
 }
 .content{
     display: flex;
+    width: 100%;
 }
 .filters-container{
-    width:20%;
+    margin-left: 20px;
+    width:100px;
+}
+
+.buttonMovieDetails {
+    width: 120px;
+    height: 40px;
+}
+.buttonMovieDetails:hover {
+    background-color: rgb(93, 119, 93);
+}
+.containerButtonMovieDetails {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.content-container-movies button {
+    justify-content: center;
+    background-color: rgb(121, 121, 121);
+    color: white;
+    /* margin-left: 10px; */
+    
 }

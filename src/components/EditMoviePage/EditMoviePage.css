@@ -4,3 +4,6 @@
   flex-direction: column;
   width: 50vh;
 }
+.Container h2 {
+  color: white;
+}

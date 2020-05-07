@@ -11,6 +11,9 @@ import Country from './CountryFilter.js';
 import { RuntimeFilter } from './RuntimeFilter.js';
 import { ImdbRatingFilter } from './ImdbRatingFilter.js';
 import { generateUrl } from './SearchPageUtils'
+import Footer from "../../components/Footer"
+
+
 
 
 
@@ -61,6 +64,7 @@ class Search extends Component {
         //Generates the url after the dictionary was updated
         const url = generateUrl(this.state.filters);
         console.log(url);
+        console.log(url.numberOfPages);
         //Fetch movies based on the new url (which contains selected filters)
         fetchMovies(url).then(json => {
           console.log('3.Results after search' + json);
@@ -87,10 +91,11 @@ class Search extends Component {
     this.setState({ inputContent: query, loading: true, message: "" });
     const all_movies = "https://movies-app-siit.herokuapp.com/movies";
     let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
-    if (skip) { searched_movies = searched_movies + `&skip=${skip * 10 - 10}` }
+    if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}`}
 
     fetchMovies(searched_movies).then((json) => {
-      console.log("Results after search" + json);
+      console.log("Results after search", json);
+      
 
       this.setState({
         isLoaded: true,
@@ -100,6 +105,10 @@ class Search extends Component {
         totalItemsCount: json.results.length * json.pagination.numberOfPages,
         inputContent: query
       });
+      console.log(this.state.numberOfPages);
+      if (this.state.numberOfPages === 0) {
+        console.log();
+      }
     });
   };
 
@@ -171,7 +180,7 @@ class Search extends Component {
         movies: json.results,
         pageCount: json.pagination.numberOfPages,
         currentPage: json.pagination.currentPage,
-        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        totalItemsCount: json.results.length * json.pagination.numberOfPages
       })
     });
   }
@@ -199,24 +208,33 @@ class Search extends Component {
               <RuntimeFilter onRuntimeChange={this.handleRuntimeChange} />
               <ImdbRatingFilter onImdbRatingChange={this.handleImdbRatingChange} />
             </div>
+            <div className="moviePaginationContainer">
             <div className="all-movies-container">
               {
                 movies.map((movie, index) =>
                   <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
                 )}
             </div>
-            <div>
-              <WillPaginate
-                parentFetch={this.handleOnInputChange}
-                pageCount={this.state.pageCount}
-                currentPage={this.state.currentPage}
-                totalItemsCount={this.state.totalItemsCount}
-                inputContent={this.state.inputContent}
-              ></WillPaginate>
+            <div className = "paginationContainer">
+            <WillPaginate
+            parentFetch={this.handleOnInputChange}
+            pageCount={this.state.pageCount} 
+            currentPage={this.state.currentPage}
+            totalItemsCount={this.state.totalItemsCount}
+            inputContent={this.state.inputContent}
+            ></WillPaginate>
+             </div>
             </div>
+            
 
           </div>
+          <div className="Footer">
+            <Footer />
+            </div>
+          
         </div >
+        
+        
       );
     }
   }

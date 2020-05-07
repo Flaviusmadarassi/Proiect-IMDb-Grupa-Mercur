@@ -51,7 +51,7 @@ class AddMovie extends Component {
 
   render() {
     return (
-      <div>
+      <div className ="Container">
         <h2>Add Movie</h2>
         <form className="addMovieForm">
           <input

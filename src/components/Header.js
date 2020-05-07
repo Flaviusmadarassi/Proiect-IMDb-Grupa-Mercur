@@ -6,6 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import "../App.css"
 
 class Navigation extends Component {
   state = {
@@ -27,12 +28,11 @@ class Navigation extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="./logo-img.PNG">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand >My IMDb</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/movie-details">Movie Details</Nav.Link>
+            <Nav.Link href="/" activeStyle={{color:"red"}}>Home</Nav.Link>
             <Nav.Link href="/search-movie">Search Movie</Nav.Link>
 
             <Nav.Link href="/login-page">Authentication</Nav.Link>
@@ -46,12 +46,13 @@ class Navigation extends Component {
               </NavDropdown> : null}
 
 
+            <Nav.Link href="/movie-details" className="detailsButton">Movie Details</Nav.Link>
           </Nav>
 
-          <Form inline>
+          {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
         </Navbar.Collapse>
       </Navbar>
     );
