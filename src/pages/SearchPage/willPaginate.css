@@ -5,7 +5,7 @@
 
 .active a {
     color:white;
-    background-color: rgb(93, 119, 93);
+    background-color: #ff5860;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -26,9 +26,15 @@
     height: 35x;
     border: solid 1px rgb(63, 62, 62);
     margin: 3px;
-    background-color: rgb(105, 104, 102);
+    background-color: #3e3e41;
     font-size: larger;
+    transition: transform 250ms;
     
+}
+
+.pagination li:hover {
+    box-shadow: 0 5px 15px #ff5860;
+    transform: translateY(-3px);
 }
 
 .pagination li a {
