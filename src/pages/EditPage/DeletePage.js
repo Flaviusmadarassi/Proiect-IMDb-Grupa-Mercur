@@ -3,6 +3,7 @@ import ReactSearchBox from 'react-search-box'
 import { fetchMovies } from "../SearchPage/FetchMovies";
 import './DeletePage.css';
 import DeleteForm from './DeleteForm';
+import Footer from '../../components/Footer';
 
 export default class Delete extends Component {
     state = {
@@ -50,7 +51,8 @@ export default class Delete extends Component {
     render() {
         const { data } = this.state;
         return (
-            <div className="container" >
+            <div className="allPage">
+                <div className="container" >
                 <div className="search-movie-input-container">
                     <ReactSearchBox
                         placeholder="Search for a movie"
@@ -68,6 +70,8 @@ export default class Delete extends Component {
                 </div>
                 {this.state.showForm ? <DeleteForm searchedMovieResult={this.returnedMovieObject()} /> : null}
 
+            </div>
+            <div> <Footer /></div>
             </div>
 
         )

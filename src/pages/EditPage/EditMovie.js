@@ -3,6 +3,7 @@ import ReactSearchBox from 'react-search-box'
 import { fetchMovies } from "../SearchPage/FetchMovies";
 import './EditMovie.css';
 import EditForm from './EditForm';
+import Footer from '../../components/Footer';
 
 export default class EditMovie extends Component {
     state = {
@@ -48,6 +49,7 @@ export default class EditMovie extends Component {
     render() {
         const { data } = this.state;
         return (
+            <div className="allPage"> 
             <div className="container" >
                 <div className="search-movie-input-container">
                     <ReactSearchBox
@@ -66,6 +68,8 @@ export default class EditMovie extends Component {
                 </div>
                 {this.state.showForm ? <EditForm searchedMovieResult={this.returnedMovieObject()} /> : null}
 
+            </div>
+            <div><Footer /></div>
             </div>
 
         )

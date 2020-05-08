@@ -4,7 +4,6 @@
 }
 
 .body{
-  /* background-image:url("../../img/search-page-background.jpg"); */
   background-color: #2b2b31;
 }
 
@@ -19,7 +18,7 @@
 .button {
   border-radius: 20px;
   border: 1px solid lightgray;
-  background-color: #6096e7;
+  background-color: #ff5860;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -148,7 +147,7 @@
 }
 
 .overlay {
-  background: linear-gradient(to right, #6096e7, #3c3b81) no-repeat 0 0 / cover;
+  background: linear-gradient(to right, #fc8f93, #99161c) no-repeat 0 0 / cover;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
