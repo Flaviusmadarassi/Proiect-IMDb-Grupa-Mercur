@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./LogIn.css";
-import AddMovie from "../EditMoviePage/AddMovie";
 import Footer from "../Footer";
 
 class LogIn extends Component {
@@ -65,7 +64,7 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/")
+          ? this.props.history.push("/edit-movie/add")
           : this.onSubmitSignUp(json);
 
         document.cookie = `token=${json.accessToken}`;
@@ -92,7 +91,7 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/")
+          ? this.props.history.push("/edit-movie/add")
           : this.onSubmitLogIn(json);
 
         document.cookie = `token=${json.accessToken}`;
@@ -194,15 +193,10 @@ class LogIn extends Component {
             </div>
           </div>
         </div>
-        <div>
-        <AddMovie />
-        </div>
         <div className="Footer">
-            <Footer />
-          </div> 
-        
+          <Footer />
+        </div>
       </div>
-      
     );
   }
 }
