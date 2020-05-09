@@ -95,6 +95,7 @@ class Search extends Component {
       () => {
         console.log('1.Dictionar updatat');
         console.log(this.state.filters);
+        console.log("logo")
 
         //Generates the url after the dictionary was updated
         let url = generateUrl(this.state.filters);
