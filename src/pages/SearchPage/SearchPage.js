@@ -112,6 +112,12 @@ class Search extends Component {
             totalItemsCount: json.results.length * json.pagination.numberOfPages
           })
         });
+        if (skip === '') {
+          console.log('this.state.currentPage', this.state.currentPage)
+          this.setState({
+            currentPage: 1
+          })
+        }
       }
     );
 
