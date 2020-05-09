@@ -19,6 +19,8 @@ class Navigation extends Component {
     if (token.includes('token')) {
       this.setState({ isLoggedIn: true })
     }
+
+
   }
 
   componentDidUpdate() {
@@ -32,7 +34,7 @@ class Navigation extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/" activeStyle={{color:"red"}}>Home</Nav.Link>
+            <Nav.Link href="/" activeStyle={{ color: "red" }}>Home</Nav.Link>
             <Nav.Link href="/search-movie">Search Movie</Nav.Link>
 
             <Nav.Link href="/login-page">Authentication</Nav.Link>

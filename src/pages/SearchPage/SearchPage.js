@@ -10,12 +10,8 @@ import Language from './LanguageFilter.js';
 import Country from './CountryFilter.js';
 import { RuntimeFilter } from './RuntimeFilter.js';
 import { ImdbRatingFilter } from './ImdbRatingFilter.js';
-import { generateUrl } from './SearchPageUtils'
-import Footer from "../../components/Footer"
-
-
-
-
+import { generateUrl } from './SearchPageUtils';
+import Footer from "../../components/Footer";
 
 class Search extends Component {
   constructor(props) {
@@ -44,6 +40,37 @@ class Search extends Component {
 
     }
   }
+
+  resetAllFilters = () => {
+    this.setState({
+      inputYearContent: '',
+      filters: {
+        'Title': '',
+        'Genre': '',
+        'Year': '',
+        'Language': '',
+        'Country': '',
+        'Runtime': '',
+        'imdbRating': ''
+      }
+    }, () => {
+      console.log('resetare filtre', this.state);
+
+      const url = generateUrl(this.state.filters);
+      fetchMovies(url).then(json => {
+        console.log('3.Results after search', json);
+
+        this.setState({
+          isLoaded: true,
+          movies: json.results,
+        })
+        // window.location.reload(false);
+      });
+    }
+    )
+
+  }
+
   //Updates dictionary valyes with selected options
   updateDictionary = function (filterOption, newValue) {
     //Update dictionary
@@ -67,7 +94,7 @@ class Search extends Component {
         console.log(url.numberOfPages);
         //Fetch movies based on the new url (which contains selected filters)
         fetchMovies(url).then(json => {
-          console.log('3.Results after search' + json);
+          console.log('3.Results after search', json);
 
           this.setState({
             isLoaded: true,
@@ -91,11 +118,11 @@ class Search extends Component {
     this.setState({ inputContent: query, loading: true, message: "" });
     const all_movies = "https://movies-app-siit.herokuapp.com/movies";
     let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
-    if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}`}
+    if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}` }
 
     fetchMovies(searched_movies).then((json) => {
       console.log("Results after search", json);
-      
+
 
       this.setState({
         isLoaded: true,
@@ -185,6 +212,8 @@ class Search extends Component {
     });
   }
 
+
+
   render() {
     const { isLoaded, movies } = this.state;
 
@@ -207,34 +236,35 @@ class Search extends Component {
               <Country onCountryChange={this.handleCountryChange} />
               <RuntimeFilter onRuntimeChange={this.handleRuntimeChange} />
               <ImdbRatingFilter onImdbRatingChange={this.handleImdbRatingChange} />
+              <button onClick={this.resetAllFilters}>Reset all filters</button>
             </div>
             <div className="moviePaginationContainer">
-            <div className="all-movies-container">
-              {
-                movies.map((movie, index) =>
-                  <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
-                )}
+              <div className="all-movies-container">
+                {
+                  movies.map((movie, index) =>
+                    <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
+                  )}
+              </div>
+              <div className="paginationContainer">
+                <WillPaginate
+                  parentFetch={this.handleOnInputChange}
+                  pageCount={this.state.pageCount}
+                  currentPage={this.state.currentPage}
+                  totalItemsCount={this.state.totalItemsCount}
+                  inputContent={this.state.inputContent}
+                ></WillPaginate>
+              </div>
             </div>
-            <div className = "paginationContainer">
-            <WillPaginate
-            parentFetch={this.handleOnInputChange}
-            pageCount={this.state.pageCount} 
-            currentPage={this.state.currentPage}
-            totalItemsCount={this.state.totalItemsCount}
-            inputContent={this.state.inputContent}
-            ></WillPaginate>
-             </div>
-            </div>
-            
+
 
           </div>
           <div className="Footer">
             <Footer />
-            </div>
-          
+          </div>
+
         </div >
-        
-        
+
+
       );
     }
   }
