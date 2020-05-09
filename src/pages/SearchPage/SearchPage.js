@@ -38,14 +38,47 @@ class Search extends Component {
         'Language': '',
         'Country': '',
         'Runtime': '',
-        'imdbRating': ''
+        'imdbRating': '',
+        "skip": ''
       },
 
 
     }
   }
+
+  // handleOnInputChange = (event, skip = undefined) => {
+  //   console.log(event);
+  //   let query = '';
+  //   if (typeof event === 'string') {
+  //     query = event;
+  //   } else {
+  //     query = event.target.value;
+  //   }
+
+  //   this.setState({ inputContent: query, loading: true, message: "" });
+  //   const all_movies = "https://movies-app-siit.herokuapp.com/movies";
+  //   let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
+  //   if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}`}
+
+  //   fetchMovies(searched_movies).then((json) => {
+  //     console.log("Results after search", json);
+      
+
+  //     this.setState({
+  //       isLoaded: true,
+  //       movies: json.results,
+  //       pageCount: json.pagination.numberOfPages,
+  //       currentPage: json.pagination.currentPage,
+  //       totalItemsCount: json.results.length * json.pagination.numberOfPages,
+  //       inputContent: query
+  //     });
+      
+  //   });
+  // };
+
+
   //Updates dictionary valyes with selected options
-  updateDictionary = function (filterOption, newValue) {
+  updateDictionary = (filterOption, newValue, skip = '') => {
     //Update dictionary
     this.setState(
       prevState => {
@@ -53,7 +86,9 @@ class Search extends Component {
         const { filters } = prevState;
         // Updating it's property as per the key, value pair retrieved (key being the filter, value being "on" or "off")        
         filters[filterOption] = newValue;
-        // Returning the updated object         
+        filters["skip"] = skip;
+        // Returning the updated object  
+        console.log(filters)       
         return { filters };
       },
       // Since setState is async, all operations that require the updated state, should be done here       
@@ -62,16 +97,19 @@ class Search extends Component {
         console.log(this.state.filters);
 
         //Generates the url after the dictionary was updated
-        const url = generateUrl(this.state.filters);
-        console.log(url);
-        console.log(url.numberOfPages);
+        let url = generateUrl(this.state.filters);
+
+        console.log("url", url);
         //Fetch movies based on the new url (which contains selected filters)
         fetchMovies(url).then(json => {
-          console.log('3.Results after search' + json);
+          console.log('3.Results after search', json);
 
           this.setState({
             isLoaded: true,
             movies: json.results,
+            pageCount: json.pagination.numberOfPages,
+            currentPage: json.pagination.currentPage,
+            totalItemsCount: json.results.length * json.pagination.numberOfPages
           })
         });
       }
@@ -79,39 +117,7 @@ class Search extends Component {
 
   }
 
-  handleOnInputChange = (event, skip = undefined) => {
-    console.log(event);
-    let query = '';
-    if (typeof event === 'string') {
-      query = event;
-    } else {
-      query = event.target.value;
-    }
-
-    this.setState({ inputContent: query, loading: true, message: "" });
-    const all_movies = "https://movies-app-siit.herokuapp.com/movies";
-    let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
-    if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}`}
-
-    fetchMovies(searched_movies).then((json) => {
-      console.log("Results after search", json);
-      
-
-      this.setState({
-        isLoaded: true,
-        movies: json.results,
-        pageCount: json.pagination.numberOfPages,
-        currentPage: json.pagination.currentPage,
-        totalItemsCount: json.results.length * json.pagination.numberOfPages,
-        inputContent: query
-      });
-      console.log(this.state.numberOfPages);
-      if (this.state.numberOfPages === 0) {
-        console.log();
-      }
-    });
-  };
-
+ 
   handleOnSearchChange = (inputValue) => {
 
     this.setState({ inputContent: inputValue, loading: true });
@@ -217,11 +223,12 @@ class Search extends Component {
             </div>
             <div className = "paginationContainer">
             <WillPaginate
-            parentFetch={this.handleOnInputChange}
+            parentFetch={this.updateDictionary}
             pageCount={this.state.pageCount} 
             currentPage={this.state.currentPage}
             totalItemsCount={this.state.totalItemsCount}
             inputContent={this.state.inputContent}
+            newValue={this.state.newValue}
             ></WillPaginate>
              </div>
             </div>
