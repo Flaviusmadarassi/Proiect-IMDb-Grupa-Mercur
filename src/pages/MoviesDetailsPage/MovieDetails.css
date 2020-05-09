@@ -9,7 +9,8 @@
     width: 100%;
     height: 950px;
     margin: 0;
-    background-image:url("../../img/search-page-background.jpg");
+    /* background-image:url("../../img/search-page-background.jpg"); */
+    background-color: #2b2b31;
     display: flex;
     flex-direction: column;
 }
@@ -40,17 +41,23 @@
 
 span {
     font-weight: bolder;
-    color: rgb(197, 197, 197);
+    color: #b87175;
     
 }
 
 .goBackButton{
-    color: white;
-    background-color: rgb(119, 119, 119);
+    color: #ff3c46;
+    background-color: #3e3e41;
+    transition: transform 250ms;
 }
+
 .goBackButton:hover {
-    background-color: rgb(93, 119, 93);
+    transform: translateY(-2px);
+    background-color: #ff5860;
+    box-shadow: 0 5px 15px #ff5860;
+    color:white;
 }
+
 .descriptionContainer {
     display: flex
 }

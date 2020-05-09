@@ -6,7 +6,8 @@ import "./MovieDetails.css";
 
 class Details extends Component {
   state = {
-    movie:{}
+    movie:{},
+    link: "https://www.youtube.com/results?search_query="
   }
 
   componentDidMount() {
@@ -14,15 +15,19 @@ class Details extends Component {
     console.log(search);
     const [_,id] = search.split("=");
     console.log(id);
+    
 
     fetchMovies(generateUrl() +`/${id}`).then(json  => {
       this.setState({movie:json})
+      const rightLink = this.state.link + this.state.movie.Title;
+      console.log(rightLink);
     })
   }
  
 
   render(){
     const {movie} = this.state;
+    const {link} = this.state;
     return (
         <div className="MovieContainer">
           <div className="descriptionContainer">
@@ -43,6 +48,7 @@ class Details extends Component {
                 <p className="MovieInfo"><span>IMDb Votes:</span> {movie.imdbVotes}</p>
                 <p className="MovieInfo"><span>IMDb ID:  </span> {movie.imdbID}</p>
                 <Link to ={"/search-movie"}><button className="goBackButton">Go Back</button></Link>
+              <a href = {link} target="_blank"><button className="goBackButton">See the Trailer</button></a>
             </div>
           
           </div>

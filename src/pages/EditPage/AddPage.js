@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import Footer from "../../components/Footer"
 import "./AddPage.css";
 import { createMoviePost } from "./MoviePost";
 
@@ -63,7 +64,8 @@ class Add extends Component {
         console.log('blalbla');
 
         return (
-            <div className="container">
+            <div className="AllPage">
+                            <div className="container">
                 <form
                     className="needs-validation"
                     onSubmit={this.submitHandler}
@@ -263,8 +265,12 @@ class Add extends Component {
                     </MDBBtn>
                     </div>
                 </form>
+                
             </div >
-        );
+            <div><Footer /></div>
+
+            </div>
+);
     }
 }
 
