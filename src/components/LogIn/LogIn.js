@@ -96,8 +96,10 @@ class LogIn extends Component {
           : this.onSubmitLogIn(json);
 
         document.cookie = `token=${json.accessToken}`;
+        window.location.reload(false);
       });
     event.preventDefault();
+
   };
 
   render() {
@@ -195,14 +197,14 @@ class LogIn extends Component {
           </div>
         </div>
         <div>
-        <AddMovie />
+          <AddMovie />
         </div>
         <div className="Footer">
-            <Footer />
-          </div> 
-        
+          <Footer />
+        </div>
+
       </div>
-      
+
     );
   }
 }
