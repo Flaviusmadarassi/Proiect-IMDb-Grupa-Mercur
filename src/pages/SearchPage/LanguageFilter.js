@@ -7,22 +7,22 @@ const options = [
     { value: 'English', label: 'English' },
     // { value: 'Mandarin', label: 'Mandarin' },
     { value: 'French', label: 'French' },
-    // { value: 'Spanish', label: 'Spanish' },
-    // { value: 'Japanese', label: 'Japanese' },
+    { value: 'Spanish', label: 'Spanish' },
+    { value: 'Japanese', label: 'Japanese' },
     // { value: 'Portuguese', label: 'Portuguese' },
     // { value: 'Thai', label: 'Thai' },
     // { value: 'Esperanto', label: 'Esperanto' },
-    // { value: 'German', label: 'German' },
-    // { value: 'Italian', label: 'Italian' },
+    { value: 'German', label: 'German' },
+    { value: 'Italian', label: 'Italian' },
     { value: 'Romanian', label: 'Romanian' },
     // { value: 'Filipino', label: 'Filipino' },
-    { value: 'Tagalog', label: 'Tagalog' }
+    // { value: 'Tagalog', label: 'Tagalog' }
 ];
 const customStyles = {
     option: (provided, state) => ({
         ...provided,
-        borderBottom: '1px dotted blue',
-        color: state.isSelected ? 'red' : 'blue',
+        borderBottom: '1px dotted black',
+        // color: state.isSelected ? 'red' : 'blue',
         padding: 20,
         height: 10,
     }),

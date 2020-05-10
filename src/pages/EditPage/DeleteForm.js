@@ -7,10 +7,7 @@ class DeleteForm extends Component {
     state = {
 
     };
-    refreshPage = () => {
-        window.location.reload(false);
 
-    }
     handleDeleteOnClick = () => {
         const token = document.cookie
             .split(";")
@@ -32,8 +29,8 @@ class DeleteForm extends Component {
                     onSubmit={this.submitHandler}
                     noValidate
                 >
-                    <div className="add-button-container">
-                        <MDBBtn color="success" type="submit" onClick={this.handleDeleteOnClick} >
+                    <div className="delete-button-container">
+                        <MDBBtn color="success" type="submit" className='btn btn-light' onClick={this.handleDeleteOnClick} >
                             Delete movie
                     </MDBBtn>
                     </div>
