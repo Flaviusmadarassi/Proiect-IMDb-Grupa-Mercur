@@ -1,27 +1,12 @@
 
-.search-page-container img{
-    width : 100%;
-    height: 50%;
-    
-    
-    
-    
-}
+
 .search-page-container{
     /* padding-left: 30px; */
     /* background-color: #04042b; */
     /* background-image:url("../../img/search-page-background.jpg"); */
     background-color: #2b2b31;;
 }
-.content-container-movies{
-    width: 25%;
-    box-sizing: border-box;
-     /* background-color: rgb(12, 12, 44);  */
-    margin: 10px 10px;
-    /* border-radius: 10px; */
-    border: 1px solid #464545;
-    
-}
+
 .all-movies-container{
     display: flex;
     flex-wrap: wrap;
@@ -38,27 +23,13 @@
     width:100px;
 }
 
-.buttonMovieDetails {
-    width: 120px;
-    height: 40px;
+.button-reset-all-filters{
     transition: transform 250ms;
+    color: #ff5860;
 }
-.buttonMovieDetails:hover {
-    background-color: #ff5860;
-    transform: translateY(-2px);
-    color:white;
-    box-shadow: 0 5px 15px #ff5860;
-}
-.containerButtonMovieDetails {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.content-container-movies button {
-    justify-content: center;
-    background-color: #3e3e41;
-    color:#ff5860;
-    
-    /* margin-left: 10px; */
-    
+.button-reset-all-filters:hover{
+  background-color: #ff5860;
+  transform: translateY(-2px);
+  color:white;
+  box-shadow: 0 5px 15px #ff5860;
 }

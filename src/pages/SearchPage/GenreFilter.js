@@ -3,6 +3,8 @@ import Select from 'react-select';
 import './GenreFilter.css'
 
 
+
+
 const options = [
   { value: 'adventure', label: 'Adventure' },
   { value: 'action', label: 'Action' },
@@ -21,10 +23,14 @@ const options = [
 const customStyles = {
   option: (provided, state) => ({
     ...provided,
-    borderBottom: '1px dotted blue',
-    color: state.isSelected ? 'red' : 'blue',
+    color: state.selectProps.menuColor,
+    borderBottom: '1px dotted black',
+    // color: state.isSelected ? 'red' : 'blue',
+    color: state.selectProps.menuColor,
+
     padding: 20,
     height: 10,
+
   }),
   input: styles => ({
     ...styles,
@@ -54,6 +60,7 @@ class Genre extends Component {
           onChange={this.handleChange}
           options={options}
           styles={customStyles}
+
         />
       </div>
     );

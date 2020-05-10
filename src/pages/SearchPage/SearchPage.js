@@ -220,6 +220,7 @@ class Search extends Component {
               <Country onCountryChange={this.handleCountryChange} />
               <RuntimeFilter onRuntimeChange={this.handleRuntimeChange} />
               <ImdbRatingFilter onImdbRatingChange={this.handleImdbRatingChange} />
+              <button className='button-reset-all-filters' onClick={this.resetAllFilters}>Reset all filters</button>
             </div>
             <div className="moviePaginationContainer">
             <div className="all-movies-container">

@@ -19,7 +19,9 @@ export class RuntimeFilter extends Component {
                 <RangeSlider
                     value={this.state.value}
                     onChange={changeEvent => this.handleOnChange(changeEvent.target.value)}
-                    max={200}
+                    max={300}
+                    variant='danger'
+
                 />
             </div>
         );

@@ -277,8 +277,8 @@ class EditForm extends Component {
                             </MDBCol>
                         </MDBRow>
                     </div>
-                    <div className="add-button-container">
-                        <MDBBtn color="success" type="submit" onClick={this.handleFetchOnClick} >
+                    <div className="edit-button-container">
+                        <MDBBtn color="success" type="submit" className='btn btn-light' onClick={this.handleFetchOnClick} >
                             Edit movie
                     </MDBBtn>
                     </div>
