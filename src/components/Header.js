@@ -3,15 +3,31 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown"
 
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
-import "../App.css"
 
 class Navigation extends Component {
   state = {
     isLoggedIn: false,
+    editMovie: 'Editation',
   };
+
+  changeHeader = () => {
+
+    let currentUrl = window.location.href;
+    let currentPage = currentUrl.split('/').slice(-1)
+    if (currentPage == 'edit') {
+      return 'Edit Movie'
+    }
+    if (currentPage == 'add') {
+      return 'Add Movie'
+    }
+    if (currentPage == 'delete') {
+      return 'Delete Movie'
+    }
+    else {
+      return 'Editation'
+    }
+
+  }
 
 
   componentDidMount() {
@@ -20,10 +36,6 @@ class Navigation extends Component {
       this.setState({ isLoggedIn: true })
     }
 
-
-  }
-
-  componentDidUpdate() {
 
   }
 
@@ -41,10 +53,10 @@ class Navigation extends Component {
 
 
             {this.state.isLoggedIn ?
-              <NavDropdown title="Edit Movie" id="nav-dropdown">
-                <NavDropdown.Item href="/edit-movie/add">Add Movie</NavDropdown.Item>
-                <NavDropdown.Item href="/edit-movie/delete">Delete Movie</NavDropdown.Item>
-                <NavDropdown.Item href="/edit-movie/edit">Edit Movie</NavDropdown.Item>
+              <NavDropdown title={this.changeHeader()} id="nav-dropdown">
+                <NavDropdown.Item href="/editation/add">Add Movie</NavDropdown.Item>
+                <NavDropdown.Item href="/editation/delete">Delete Movie</NavDropdown.Item>
+                <NavDropdown.Item href="/editation/edit">Edit Movie</NavDropdown.Item>
               </NavDropdown> : null}
 
 
