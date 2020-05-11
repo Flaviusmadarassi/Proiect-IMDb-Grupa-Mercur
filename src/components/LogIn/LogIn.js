@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./LogIn.css";
 import Footer from "../Footer";
+import logOutFunctionality from "./LogOut.js";
 
 class LogIn extends Component {
   state = {
@@ -64,7 +65,7 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/edit-movie/add")
+          ? this.props.history.push("/")
           : this.onSubmitSignUp(json);
 
         document.cookie = `token=${json.accessToken}`;
@@ -91,7 +92,7 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/edit-movie/add")
+          ? this.props.history.push("/")
           : this.onSubmitLogIn(json);
 
         document.cookie = `token=${json.accessToken}`;
@@ -193,6 +194,7 @@ class LogIn extends Component {
             </div>
           </div>
         </div>
+        <button onClick={logOutFunctionality}>LOG OUT</button>
         <div className="Footer">
           <Footer />
         </div>

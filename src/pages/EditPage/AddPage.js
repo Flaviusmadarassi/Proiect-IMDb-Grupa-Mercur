@@ -2,55 +2,27 @@ import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import Footer from "../../components/Footer";
 import "./AddPage.css";
-import { createMoviePost } from "./MoviePost";
+import addMovie from "./AddPageUtils.js";
 
 class Add extends Component {
   state = {
     Title: "",
-    Country: "",
     Year: "",
     Genre: "",
+    Poster: "",
+    Country: "",
     Language: "",
     Runtime: "",
     ImdbVotes: "",
     ImdbRating: "",
-    Poster: "",
-  };
-
-  addMovie = () => {
-    const token = document.cookie
-      .split(";")
-      .find((element) => {
-        if (element.includes("token")) return true;
-      })
-      .split("=")[1];
-
-    fetch(`https://movies-app-siit.herokuapp.com/movies`, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json",
-        "X-Auth-Token": token,
-      },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *client
-      body: JSON.stringify(this.data),
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-      });
   };
 
   submitHandler = (event) => {
     event.preventDefault();
-    event.target.className += " was-validated";
-    console.log(this.state);
+    // event.target.className += " was-validated";
     let data = this.createData();
 
-    this.addMovie();
+    addMovie(data);
   };
 
   createData = () => {
@@ -77,11 +49,7 @@ class Add extends Component {
     return (
       <div className="AllPage">
         <div className="container">
-          <form
-            className="needs-validation"
-            onSubmit={this.submitHandler}
-            noValidate
-          >
+          <form className="needs-validation" onSubmit={this.submitHandler}>
             <div className="container-row">
               <MDBRow>
                 <MDBCol md="4">
