@@ -31,13 +31,13 @@ class App extends Component {
             <Route path="/search-movie" exact component={Search} />
             <Route path="/movie-details" exact component={Details} />
             <Route path="/login-page" exact component={LogIn} />
-            <Route path="/edit-movie/add" exact component={Add} />
-            <Route path="/edit-movie/edit" exact component={EditMovie} />
-            <Route path="/edit-movie/delete" exact component={Delete} />
+            <Route path="/editation/add" exact component={Add} />
+            <Route path="/editation/edit" exact component={EditMovie} />
+            <Route path="/editation/delete" exact component={Delete} />
 
           </Switch>
         </Router>
-        
+
       </React.Fragment>
     );
   }

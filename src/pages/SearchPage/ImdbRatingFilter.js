@@ -22,6 +22,8 @@ export class ImdbRatingFilter extends Component {
                     onChange={changeEvent => this.handleOnChange(changeEvent.target.value)}
                     max={10}
                     step={0.1}
+                    variant='danger'
+
                 />
             </div>
         );

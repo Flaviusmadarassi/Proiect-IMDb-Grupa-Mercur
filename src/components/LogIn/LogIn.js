@@ -95,8 +95,10 @@ class LogIn extends Component {
           : this.onSubmitLogIn(json);
 
         document.cookie = `token=${json.accessToken}`;
+        window.location.reload(false);
       });
     event.preventDefault();
+
   };
 
   render() {

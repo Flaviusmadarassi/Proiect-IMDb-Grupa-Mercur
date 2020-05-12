@@ -53,25 +53,29 @@ export default class Delete extends Component {
         return (
             <div className="allPage">
                 <div className="container" >
-                <div className="search-movie-input-container">
-                    <ReactSearchBox
-                        placeholder="Search for a movie"
-                        data={data}
-                        onSelect={record => {
-                            this.setState({ searchedMovieDictionary: record })
-                            this._onSelect()
-                        }
-                        }
-                        fuseConfigs={{
-                            threshold: 0.05,
-                        }}
-                    />
+
+                    <div className="search-movie-input-container">
+                        <ReactSearchBox
+
+                            placeholder="Search for a movie"
+                            data={data}
+                            onSelect={record => {
+                                this.setState({ searchedMovieDictionary: record })
+                                this._onSelect()
+                            }
+                            }
+                            inputBoxBorderColor='red'
+
+                            fuseConfigs={{
+                                threshold: 0.05,
+                            }}
+                        />
+
+                    </div>
+                    {this.state.showForm ? <DeleteForm searchedMovieResult={this.returnedMovieObject()} /> : null}
 
                 </div>
-                {this.state.showForm ? <DeleteForm searchedMovieResult={this.returnedMovieObject()} /> : null}
-
-            </div>
-            <div> <Footer /></div>
+                <div> <Footer /></div>
             </div>
 
         )

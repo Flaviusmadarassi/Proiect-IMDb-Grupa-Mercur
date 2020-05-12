@@ -15,19 +15,26 @@ class MovieBox extends Component {
 
         return <div className='content-container-movies' >
             <p className='movie-title'>{this.props.movie_details.Title}</p>
-            <img src={this.props.movie_details.Poster}></img>
-            <p className='movie-genre'>{this.props.movie_details.Genre}</p>
+            <img className='image-container-movies' src={this.props.movie_details.Poster}></img>
+            <p className='movie-genre'><span className='genre-header'>Genre: </span>{this.props.movie_details.Genre}</p>
             <p className='movie-year'>{this.props.movie_details.Year}</p>
-            <p className='movie-language'>{this.props.movie_details.Language}</p>
-            <p className='movie-country'>{this.props.movie_details.Country}</p>
-            <p className='movie-runtime'>{this.props.movie_details.Runtime}</p>
+            <div className='movie-info-headers'>
+                <p className='first-paragraph'>Language: </p>
+                <p className='second-paragraph'>Country: </p>
+                <p className='third-paragraph'>Runtime: </p>
+            </div>
+            <div className='all-movie-info'>
+                <p className='movie-language'>{this.props.movie_details.Language}</p>
+                <p className='movie-country'>{this.props.movie_details.Country}</p>
+                <p className='movie-runtime'>{this.props.movie_details.Runtime}</p>
+            </div>
             <p className='movie-raiting-number'><span className="fa fa-star checked"></span>{this.props.movie_details.imdbRating}</p>
             {/* <p className='raiting-number'><span className="fa fa-star checked">
             </span>{this.props.movie_details.imdbRating}</p> */}
-            <div className ="containerButtonMovieDetails">
-                <Link to={"/movie-details?id="+this.props.movie_details._id}><button className = "buttonMovieDetails">View Details</button></Link>
+            <div className="containerButtonMovieDetails">
+                <Link to={"/movie-details?id=" + this.props.movie_details._id}><button className="buttonMovieDetails">View Details</button></Link>
             </div>
-            
+
 
 
         </div>

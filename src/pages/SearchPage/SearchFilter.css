@@ -9,10 +9,14 @@
 }
 .search-input {
     width: 40%;
-    border: 2px solid lightgrey;
+    border: 1px solid #ff5860;
     border-radius: 5px;
     /* outline: none; */
     text-indent: 10px;
+    outline: none;
+    font-style: italic;
+    box-shadow: 0 0px 15px #ff5860;
+
 }
 
 .search-icon{
