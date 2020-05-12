@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown"
-
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 class Navigation extends Component {
   state = {
@@ -32,21 +31,25 @@ class Navigation extends Component {
 
   componentDidMount() {
     let token = document.cookie;
-    if (token.includes('token')) {
-      this.setState({ isLoggedIn: true })
+    if (token.includes("token")) {
+      this.setState({ isLoggedIn: true });
     }
 
 
-  }
+  componentDidUpdate() {}
 
   render() {
     return (
       <Navbar bg="light" expand="lg" className="nav">
-        <Navbar.Brand ><h3 className="logoName">My IMDb</h3></Navbar.Brand>
+        <Navbar.Brand>
+          <h3 className="logoName">My IMDb</h3>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+
             <Nav.Link href="/" activeStyle={{ color: "red" }}>Home</Nav.Link>
+
             <Nav.Link href="/search-movie">Search Movie</Nav.Link>
 
             <Nav.Link href="/login-page">Authentication</Nav.Link>
@@ -72,6 +75,5 @@ class Navigation extends Component {
     );
   }
 }
-
 
 export default Navigation;
