@@ -15,6 +15,8 @@ class Add extends Component {
     Runtime: "",
     ImdbVotes: "",
     ImdbRating: "",
+    imdbID: "",
+    Type: "",
   };
 
   submitHandler = (event) => {
@@ -36,6 +38,8 @@ class Add extends Component {
       ImdbVotes: this.state.ImdbVotes,
       ImdbRating: this.state.ImdbRating,
       Poster: this.state.Poster,
+      imdbID: this.state.imdbID,
+      Type: this.state.Type,
     };
 
     return data;
@@ -67,6 +71,27 @@ class Add extends Component {
                     id="defaultFormRegistertitle"
                     className="form-control"
                     placeholder="Movie title"
+                    required
+                  />
+                  <div className="invalid-feedback">
+                    Please fill out this field.
+                  </div>
+                </MDBCol>
+                <MDBCol md="4">
+                  <label
+                    htmlFor="defaultFormRegisterImdbID"
+                    className="grey-text"
+                  >
+                    Imdb ID title :
+                  </label>
+                  <input
+                    value={this.state.imdbID}
+                    name="imdbID"
+                    onChange={this.changeHandler}
+                    type="text"
+                    id="defaultFormRegisterImdbID"
+                    className="form-control"
+                    placeholder="ImdbID"
                     required
                   />
                   <div className="invalid-feedback">
@@ -159,6 +184,27 @@ class Add extends Component {
                     id="defaultFormRegisterPoster"
                     className="form-control"
                     placeholder="Poster URL"
+                    required
+                  />
+                  <div className="invalid-feedback">
+                    Please fill out this field.
+                  </div>
+                </MDBCol>
+                <MDBCol md="4">
+                  <label
+                    htmlFor="defaultFormRegisterType"
+                    className="grey-text"
+                  >
+                    Type :
+                  </label>
+                  <input
+                    value={this.state.Type}
+                    name="Type"
+                    onChange={this.changeHandler}
+                    type="text"
+                    id="defaultFormRegisterType"
+                    className="form-control"
+                    placeholder="Type"
                     required
                   />
                   <div className="invalid-feedback">

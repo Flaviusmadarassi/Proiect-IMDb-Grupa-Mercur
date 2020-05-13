@@ -23,7 +23,7 @@ class DeleteForm extends Component {
     render() {
         return (
             <div>
-                <div className='container-poster-delete-page'><img src={this.props.searchedMovieResult['Poster']}></img></div>
+                <div className='container-poster-delete-page'><img alt='poster' src={this.props.searchedMovieResult['Poster']}></img></div>
                 <form
                     className="needs-validation"
                     onSubmit={this.submitHandler}

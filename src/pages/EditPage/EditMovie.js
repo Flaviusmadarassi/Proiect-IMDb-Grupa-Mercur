@@ -49,27 +49,27 @@ export default class EditMovie extends Component {
     render() {
         const { data } = this.state;
         return (
-            <div className="allPage"> 
-            <div className="container" >
-                <div className="search-movie-input-container">
-                    <ReactSearchBox
-                        placeholder="Search for a movie"
-                        data={data}
-                        onSelect={record => {
-                            this.setState({ searchedMovieDictionary: record })
-                            this._onSelect()
-                        }
-                        }
-                        fuseConfigs={{
-                            threshold: 0.05,
-                        }}
-                    />
+            <div className="allPage">
+                <div className="container-edit-page" >
+                    <div className="search-movie-input-container">
+                        <ReactSearchBox
+                            placeholder="Search for a movie"
+                            data={data}
+                            onSelect={record => {
+                                this.setState({ searchedMovieDictionary: record })
+                                this._onSelect()
+                            }
+                            }
+                            fuseConfigs={{
+                                threshold: 0.05,
+                            }}
+                        />
+
+                    </div>
+                    {this.state.showForm ? <EditForm searchedMovieResult={this.returnedMovieObject()} /> : null}
 
                 </div>
-                {this.state.showForm ? <EditForm searchedMovieResult={this.returnedMovieObject()} /> : null}
-
-            </div>
-            <div><Footer /></div>
+                <div><Footer /></div>
             </div>
 
         )
