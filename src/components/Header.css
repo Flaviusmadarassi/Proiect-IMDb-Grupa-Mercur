@@ -1,0 +1,10 @@
+.mr-auto .active {
+    background-color: red;
+
+}
+.logo-nav{
+    height:80px;
+    width:80px;
+    border-radius: 0px;
+    
+}
