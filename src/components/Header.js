@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import logOutFunctionality from "./LogIn/LogOut.js";
+import './Header.css'
 
 class Navigation extends Component {
   state = {
@@ -36,24 +37,24 @@ class Navigation extends Component {
 
   render() {
     return (
-      <Navbar bg="light" expand="lg" className="nav">
+      <Navbar bg="dark" variant="dark" expand="lg" className="nav">
         <Navbar.Brand>
-          <h3 className="logoName">My IMDb</h3>
+
+          <img className='logo-nav' src={require("./poza.JPG")} />
+
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/" activeStyle={{ color: "red" }}>
-              Home
-            </Nav.Link>
+            <Nav.Link href="/" activeClassName="active" className='nav-link' style={{ marginLeft: 20, fontSize: 20 }} >Home</Nav.Link>
 
-            <Nav.Link href="/search-movie">Search Movie</Nav.Link>
+            <Nav.Link href="/search-movie" activeClassName="active" style={{ marginLeft: 20, fontSize: 20 }} >Search Movie</Nav.Link>
 
-            <Nav.Link href="/login-page">Authentication</Nav.Link>
+            <Nav.Link href="/login-page" style={{ marginLeft: 20, fontSize: 20 }}>Authentication</Nav.Link>
 
             {this.state.isLoggedIn ? (
-              <React.Fragment>
-                <NavDropdown title={this.changeHeader()} id="nav-dropdown">
+              <React.Fragment >
+                <NavDropdown style={{ marginLeft: 20, fontSize: 20 }} title={this.changeHeader()} id="nav-dropdown" className="nav-dropdown-menu" >
                   <NavDropdown.Item href="/editation/add">
                     Add Movie
                   </NavDropdown.Item>
@@ -74,7 +75,7 @@ class Navigation extends Component {
               Movie Details
             </Nav.Link>
           </Nav>
-
+          {this.props.children}
           {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
