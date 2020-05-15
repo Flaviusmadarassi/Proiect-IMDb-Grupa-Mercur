@@ -10,7 +10,7 @@ class Footer extends Component {
         return (
             <div className="FooterContainer">
                 <div className="contactUs infoContainer">
-                    <div className="titleTags"><h3>Contact Us</h3></div>
+                    <div className="titleTags"><h4>Contact Us</h4></div>
                     <div className="detailsContainer">
                         <p>contactus@myimdb.com</p>
                         <p>searcyourmovie@myimdb.com</p>
@@ -19,7 +19,7 @@ class Footer extends Component {
                     </div>
                 </div>
                 <div className="shortcuts infoContainer">
-                    <div className="titleTags"><h3>Shortcuts</h3></div>
+                    <div className="titleTags"><h4>Shortcuts</h4></div>
                     <div className="detailsContainer">
                         <Link to={"/"} className="links"> <p>Home</p></Link>
                         <Link to={"/search-movie"} className="links"> <p>Search Movie</p></Link>
@@ -31,7 +31,7 @@ class Footer extends Component {
                     </div>
                 </div>
                 <div className="followUs infoContainer">
-                    <div className="titleTags"><h3>Follow Us</h3></div>
+                    <div className="titleTags"><h4>Follow Us</h4></div>
                     <div className="detailsContainer">
                         <div><FollowUs /></div>
                     </div>

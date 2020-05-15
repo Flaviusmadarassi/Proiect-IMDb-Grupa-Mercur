@@ -31,6 +31,7 @@ class Search extends Component {
       pageCount: 0,
       currentPage: 0,
       totalItemsCount: 0,
+      allPagesCount:0,
       filters: {
         'Title': '',
         'Genre': '',
@@ -110,16 +111,26 @@ class Search extends Component {
             movies: json.results,
             pageCount: json.pagination.numberOfPages,
             currentPage: json.pagination.currentPage,
-            totalItemsCount: json.results.length * json.pagination.numberOfPages
+            totalItemsCount: json.results.length * json.pagination.numberOfPages,
+            allPagesCount:json.pagination.numberOfPages
           })
+          console.log("all pages",this.state.allPagesCount );
+          // if ( this.state.allPagesCount=== 0) {
+          //   console.log("no results");
+          //   };
         });
         if (skip === '') {
-          console.log('this.state.currentPage', this.state.currentPage)
+          
           this.setState({
             currentPage: 1
           })
+          console.log('this.state.currentPage', this.state.currentPage)
+
         }
-      }
+            
+        
+        }
+      
     );
 
   }
@@ -193,18 +204,26 @@ class Search extends Component {
         movies: json.results,
         pageCount: json.pagination.numberOfPages,
         currentPage: json.pagination.currentPage,
-        totalItemsCount: json.results.length * json.pagination.numberOfPages
+        totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        allPagesCount:json.pagination.numberOfPages
       })
     });
   }
 
   render() {
     const { isLoaded, movies } = this.state;
+    const {allPagesCount} = this.state;
+
+    // if ( this.state.allPagesCount=== 0) {
+    //   return <div><WillPaginate /></div>
+    //   console.log("no results");
+    //   };
 
 
 
     if (!isLoaded) {
       return <div>Loading...</div>
+      
     }
     else {
 
@@ -224,12 +243,16 @@ class Search extends Component {
             </div>
             <div className="moviePaginationContainer">
             <div className="all-movies-container">
+            <div className="noResults">
+              {this.state.allPagesCount === 0 ? <p>No Search Results</p> : null }
+            </div>
               {
                 movies.map((movie, index) =>
-                  <MovieBox movie_details={movie} movie_index={index} key={movie._id} />
+                  <MovieBox movie_details={movie} movie_index={index} key={movie._id}/>
                 )}
             </div>
             <div className = "paginationContainer">
+  
             <WillPaginate
             parentFetch={this.updateDictionary}
             pageCount={this.state.pageCount} 
@@ -237,6 +260,8 @@ class Search extends Component {
             totalItemsCount={this.state.totalItemsCount}
             inputContent={this.state.inputContent}
             newValue={this.state.newValue}
+            allPagesCount={this.state.allPagesCount}
+
             ></WillPaginate>
              </div>
             </div>
