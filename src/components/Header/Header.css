@@ -1,0 +1,49 @@
+.navbar {
+  background-color: #2b2b31;
+}
+
+.navbar-brand {
+  background-color: #28282d;
+}
+
+.navbar-nav a {
+  text-transform: uppercase;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.75) !important;
+  letter-spacing: 0.2px;
+}
+
+.navbar-nav a:hover {
+  color: #ff55a5 !important;
+}
+
+.sign-in-btn {
+  background-image: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+  opacity: 0.85;
+}
+
+.sign-in-btn:hover {
+  opacity: 1;
+}
+
+@media (min-width: 1200px) {
+  .navbar-brand {
+    min-width: 200px;
+  }
+  .header-content {
+    justify-content: flex-start;
+  }
+  .sign-in-btn {
+    margin-left: 45px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header-content {
+    height: 90px;
+  }
+  .sign-in-btn {
+    height: 50px;
+    width: 140px;
+  }
+}

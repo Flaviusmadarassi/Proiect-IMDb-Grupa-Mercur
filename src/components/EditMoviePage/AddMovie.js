@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./EditMoviePage.css";
+// import "./EditMoviePage.css";
 
 class AddMovie extends Component {
   state = {
@@ -51,7 +51,7 @@ class AddMovie extends Component {
 
   render() {
     return (
-      <div className ="Container">
+      <div className="Container">
         <h2>Add Movie</h2>
         <form className="addMovieForm">
           <input

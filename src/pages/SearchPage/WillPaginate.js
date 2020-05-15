@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 import Pagination from "react-js-pagination";
-import "./willPaginate.css"
+// import "./willPaginate.css"
 
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class WillPaginate extends Component {
   constructor(props) {
@@ -14,12 +14,16 @@ export default class WillPaginate extends Component {
   }
 
   componentWillReceiveProps({ currentPage }) {
-    this.setState({ ...this.state, currentPage })
+    this.setState({ ...this.state, currentPage });
   }
 
   handlePageChange(pageNumber) {
-    this.setState({ currentPage: pageNumber })
-    this.props.parentFetch(this.props.inputContent, this.props.newValue, pageNumber === 1 ? 0 : (pageNumber * 10 - 10));
+    this.setState({ currentPage: pageNumber });
+    this.props.parentFetch(
+      this.props.inputContent,
+      this.props.newValue,
+      pageNumber === 1 ? 0 : pageNumber * 10 - 10
+    );
   }
 
   render() {
@@ -34,4 +38,3 @@ export default class WillPaginate extends Component {
     );
   }
 }
-

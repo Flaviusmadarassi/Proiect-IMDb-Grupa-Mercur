@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./LogIn.css";
+// import "./LogIn.css";
 import AddMovie from "../EditMoviePage/AddMovie";
-import Footer from "../Footer";
+import Footer from "../Footer/Footer";
 
 class LogIn extends Component {
   state = {
@@ -99,7 +99,6 @@ class LogIn extends Component {
         window.location.reload(false);
       });
     event.preventDefault();
-
   };
 
   render() {
@@ -202,9 +201,7 @@ class LogIn extends Component {
         <div className="Footer">
           <Footer />
         </div>
-
       </div>
-
     );
   }
 }
