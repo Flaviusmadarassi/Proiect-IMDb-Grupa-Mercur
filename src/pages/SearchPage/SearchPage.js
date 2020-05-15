@@ -47,35 +47,35 @@ class Search extends Component {
     }
   }
 
-  // handleOnInputChange = (event, skip = undefined) => {
-  //   console.log(event);
-  //   let query = '';
-  //   if (typeof event === 'string') {
-  //     query = event;
-  //   } else {
-  //     query = event.target.value;
-  //   }
+  resetAllFilters = () => {
+    this.setState({
+      inputYearContent: '',
+      filters: {
+        'Title': '',
+        'Genre': '',
+        'Year': '',
+        'Language': '',
+        'Country': '',
+        'Runtime': '',
+        'imdbRating': ''
+      }
+    }, () => {
+      console.log('resetare filtre', this.state);
 
-  //   this.setState({ inputContent: query, loading: true, message: "" });
-  //   const all_movies = "https://movies-app-siit.herokuapp.com/movies";
-  //   let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
-  //   if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}`}
+      const url = generateUrl(this.state.filters);
+      fetchMovies(url).then(json => {
+        this.setState({
+          isLoaded: true,
+          movies: json.results,
+          pageCount: json.pagination.numberOfPages,
+          currentPage: json.pagination.currentPage,
+          totalItemsCount: json.results.length * json.pagination.numberOfPages
+        })
+      });
 
-  //   fetchMovies(searched_movies).then((json) => {
-  //     console.log("Results after search", json);
-      
+    });
+  }
 
-  //     this.setState({
-  //       isLoaded: true,
-  //       movies: json.results,
-  //       pageCount: json.pagination.numberOfPages,
-  //       currentPage: json.pagination.currentPage,
-  //       totalItemsCount: json.results.length * json.pagination.numberOfPages,
-  //       inputContent: query
-  //     });
-      
-  //   });
-  // };
 
 
   //Updates dictionary valyes with selected options
@@ -89,7 +89,7 @@ class Search extends Component {
         filters[filterOption] = newValue;
         filters["skip"] = skip;
         // Returning the updated object  
-        console.log(filters)       
+        console.log(filters)
         return { filters };
       },
       // Since setState is async, all operations that require the updated state, should be done here       
@@ -135,7 +135,7 @@ class Search extends Component {
 
   }
 
- 
+
   handleOnSearchChange = (inputValue) => {
 
     this.setState({ inputContent: inputValue, loading: true });
@@ -270,11 +270,11 @@ class Search extends Component {
           </div>
           <div className="Footer">
             <Footer />
-            </div>
-          
+          </div>
+
         </div >
-        
-        
+
+
       );
     }
   }

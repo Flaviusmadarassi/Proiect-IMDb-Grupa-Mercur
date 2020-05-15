@@ -25,7 +25,7 @@ class Footer extends Component {
                         <Link to={"/search-movie"} className="links"> <p>Search Movie</p></Link>
                         <Link to={"/login-page"} className="links"> <p>Authentication</p></Link>
                         <Link to={"/edit-movie/add"} className="links"> <p>Add Movie</p></Link>
-                        <Link to={"/edit-movie/add"} className="links"> <p>Add Movie</p></Link>
+                        <Link to={"/edit-movie/delete"} className="links"> <p>Delete Movie</p></Link>
                         <Link to={"/edit-movie/edit"} className="links"> <p>Edit Movie</p></Link>
 
                     </div>
