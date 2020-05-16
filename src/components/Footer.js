@@ -6,6 +6,19 @@ import "./Footer.css";
 
 
 class Footer extends Component {
+    state = {
+        isLoggedIn: false
+        
+      };
+
+      componentDidMount() {
+        let token = document.cookie;
+        if (token.includes("token")) {
+          this.setState({ isLoggedIn: true });
+          console.log("token",token);
+        }
+      }
+
     render() {
         return (
             <div className="FooterContainer">
@@ -24,9 +37,14 @@ class Footer extends Component {
                         <Link to={"/"} className="shortcutsLinks"> <p>Home</p></Link>
                         <Link to={"/search-movie"} className="shortcutsLinks"> <p>Search Movie</p></Link>
                         <Link to={"/login-page"} className="shortcutsLinks"> <p>Authentication</p></Link>
+                        {this.state.isLoggedIn ? (
+                        <React.Fragment>
                         <Link to={"/edit-movie/add"} className="shortcutsLinks"> <p>Add Movie</p></Link>
                         <Link to={"/edit-movie/delete"} className="shortcutsLinks"> <p>Delete Movie</p></Link>
                         <Link to={"/edit-movie/edit"} className="shortcutsLinks"> <p>Edit Movie</p></Link>
+                        </React.Fragment>
+                        ) : null}
+                        
 
                     </div>
                 </div>
