@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./LogIn.css";
 import Footer from "../Footer";
+import LogOutMessage from "./LogOutComponent";
 
 class LogIn extends Component {
   state = {
@@ -19,8 +20,6 @@ class LogIn extends Component {
       signUpPassword: "",
       signUpMessage: data.message,
     });
-
-    console.log(data.message);
   };
 
   onSubmitLogIn = (data) => {
@@ -29,8 +28,6 @@ class LogIn extends Component {
       logInPassword: "",
       logInMessage: data.message,
     });
-
-    console.log(data.message);
   };
 
   handleChangeFormState = (formState) => {
@@ -43,6 +40,12 @@ class LogIn extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
+  };
+
+  redirectOnAuthtentication = (resp) => {
+    document.cookie = `token=${resp.accessToken}`;
+    this.props.history.push("/");
+    window.location.reload();
   };
 
   handleSubmitSignUp = (event) => {
@@ -64,10 +67,8 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/")
+          ? this.redirectOnAuthtentication(json)
           : this.onSubmitSignUp(json);
-
-        document.cookie = `token=${json.accessToken}`;
       });
     event.preventDefault();
   };
@@ -91,14 +92,10 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/")
+          ? this.redirectOnAuthtentication(json)
           : this.onSubmitLogIn(json);
-
-        document.cookie = `token=${json.accessToken}`;
-        window.location.reload(false);
       });
     event.preventDefault();
-
   };
 
   render() {

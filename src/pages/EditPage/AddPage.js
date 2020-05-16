@@ -23,8 +23,20 @@ class Add extends Component {
     event.preventDefault();
     // event.target.className += " was-validated";
     let data = this.createData();
-
     addMovie(data);
+    this.setState({
+      Title: "",
+      Year: "",
+      Genre: "",
+      Poster: "",
+      Country: "",
+      Language: "",
+      Runtime: "",
+      ImdbVotes: "",
+      ImdbRating: "",
+      imdbID: "",
+      Type: "",
+    });
   };
 
   createData = () => {

@@ -1,8 +1,10 @@
+const url = "https://movies-app-siit.herokuapp.com/auth/logout";
+const token = document.cookie
+  .split(";")
+  .some((item) => item.trim().startsWith("token="));
+
 export default function logOutFunctionality() {
-  const url = "https://movies-app-siit.herokuapp.com/auth/logout";
-  if (
-    document.cookie.split(";").some((item) => item.trim().startsWith("token="))
-  ) {
+  if (token) {
     fetch(url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
       headers: {
