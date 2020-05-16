@@ -1,7 +1,9 @@
 .mr-auto .active {
-    background-color: red;
+    background-color: #ff5860;
+    border-radius: 10px;
 
 }
+
 .logo-nav{
     height:80px;
     width:80px;

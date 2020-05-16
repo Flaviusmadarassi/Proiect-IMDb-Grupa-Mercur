@@ -13,7 +13,7 @@ class Footer extends Component {
                     <div className="titleTags"><h4>Contact Us</h4></div>
                     <div className="detailsContainer">
                         <p>contactus@myimdb.com</p>
-                        <p>searcyourmovie@myimdb.com</p>
+                        <p>searchyourmovie@myimdb.com</p>
                         <p>www.myimdb.com</p>
                         <p>0262-165-376</p>
                     </div>
