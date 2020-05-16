@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FollowUs from "./FollowUs";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import { SocialIcon } from 'react-social-icons';
 import "./Footer.css";
 
@@ -21,12 +21,12 @@ class Footer extends Component {
                 <div className="shortcuts infoContainer">
                     <div className="titleTags"><h4>Shortcuts</h4></div>
                     <div className="detailsContainer">
-                        <Link to={"/"} className="links"> <p>Home</p></Link>
-                        <Link to={"/search-movie"} className="links"> <p>Search Movie</p></Link>
-                        <Link to={"/login-page"} className="links"> <p>Authentication</p></Link>
-                        <Link to={"/edit-movie/add"} className="links"> <p>Add Movie</p></Link>
-                        <Link to={"/edit-movie/delete"} className="links"> <p>Delete Movie</p></Link>
-                        <Link to={"/edit-movie/edit"} className="links"> <p>Edit Movie</p></Link>
+                        <Link to={"/"} className="shortcutsLinks"> <p>Home</p></Link>
+                        <Link to={"/search-movie"} className="shortcutsLinks"> <p>Search Movie</p></Link>
+                        <Link to={"/login-page"} className="shortcutsLinks"> <p>Authentication</p></Link>
+                        <Link to={"/edit-movie/add"} className="shortcutsLinks"> <p>Add Movie</p></Link>
+                        <Link to={"/edit-movie/delete"} className="shortcutsLinks"> <p>Delete Movie</p></Link>
+                        <Link to={"/edit-movie/edit"} className="shortcutsLinks"> <p>Edit Movie</p></Link>
 
                     </div>
                 </div>
