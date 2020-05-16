@@ -9,7 +9,7 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <Carousel />
+        {/* <Carousel /> */}
         <HomeContent />
       </React.Fragment>
     );

@@ -26,6 +26,10 @@
   opacity: 1;
 }
 
+.navbar-toggler {
+  color: white;
+}
+
 @media (min-width: 1200px) {
   .navbar-brand {
     min-width: 200px;

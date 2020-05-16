@@ -30,7 +30,7 @@ class Header extends Component {
           <HeaderLogo />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className="mr-auto align-items-center">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/search-movie">Search Movie</Nav.Link>
 
