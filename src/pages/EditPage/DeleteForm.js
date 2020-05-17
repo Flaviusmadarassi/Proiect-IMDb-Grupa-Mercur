@@ -21,7 +21,10 @@ class DeleteForm extends Component {
     return (
       <div>
         <div className="container-poster-delete-page">
-          <img src={this.props.searchedMovieResult["Poster"]}></img>
+          <img
+            alt="poster"
+            src={this.props.searchedMovieResult["Poster"]}
+          ></img>
         </div>
         <form
           className="needs-validation"

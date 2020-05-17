@@ -23,7 +23,7 @@ const customStyles = {
     color: state.selectProps.menuColor,
     borderBottom: "1px dotted black",
     // color: state.isSelected ? 'red' : 'blue',
-    color: state.selectProps.menuColor,
+
 
     padding: 20,
     height: 10,

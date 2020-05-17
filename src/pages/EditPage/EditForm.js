@@ -14,6 +14,8 @@ class EditForm extends Component {
     imdbVotes: this.props.searchedMovieResult.imdbVotes,
     imdbRating: this.props.searchedMovieResult.imdbRating,
     Poster: this.props.searchedMovieResult.Poster,
+    imdbID: this.props.searchedMovieResult.imdbID,
+    Type: this.props.searchedMovieResult.Type,
     selectedMovie: this.props.searchedMovieResult,
   };
 
@@ -38,6 +40,8 @@ class EditForm extends Component {
       imdbVotes: this.state.imdbVotes,
       imdbRating: this.state.imdbRating,
       Poster: this.state.Poster,
+      imdbID: this.state.imdbID,
+      Type: this.state.Type,
     };
     console.log(this.state);
     console.log(this.props.searchedMovieResult._id);
@@ -58,6 +62,8 @@ class EditForm extends Component {
         imdbVotes: this.props.searchedMovieResult.imdbVotes,
         imdbRating: this.props.searchedMovieResult.imdbRating,
         Poster: this.props.searchedMovieResult.Poster,
+        imdbID: this.props.searchedMovieResult.imdbID,
+        Type: this.props.searchedMovieResult.Type,
         selectedMovie: this.props.searchedMovieResult,
       });
     }
@@ -90,9 +96,27 @@ class EditForm extends Component {
                 Please fill out this field.
               </div>
             </MDBCol>
+            <MDBCol md="4">
+              <label htmlFor="defaultFormRegisterImdbID" className="grey-text">
+                Imdb ID :
+              </label>
+              <input
+                value={this.state.imdbID}
+                name="imdbID"
+                onChange={this.onChange}
+                type="text"
+                id="defaultFormRegisterImdbID"
+                className="form-control"
+                placeholder="Imdb ID"
+                required
+              />
+              <div className="invalid-feedback">
+                Please fill out this field.
+              </div>
+            </MDBCol>
 
             <MDBCol>
-              <img src={this.state.Poster}></img>
+              <img alt="poster" src={this.state.Poster}></img>
             </MDBCol>
           </MDBRow>
 
@@ -174,6 +198,24 @@ class EditForm extends Component {
                   id="defaultFormRegisterPoster"
                   className="form-control"
                   placeholder="Poster URL"
+                  required
+                />
+                <div className="invalid-feedback">
+                  Please fill out this field.
+                </div>
+              </MDBCol>
+              <MDBCol md="4">
+                <label htmlFor="defaultFormRegisterType" className="grey-text">
+                  Type :
+                </label>
+                <input
+                  value={this.state.Type}
+                  name="Type"
+                  onChange={this.onChange}
+                  type="text"
+                  id="defaultFormRegisterType"
+                  className="form-control"
+                  placeholder="Type"
                   required
                 />
                 <div className="invalid-feedback">

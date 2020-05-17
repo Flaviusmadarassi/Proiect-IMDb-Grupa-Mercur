@@ -50,7 +50,7 @@ export default class EditMovie extends Component {
     const { data } = this.state;
     return (
       <div className="allPage">
-        <div className="container">
+        <div className="container-edit-page">
           <div className="search-movie-input-container">
             <ReactSearchBox
               placeholder="Search for a movie"
