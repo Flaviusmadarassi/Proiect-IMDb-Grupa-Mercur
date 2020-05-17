@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Button from "react-bootstrap/Button";
-import logOutFunctionality from "./LogIn/LogOut.js";
-import './Header.css'
+import LogOutButton from "./LogIn/LogOut.js";
+import "./Header.css";
 
 class Navigation extends Component {
   state = {
@@ -39,22 +38,43 @@ class Navigation extends Component {
     return (
       <Navbar bg="dark" variant="dark" expand="lg" className="nav">
         <Navbar.Brand>
-
-          <img className='logo-nav' src={require("./poza.JPG")} />
-
+          <img className="logo-nav" src={require("./poza.JPG")} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/" activeClassName="active" className='nav-link' style={{ marginLeft: 20, fontSize: 20 }} >Home</Nav.Link>
+            <Nav.Link
+              href="/"
+              activeClassName="active"
+              className="nav-link"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              Home
+            </Nav.Link>
 
-            <Nav.Link href="/search-movie" activeClassName="active" style={{ marginLeft: 20, fontSize: 20 }} >Search Movie</Nav.Link>
+            <Nav.Link
+              href="/search-movie"
+              activeClassName="active"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              Search Movie
+            </Nav.Link>
 
-            <Nav.Link href="/login-page" style={{ marginLeft: 20, fontSize: 20 }}>Authentication</Nav.Link>
+            <Nav.Link
+              href="/login-page"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              Authentication
+            </Nav.Link>
 
             {this.state.isLoggedIn ? (
-              <React.Fragment >
-                <NavDropdown style={{ marginLeft: 20, fontSize: 20 }} title={this.changeHeader()} id="nav-dropdown" className="nav-dropdown-menu" >
+              <React.Fragment>
+                <NavDropdown
+                  style={{ marginLeft: 20, fontSize: 20 }}
+                  title={this.changeHeader()}
+                  id="nav-dropdown"
+                  className="nav-dropdown-menu"
+                >
                   <NavDropdown.Item href="/editation/add">
                     Add Movie
                   </NavDropdown.Item>
@@ -65,9 +85,7 @@ class Navigation extends Component {
                     Edit Movie
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Button onClick={logOutFunctionality} variant="dark">
-                  LOG-OUT
-                </Button>
+                <LogOutButton />
               </React.Fragment>
             ) : null}
 

@@ -1,8 +1,28 @@
-export default function logOutFunctionality() {
-  const url = "https://movies-app-siit.herokuapp.com/auth/logout";
-  if (
-    document.cookie.split(";").some((item) => item.trim().startsWith("token="))
-  ) {
+import React, { Component } from "react";
+import { useHistory } from "react-router-dom";
+
+export default function LogOutButton() {
+  let history = useHistory();
+
+  function handleClick() {
+    logOutFunctionality();
+    history.push("/");
+  }
+
+  return (
+    <button type="button" onClick={handleClick}>
+      LOG OUT
+    </button>
+  );
+}
+
+const url = "https://movies-app-siit.herokuapp.com/auth/logout";
+const token = document.cookie
+  .split(";")
+  .some((item) => item.trim().startsWith("token="));
+
+function logOutFunctionality() {
+  if (token) {
     fetch(url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
       headers: {

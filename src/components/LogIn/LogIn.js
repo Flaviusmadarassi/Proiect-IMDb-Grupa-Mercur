@@ -11,7 +11,14 @@ class LogIn extends Component {
     signUpMessage: "",
     logInMessage: "",
     formState: "signIn",
+    authtenticationState: false,
   };
+
+  componentDidMount() {
+    if (document.cookie.startsWith("token=")) {
+      this.setState({ authtenticationState: true });
+    }
+  }
 
   onSubmitSignUp = (data) => {
     this.setState({
@@ -19,8 +26,6 @@ class LogIn extends Component {
       signUpPassword: "",
       signUpMessage: data.message,
     });
-
-    console.log(data.message);
   };
 
   onSubmitLogIn = (data) => {
@@ -29,8 +34,6 @@ class LogIn extends Component {
       logInPassword: "",
       logInMessage: data.message,
     });
-
-    console.log(data.message);
   };
 
   handleChangeFormState = (formState) => {
@@ -43,6 +46,12 @@ class LogIn extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
+  };
+
+  redirectOnAuthtentication = (resp) => {
+    document.cookie = `token=${resp.accessToken}`;
+    this.props.history.push("/");
+    window.location.reload();
   };
 
   handleSubmitSignUp = (event) => {
@@ -64,10 +73,8 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/")
+          ? this.redirectOnAuthtentication(json)
           : this.onSubmitSignUp(json);
-
-        document.cookie = `token=${json.accessToken}`;
       });
     event.preventDefault();
   };
@@ -91,14 +98,10 @@ class LogIn extends Component {
       .then((response) => response.json())
       .then((json) => {
         json.authenticated === true
-          ? this.props.history.push("/")
+          ? this.redirectOnAuthtentication(json)
           : this.onSubmitLogIn(json);
-
-        document.cookie = `token=${json.accessToken}`;
-        window.location.reload(false);
       });
     event.preventDefault();
-
   };
 
   render() {
@@ -138,27 +141,33 @@ class LogIn extends Component {
           </div>
           <div className="form-container sign-in-container">
             <form className="register-form" onSubmit={this.handleSubmitLogIn}>
-              <h1 className="titles">Sign In</h1>
-              <input
-                className="register-input"
-                type="text"
-                placeholder="Username"
-                name="logInUsername"
-                value={this.state.logInUsername}
-                onChange={this.handleChange}
-                required
-              />
-              <input
-                className="register-input"
-                type="password"
-                placeholder="Password"
-                name="logInPassword"
-                value={this.state.logInPassword}
-                onChange={this.handleChange}
-                required
-              />
-              <p className="response-message">{this.state.logInMessage}</p>
-              <button className="LogIn-buttons">Sign In</button>
+              {this.state.authtenticationState === false ? (
+                <>
+                  <h1 className="titles">Sign In</h1>
+                  <input
+                    className="register-input"
+                    type="text"
+                    placeholder="Username"
+                    name="logInUsername"
+                    value={this.state.logInUsername}
+                    onChange={this.handleChange}
+                    required
+                  />
+                  <input
+                    className="register-input"
+                    type="password"
+                    placeholder="Password"
+                    name="logInPassword"
+                    value={this.state.logInPassword}
+                    onChange={this.handleChange}
+                    required
+                  />
+                  <p className="response-message">{this.state.logInMessage}</p>
+                  <button className="LogIn-buttons">Sign In</button>
+                </>
+              ) : (
+                <h1>You are already logged in! </h1>
+              )}
             </form>
           </div>
 
