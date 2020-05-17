@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import "./LogIn.css";
-import AddMovie from "../EditMoviePage/AddMovie";
+import "./LogIn.css";
 import Footer from "../Footer/Footer";
 
 class LogIn extends Component {

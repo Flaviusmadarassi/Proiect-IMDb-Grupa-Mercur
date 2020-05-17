@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
 // import "./AddPage.css";
 import addMovie from "./AddPageUtils.js";
 

@@ -3,7 +3,7 @@ import { fetchMovies, generateUrl } from "../SearchPage/FetchMovies";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
 // import "./MovieDetails.css";
 
 class Details extends Component {

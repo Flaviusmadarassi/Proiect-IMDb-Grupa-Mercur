@@ -11,7 +11,7 @@ import Country from "./CountryFilter.js";
 import { RuntimeFilter } from "./RuntimeFilter.js";
 import { ImdbRatingFilter } from "./ImdbRatingFilter.js";
 import { generateUrl } from "./SearchPageUtils";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
 
 class Search extends Component {
   constructor(props) {
