@@ -251,7 +251,12 @@ class Search extends Component {
                   <MovieBox movie_details={movie} movie_index={index} key={movie._id}/>
                 )}
             </div>
-            <div className = "paginationContainer row">
+            
+            </div>
+            
+
+          </div>
+          <div className = "paginationContainer row">
   
             <WillPaginate
             parentFetch={this.updateDictionary}
@@ -264,10 +269,6 @@ class Search extends Component {
 
             ></WillPaginate>
              </div>
-            </div>
-            
-
-          </div>
           <div className="Footer">
             <Footer />
           </div>
