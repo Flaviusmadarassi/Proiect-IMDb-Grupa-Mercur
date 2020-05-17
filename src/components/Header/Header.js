@@ -2,16 +2,32 @@ import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import HeaderLogo from "./HeaderLogo";
+import LogOutButton from "../LogIn/LogOut.js";
 import HeaderAuth from "./HeaderAuth";
 import "./Header.css";
 // import Form from "react-bootstrap/Form";
 // import FormControl from "react-bootstrap/FormControl";
-// import Button from "react-bootstrap/Button";
 
-class Header extends Component {
+class Navigation extends Component {
   state = {
     isLoggedIn: false,
+    editMovie: "Editation",
+  };
+
+  changeHeader = () => {
+    let currentUrl = window.location.href;
+    let currentPage = currentUrl.split("/").slice(-1);
+    if (currentPage == "edit") {
+      return "Edit Movie";
+    }
+    if (currentPage == "add") {
+      return "Add Movie";
+    }
+    if (currentPage == "delete") {
+      return "Delete Movie";
+    } else {
+      return "Editation";
+    }
   };
 
   componentDidMount() {
@@ -21,44 +37,75 @@ class Header extends Component {
     }
   }
 
-  componentDidUpdate() {}
-
   render() {
     return (
-      <div className="container">
-        <Navbar expand="lg" className="nav p-0 header-content shadow-sm">
-          <HeaderLogo />
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto align-items-center">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/search-movie">Search Movie</Nav.Link>
+      <Navbar bg="dark" variant="dark" expand="lg" className="nav">
+        <Navbar.Brand>
+          <img className="logo-nav" src={require("../poza.JPG")} />
+        </Navbar.Brand>
+        {/* <HeaderLogo /> */}
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link
+              href="/"
+              activeClassName="active"
+              className="nav-link"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              Home
+            </Nav.Link>
 
-              <Nav.Link href="/login-page">Authentication</Nav.Link>
-              {this.state.isLoggedIn ? (
-                <NavDropdown title="Edit Movie" id="nav-dropdown">
-                  <NavDropdown.Item href="/edit-movie/add">
+            <Nav.Link
+              href="/search-movie"
+              activeClassName="active"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              Search Movie
+            </Nav.Link>
+
+            {this.state.isLoggedIn ? (
+              <React.Fragment>
+                <NavDropdown
+                  style={{ marginLeft: 20, fontSize: 20 }}
+                  title={this.changeHeader()}
+                  id="nav-dropdown"
+                  className="nav-dropdown-menu"
+                >
+                  <NavDropdown.Item href="/editation/add">
                     Add Movie
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="/edit-movie/delete">
+                  <NavDropdown.Item href="/editation/delete">
                     Delete Movie
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="/edit-movie/edit">
+                  <NavDropdown.Item href="/editation/edit">
                     Edit Movie
                   </NavDropdown.Item>
                 </NavDropdown>
-              ) : null}
+                <LogOutButton />
+              </React.Fragment>
+            ) : null}
 
-              <Nav.Link href="/movie-details" className="detailsButton">
-                Movie Details
-              </Nav.Link>
+            <Nav.Link
+              href="/login-page"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
               <HeaderAuth />
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
+            </Nav.Link>
+
+            {/* <Nav.Link href="/movie-details" className="detailsButton">
+              Movie Details
+            </Nav.Link> */}
+          </Nav>
+          {this.props.children}
+          {/* <Form inline>	
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />	
+            <Button variant="outline-success">Search</Button>	
+          </Form> */}
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 }
 
-export default Header;
+export default Navigation;

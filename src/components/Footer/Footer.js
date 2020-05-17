@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import FollowUs from "./FollowUs";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import { SocialIcon } from 'react-social-icons';
-// import "./Footer.css";
+import "./Footer.css";
 
 class Footer extends Component {
   render() {
