@@ -20,7 +20,7 @@
 }
 .filters-container{
     margin-left: 20px;
-    width:100px;
+    width:150px;
 }
 
 .button-reset-all-filters{
@@ -32,4 +32,10 @@
   transform: translateY(-2px);
   color:white;
   box-shadow: 0 5px 15px #ff5860;
+}
+
+.noResults{
+    color:white;
+    /* margin-left: 100px; */
+    
 }

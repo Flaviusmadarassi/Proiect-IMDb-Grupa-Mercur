@@ -4,8 +4,9 @@ import {
     faYoutube,
     faFacebook,
     faTwitter,
-    faInstagram
+    faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+// import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 import "./Footer.css";
 
@@ -40,6 +41,13 @@ export default function FollowUs() {
                 className="instagram social">
                 <FontAwesomeIcon icon={faInstagram} size="2x" />
             </a>
+            {/* <a
+                // href="https://www.instagram.com/imdb/?hl=ro"
+                // target="_blank"
+                rel="noopener noreferrer"
+                className="instagram social">
+                <FontAwesomeIcon icon={faSearch} size="2x" />
+            </a> */}
         </div>
     );
 }

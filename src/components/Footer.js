@@ -1,37 +1,55 @@
 import React, { Component } from "react";
 import FollowUs from "./FollowUs";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import { SocialIcon } from 'react-social-icons';
 import "./Footer.css";
 
 
 class Footer extends Component {
+    state = {
+        isLoggedIn: false
+        
+      };
+
+      componentDidMount() {
+        let token = document.cookie;
+        if (token.includes("token")) {
+          this.setState({ isLoggedIn: true });
+          console.log("token",token);
+        }
+      }
+
     render() {
         return (
-            <div className="FooterContainer">
-                <div className="contactUs infoContainer">
-                    <div className="titleTags"><h3>Contact Us</h3></div>
+            <div className="FooterContainer row">
+                <div className="contactUs infoContainer col-sm">
+                    <div className="titleTags"><h4>Contact Us</h4></div>
                     <div className="detailsContainer">
                         <p>contactus@myimdb.com</p>
-                        <p>searcyourmovie@myimdb.com</p>
+                        <p>searchyourmovie@myimdb.com</p>
                         <p>www.myimdb.com</p>
                         <p>0262-165-376</p>
                     </div>
                 </div>
-                <div className="shortcuts infoContainer">
-                    <div className="titleTags"><h3>Shortcuts</h3></div>
+                <div className="shortcuts infoContainer col-sm">
+                    <div className="titleTags"><h4>Shortcuts</h4></div>
                     <div className="detailsContainer">
-                        <Link to={"/"} className="links"> <p>Home</p></Link>
-                        <Link to={"/search-movie"} className="links"> <p>Search Movie</p></Link>
-                        <Link to={"/login-page"} className="links"> <p>Authentication</p></Link>
-                        <Link to={"/edit-movie/add"} className="links"> <p>Add Movie</p></Link>
-                        <Link to={"/edit-movie/delete"} className="links"> <p>Delete Movie</p></Link>
-                        <Link to={"/edit-movie/edit"} className="links"> <p>Edit Movie</p></Link>
+                        <Link to={"/"} className="shortcutsLinks"> <p>Home</p></Link>
+                        <Link to={"/search-movie"} className="shortcutsLinks"> <p>Search Movie</p></Link>
+                        <Link to={"/login-page"} className="shortcutsLinks"> <p>Authentication</p></Link>
+                        {this.state.isLoggedIn ? (
+                        <React.Fragment>
+                        <Link to={"/edit-movie/add"} className="shortcutsLinks"> <p>Add Movie</p></Link>
+                        <Link to={"/edit-movie/delete"} className="shortcutsLinks"> <p>Delete Movie</p></Link>
+                        <Link to={"/edit-movie/edit"} className="shortcutsLinks"> <p>Edit Movie</p></Link>
+                        </React.Fragment>
+                        ) : null}
+                        
 
                     </div>
                 </div>
-                <div className="followUs infoContainer">
-                    <div className="titleTags"><h3>Follow Us</h3></div>
+                <div className="followUs infoContainer col-sm">
+                    <div className="titleTags"><h4>Follow Us</h4></div>
                     <div className="detailsContainer">
                         <div><FollowUs /></div>
                     </div>

@@ -3,9 +3,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
-import logOutFunctionality from "./LogIn/LogOut.js";
 import './Header.css';
 import { NavLink } from 'react-router-dom';
+import LogOutButton from "./LogIn/LogOut.js";
+
+
 
 class Navigation extends Component {
   state = {
@@ -56,13 +58,12 @@ class Navigation extends Component {
     return (
       <Navbar bg="dark" variant="dark" expand="lg" className="nav">
         <Navbar.Brand>
-
-          <img className='logo-nav' src={require("./poza.JPG")} />
-
+          <img className="logo-nav" src={require("./poza.JPG")} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+
             <NavLink exact className='nav-link' to='/' activeClassName="selected" style={{ marginLeft: 20, fontSize: 20 }}>Home </NavLink>
             <NavLink exact className='nav-link' to='/search-movie' activeClassName="selected" style={{ marginLeft: 20, fontSize: 20 }}>Search Movie</NavLink>
             <NavLink exact className='nav-link' to='/login-page' activeClassName="selected" style={{ marginLeft: 20, fontSize: 20 }}>Authentication</NavLink>
@@ -76,10 +77,8 @@ class Navigation extends Component {
                   <NavLink exact to="/editation/delete"> Delete Movie</NavLink>
                   <NavLink exact to="/editation/edit"> Edit Movie  </NavLink>
                 </NavDropdown>
-                <Button onClick={logOutFunctionality} variant="dark">
-                  LOG-OUT
-                </Button>
-
+                <LogOutButton />
+          
               </React.Fragment>
 
             ) : null}

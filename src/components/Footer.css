@@ -5,9 +5,9 @@
 .FooterContainer { 
     display: flex;
     justify-content: space-evenly;
-    margin-left: 20px;
+    /* margin-left: 20px;
     margin-right: 20px;
-    margin-top: 30px;
+    margin-top: 30px; */
     
     height: 250px;
     border-top: solid 4px #ff5860
@@ -72,11 +72,11 @@ a.detailsContainer p{
     color: tomato;
 }
 
-a.links p {
+a.shortcutsLinks p {
     transition: transform 250ms;
 }
 
-a.links p:hover {
+a.shortcutsLinks p:hover {
     transform: translateY(-3px);
     color: #ff5860;
     text-decoration: none;
@@ -84,6 +84,6 @@ a.links p:hover {
     
 }
 
-a.links:hover {
+a.shortcutsLinks:hover {
     text-decoration: none;
 }
