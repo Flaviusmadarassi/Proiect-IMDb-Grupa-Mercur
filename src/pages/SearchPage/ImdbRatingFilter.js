@@ -6,19 +6,19 @@ import './ImdbRatingFilter.css'
 
 
 export class ImdbRatingFilter extends Component {
-    state = {
-        value: 0
-    }
+
     handleOnChange = (value) => {
-        this.setState({ value })
+        this.props.updateImdbRatingValue(value);
     }
     render() {
 
+        const { imdbRatingValue } = this.props;
+
         return (
-            <div className="rating-container" onMouseUp={() => { this.props.onImdbRatingChange(this.state.value) }}>
+            <div className="rating-container" onMouseUp={() => { this.props.onImdbRatingChange(imdbRatingValue) }}>
                 <p>Rating</p>
                 <RangeSlider
-                    value={this.state.value}
+                    value={imdbRatingValue}
                     onChange={changeEvent => this.handleOnChange(changeEvent.target.value)}
                     max={10}
                     step={0.1}

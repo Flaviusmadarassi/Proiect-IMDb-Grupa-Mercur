@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import {HandleDetailsButtonClick} from "./MovieDetailsUtils"; 
 
 // import { browserHistory } from "react-router"; 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import { BrowserRouter as Link } from "react-router-dom"
 import "./SearchPage.css";
 import "./MovieBox.css";
 

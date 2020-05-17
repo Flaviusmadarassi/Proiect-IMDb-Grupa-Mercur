@@ -31,19 +31,17 @@ const customStyles = {
 }
 
 class Country extends Component {
-    state = {
-        selectedCountry: null,
-    };
+
 
     handleChange = (selectedCountry) => {
-        this.setState({ selectedCountry });
+
         this.props.onCountryChange(selectedCountry);
     }
 
 
     render() {
 
-        const { selectedCountry } = this.state;
+        const { selectedCountry } = this.props;
 
         return (
             <div className="country-container">

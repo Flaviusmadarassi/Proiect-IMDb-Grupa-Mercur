@@ -1,7 +1,6 @@
-.mr-auto .active {
-    background-color: #ff5860;
-    border-radius: 10px;
 
+.selected {
+    box-shadow: 0 0px 15px #ff5860;
 }
 
 .logo-nav{
