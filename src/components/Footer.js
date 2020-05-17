@@ -39,9 +39,9 @@ class Footer extends Component {
                         <Link to={"/login-page"} className="shortcutsLinks"> <p>Authentication</p></Link>
                         {this.state.isLoggedIn ? (
                         <React.Fragment>
-                        <Link to={"/edit-movie/add"} className="shortcutsLinks"> <p>Add Movie</p></Link>
-                        <Link to={"/edit-movie/delete"} className="shortcutsLinks"> <p>Delete Movie</p></Link>
-                        <Link to={"/edit-movie/edit"} className="shortcutsLinks"> <p>Edit Movie</p></Link>
+                        <Link to={"/editation/add"} className="shortcutsLinks"> <p>Add Movie</p></Link>
+                        <Link to={"/editation/delete"} className="shortcutsLinks"> <p>Delete Movie</p></Link>
+                        <Link to={"/editation/edit"} className="shortcutsLinks"> <p>Edit Movie</p></Link>
                         </React.Fragment>
                         ) : null}
                         
