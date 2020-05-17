@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./LogIn.css";
 import Footer from "../Footer";
-import LogOutMessage from "./LogOutComponent";
 
 class LogIn extends Component {
   state = {
@@ -12,7 +11,14 @@ class LogIn extends Component {
     signUpMessage: "",
     logInMessage: "",
     formState: "signIn",
+    authtenticationState: false,
   };
+
+  componentDidMount() {
+    if (document.cookie.startsWith("token=")) {
+      this.setState({ authtenticationState: true });
+    }
+  }
 
   onSubmitSignUp = (data) => {
     this.setState({
@@ -135,27 +141,33 @@ class LogIn extends Component {
           </div>
           <div className="form-container sign-in-container">
             <form className="register-form" onSubmit={this.handleSubmitLogIn}>
-              <h1 className="titles">Sign In</h1>
-              <input
-                className="register-input"
-                type="text"
-                placeholder="Username"
-                name="logInUsername"
-                value={this.state.logInUsername}
-                onChange={this.handleChange}
-                required
-              />
-              <input
-                className="register-input"
-                type="password"
-                placeholder="Password"
-                name="logInPassword"
-                value={this.state.logInPassword}
-                onChange={this.handleChange}
-                required
-              />
-              <p className="response-message">{this.state.logInMessage}</p>
-              <button className="LogIn-buttons">Sign In</button>
+              {this.state.authtenticationState === false ? (
+                <>
+                  <h1 className="titles">Sign In</h1>
+                  <input
+                    className="register-input"
+                    type="text"
+                    placeholder="Username"
+                    name="logInUsername"
+                    value={this.state.logInUsername}
+                    onChange={this.handleChange}
+                    required
+                  />
+                  <input
+                    className="register-input"
+                    type="password"
+                    placeholder="Password"
+                    name="logInPassword"
+                    value={this.state.logInPassword}
+                    onChange={this.handleChange}
+                    required
+                  />
+                  <p className="response-message">{this.state.logInMessage}</p>
+                  <button className="LogIn-buttons">Sign In</button>
+                </>
+              ) : (
+                <h1>You are already logged in! </h1>
+              )}
             </form>
           </div>
 
