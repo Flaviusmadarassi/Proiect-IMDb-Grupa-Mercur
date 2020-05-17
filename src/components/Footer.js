@@ -21,8 +21,8 @@ class Footer extends Component {
 
     render() {
         return (
-            <div className="FooterContainer">
-                <div className="contactUs infoContainer">
+            <div className="FooterContainer row">
+                <div className="contactUs infoContainer col-sm">
                     <div className="titleTags"><h4>Contact Us</h4></div>
                     <div className="detailsContainer">
                         <p>contactus@myimdb.com</p>
@@ -31,7 +31,7 @@ class Footer extends Component {
                         <p>0262-165-376</p>
                     </div>
                 </div>
-                <div className="shortcuts infoContainer">
+                <div className="shortcuts infoContainer col-sm">
                     <div className="titleTags"><h4>Shortcuts</h4></div>
                     <div className="detailsContainer">
                         <Link to={"/"} className="shortcutsLinks"> <p>Home</p></Link>
@@ -48,7 +48,7 @@ class Footer extends Component {
 
                     </div>
                 </div>
-                <div className="followUs infoContainer">
+                <div className="followUs infoContainer col-sm">
                     <div className="titleTags"><h4>Follow Us</h4></div>
                     <div className="detailsContainer">
                         <div><FollowUs /></div>

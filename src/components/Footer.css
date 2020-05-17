@@ -5,9 +5,9 @@
 .FooterContainer { 
     display: flex;
     justify-content: space-evenly;
-    margin-left: 20px;
+    /* margin-left: 20px;
     margin-right: 20px;
-    margin-top: 30px;
+    margin-top: 30px; */
     
     height: 250px;
     border-top: solid 4px #ff5860
