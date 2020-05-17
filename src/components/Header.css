@@ -1,5 +1,5 @@
-.mr-auto .active {
-    background-color: red;
+.selected {
+    box-shadow: 0 0px 15px #ff5860;
 
 }
 .logo-nav{

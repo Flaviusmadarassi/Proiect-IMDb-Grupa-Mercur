@@ -21,9 +21,14 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      selectedGenre: null,
+      selectedLanguage: null,
+      selectedCountry: null,
       inputContent: '',
       inputYearContent: '',
+      titleInput: '',
+      runtimeValue: 0,
+      imdbRatingValue: 0,
       movies: [],
       isLoaded: false,
       loading: false,
@@ -48,7 +53,13 @@ class Search extends Component {
 
   resetAllFilters = () => {
     this.setState({
+      selectedGenre: null,
+      selectedLanguage: null,
+      selectedCountry: null,
       inputYearContent: '',
+      inputContent: '',
+      runtimeValue: 0,
+      imdbRatingValue: 0,
       filters: {
         'Title': '',
         'Genre': '',
@@ -124,6 +135,11 @@ class Search extends Component {
 
   }
 
+  handleOnSearchChangeValue = (inputValue) => {
+    this.setState({
+      inputContent: inputValue
+    })
+  }
 
   handleOnSearchChange = (inputValue) => {
 
@@ -138,6 +154,7 @@ class Search extends Component {
 
     //Update dictionary with custom filters
     this.updateDictionary('Genre', selectedGenre.value);
+    this.setState({ selectedGenre });
 
   };
 
@@ -149,13 +166,14 @@ class Search extends Component {
     //Update dictionary with custom filters
     this.updateDictionary('Year', query);
 
+
   };
 
   handleLanguageChange = selectedLanguage => {
 
     //Update dictionary with custom filters
     this.updateDictionary('Language', selectedLanguage.value);
-
+    this.setState({ selectedLanguage });
   };
 
   handleCountryChange = selectedCountry => {
@@ -163,8 +181,15 @@ class Search extends Component {
 
     //Update dictionary with custom filters
     this.updateDictionary('Country', selectedCountry.value);
+    this.setState({ selectedCountry });
 
   };
+
+  handleRuntimeChangeValue = (runtimeValue) => {
+    this.setState({
+      runtimeValue
+    })
+  }
 
   handleRuntimeChange = changeEvent => {
     let selectedRuntime = changeEvent + " min";
@@ -174,6 +199,11 @@ class Search extends Component {
 
   };
 
+  handleImdbRantingChangeValue = (imdbRatingValue) => {
+    this.setState({
+      imdbRatingValue
+    })
+  }
   handleImdbRatingChange = changeEvent => {
 
     //Update dictionary with custom filters
@@ -211,15 +241,15 @@ class Search extends Component {
       return (
 
         <div className="search-page-container" >
-          <SearchFilter onSearchFilter={this.handleOnSearchChange} />
+          <SearchFilter titleInput={this.state.inputContent} onSearchFilter={this.handleOnSearchChange} updateInputValue={this.handleOnSearchChangeValue} />
           <div className="content" >
             <div className="filters-container">
-              <Genre onFilterChange={this.handleGenreChange} />
-              <Year onYearChange={this.handleYearChange} yearInput={this.inputYearContent} />
-              <Language onLanguageChange={this.handleLanguageChange} />
-              <Country onCountryChange={this.handleCountryChange} />
-              <RuntimeFilter onRuntimeChange={this.handleRuntimeChange} />
-              <ImdbRatingFilter onImdbRatingChange={this.handleImdbRatingChange} />
+              <Genre onFilterChange={this.handleGenreChange} selectedGenre={this.state.selectedGenre} />
+              <Year onYearChange={this.handleYearChange} yearInput={this.state.inputYearContent} />
+              <Language onLanguageChange={this.handleLanguageChange} selectedLanguage={this.state.selectedLanguage} />
+              <Country onCountryChange={this.handleCountryChange} selectedCountry={this.state.selectedCountry} />
+              <RuntimeFilter onRuntimeChange={this.handleRuntimeChange} runtimeValue={this.state.runtimeValue} updateRuntimeValue={this.handleRuntimeChangeValue} />
+              <ImdbRatingFilter onImdbRatingChange={this.handleImdbRatingChange} imdbRatingValue={this.state.imdbRatingValue} updateImdbRatingValue={this.handleImdbRantingChangeValue} />
               <button className='button-reset-all-filters' onClick={this.resetAllFilters}>Reset all filters</button>
             </div>
             <div className="moviePaginationContainer">
