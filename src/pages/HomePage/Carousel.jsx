@@ -58,7 +58,11 @@ class Carousel extends Component {
       this.state.displayMovies[this.state.movieIndex].Poster;
     return (
       <div className="custom-carousel-container-background">
-        <img className="custom-carousel-background" src={imgBackgroundUrl} />
+        <img
+          alt=""
+          className="custom-carousel-background"
+          src={imgBackgroundUrl}
+        />
         <div
           style={{ backgroundImage: `url(${this.state.displayMovies[0]})` }}
           className="custom-carousel-container"
