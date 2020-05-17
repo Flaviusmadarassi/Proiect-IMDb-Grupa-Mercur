@@ -78,11 +78,13 @@ class Navigation extends Component {
                   <NavLink exact to="/editation/edit"> Edit Movie  </NavLink>
                 </NavDropdown>
                 <LogOutButton />
-          
+
               </React.Fragment>
 
             ) : null}
-
+            {/* <Nav.Link href="/movie-details" className="detailsButton">
+              Movie Details
+            </Nav.Link> */}
           </Nav>
           {this.props.children}
         </Navbar.Collapse>
