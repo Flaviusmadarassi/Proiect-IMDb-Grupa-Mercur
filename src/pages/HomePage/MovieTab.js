@@ -4,6 +4,7 @@ class MovieTab extends Component {
   state = {
     movies: [],
     displayMovies: [],
+    movieYear: "",
   };
 
   componentDidMount() {
@@ -14,9 +15,11 @@ class MovieTab extends Component {
         const totalMovies = json.results.filter((movie) => movie.Poster);
         this.setState({
           movies: totalMovies,
-          displayMovies: totalMovies.slice(0, 5),
+          displayMovies: totalMovies.slice(0, 12),
+          movieYear: json.results.Year,
         });
       });
+    console.log(this.state.movieYear);
   }
   render() {
     return (
@@ -35,8 +38,8 @@ class MovieTab extends Component {
                       <span>{item.Genre}</span>
                       <div className="custom-card-wrap">
                         <p>{item.imdbRating}</p>
-                        <div className="custom-card-description">
-                          <p>text</p>
+                        <div className="custom-card-year">
+                          {item.Year < 2018 ? <p>{item.Year}</p> : null}
                         </div>
                       </div>
                     </div>
