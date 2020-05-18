@@ -5,6 +5,7 @@ import {
   getMoveCssClass,
   disableButtonLeft,
   disableButtonRight,
+  changeImg,
 } from "./CarouselUtils";
 
 class Carousel extends Component {
@@ -52,13 +53,20 @@ class Carousel extends Component {
   };
 
   render() {
-    console.log(this.state.displayMovies);
     let imgBackgroundUrl =
-      this.state.displayMovies[this.state.movieIndex] &&
-      this.state.displayMovies[this.state.movieIndex].Poster;
+      this.state.movies[this.state.movieIndex] &&
+      this.state.movies[this.state.movieIndex].Poster;
+    console.log(imgBackgroundUrl);
     return (
       <div className="custom-carousel-container-background">
-        <img className="custom-carousel-background" src={imgBackgroundUrl} />
+        <img
+          className={`custom-carousel-background${changeImg(
+            this.state.moveRight,
+            this.state.moveLeft
+          )}`}
+          src={imgBackgroundUrl}
+          alt=""
+        />
         <div
           style={{ backgroundImage: `url(${this.state.displayMovies[0]})` }}
           className="custom-carousel-container"

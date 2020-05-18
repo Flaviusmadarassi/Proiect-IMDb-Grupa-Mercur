@@ -22,3 +22,9 @@ export function disableButtonRight(movieIndex, movieList) {
   }
   return "";
 }
+
+export function changeImg(moveRight, moveLeft) {
+  if (moveRight || moveLeft) return " change-img-opacity";
+
+  return "";
+}
