@@ -56,7 +56,6 @@ class Carousel extends Component {
     let imgBackgroundUrl =
       this.state.movies[this.state.movieIndex] &&
       this.state.movies[this.state.movieIndex].Poster;
-    console.log(imgBackgroundUrl);
     return (
       <div className="custom-carousel-container-background">
         <img
@@ -106,6 +105,7 @@ class Carousel extends Component {
                   <img
                     src={item.Poster}
                     className="custom-carousel-item-img"
+                    alt=""
                   ></img>
                   <p className="custom-carousel-item-title">{item.Title}</p>
                   <p className="custom-carousel-item-genre">{item.Genre}</p>

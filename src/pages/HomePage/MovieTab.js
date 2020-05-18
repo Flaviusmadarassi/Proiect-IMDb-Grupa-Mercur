@@ -11,7 +11,7 @@ class MovieTab extends Component {
     fetch("https://movies-app-siit.herokuapp.com/movies?take=1000")
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        // console.log(json);
         const totalMovies = json.results.filter((movie) => movie.Poster);
         this.setState({
           movies: totalMovies,
@@ -19,7 +19,6 @@ class MovieTab extends Component {
           movieYear: json.results.Year,
         });
       });
-    console.log(this.state.movieYear);
   }
   render() {
     return (
@@ -30,7 +29,12 @@ class MovieTab extends Component {
               <div className="custom-card mb-5">
                 <div className="row">
                   <div className="col-12 col-sm-4 px-3">
-                    <img className="w-100" src={item.Poster}></img>
+                    <img
+                      className="w-100"
+                      src={item.Poster}
+                      alt=""
+                      key={item._id}
+                    />
                   </div>
                   <div className="col-12 col-sm-8">
                     <div className="custom-card-content">

@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-
 export function getMoveCssClass(moveRight, moveLeft) {
   if (moveRight) {
     return " custom-carousel-move-right";

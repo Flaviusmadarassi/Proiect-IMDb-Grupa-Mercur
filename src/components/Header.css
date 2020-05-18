@@ -1,12 +1,15 @@
-
 .selected {
-    box-shadow: 0 0px 15px #ff5860;
-    border-radius: 20px;
+  box-shadow: 0 0px 15px #ff5860;
+  border-radius: 20px;
 }
 
-.logo-nav{
-    height:80px;
-    width:80px;
-    border-radius: 0px;
-    
+.logo-nav {
+  height: 80px;
+  width: 80px;
+  border-radius: 0px;
+}
+
+.customEditationFlex {
+  display: flex;
+  flex-direction: column;
 }

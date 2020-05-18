@@ -12,31 +12,31 @@ class Navigation extends Component {
     editMovie: "Editation",
   };
 
-  changeHeader = () => {
-    let currentUrl = window.location.href;
-    let currentPage = currentUrl.split("/").slice(-1);
-    if (currentPage == "edit") {
-      return "Edit Movie";
-    }
-    if (currentPage == "add") {
-      return "Add Movie";
-    }
-    if (currentPage == "delete") {
-      return "Delete Movie";
-    } else {
-      return "Editation";
-    }
-  };
+  // changeHeader = () => {
+  //   let currentUrl = window.location.href;
+  //   let currentPage = currentUrl.split("/").slice(-1);
+  //   if (currentPage == "edit") {
+  //     return "Edit Movie";
+  //   }
+  //   if (currentPage == "add") {
+  //     return "Add Movie";
+  //   }
+  //   if (currentPage == "delete") {
+  //     return "Delete Movie";
+  //   } else {
+  //     return "Editation";
+  //   }
+  // };
 
-  componentDidUpdate() {
-    const { editMovie } = this.state;
-    let actualHeader = this.changeHeader();
-    if (editMovie != actualHeader) {
-      this.setState({ editMovie: actualHeader }, () => {
-        console.log(editMovie);
-      });
-    }
-  }
+  // componentDidUpdate() {
+  //   const { editMovie } = this.state;
+  //   let actualHeader = this.changeHeader();
+  //   if (editMovie != actualHeader) {
+  //     this.setState({ editMovie: actualHeader }, () => {
+  //       console.log(editMovie);
+  //     });
+  //   }
+  // }
 
   componentDidMount() {
     let token = document.cookie;
@@ -86,15 +86,17 @@ class Navigation extends Component {
                   id="nav-dropdown"
                   className="nav-dropdown-menu flex-direction-column"
                 >
-                  <NavLink exact to="/editation/add">
-                    Add Movie
-                  </NavLink>
-                  <NavLink exact to="/editation/delete">
-                    Delete Movie
-                  </NavLink>
-                  <NavLink exact to="/editation/edit">
-                    Edit Movie
-                  </NavLink>
+                  <div className="customEditationFlex">
+                    <NavLink exact to="/editation/add">
+                      Add Movie
+                    </NavLink>
+                    <NavLink exact to="/editation/delete">
+                      Delete Movie
+                    </NavLink>
+                    <NavLink exact to="/editation/edit">
+                      Edit Movie
+                    </NavLink>
+                  </div>
                 </NavDropdown>
               </React.Fragment>
             ) : null}
