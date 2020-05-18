@@ -1,0 +1,15 @@
+.custom-contact-section {
+  background: url("../img/contact-form-background.jpg") center center / cover
+    no-repeat;
+}
+
+.custom-contact-section::before {
+  content: "";
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  display: block;
+  background-image: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+}
