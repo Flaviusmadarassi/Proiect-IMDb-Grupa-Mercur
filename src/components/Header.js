@@ -78,10 +78,13 @@ class Navigation extends Component {
                 <NavDropdown
                   className="nav-link"
                   activeClassName="selected"
-                  style={{ marginLeft: 20, fontSize: 20 }}
+                  style={{
+                    marginLeft: 20,
+                    fontSize: 20,
+                  }}
                   title={this.state.editMovie}
                   id="nav-dropdown"
-                  className="nav-dropdown-menu"
+                  className="nav-dropdown-menu flex-direction-column"
                 >
                   <NavLink exact to="/editation/add">
                     Add Movie
@@ -96,15 +99,19 @@ class Navigation extends Component {
               </React.Fragment>
             ) : null}
 
-            <NavLink
-              exact
-              className="nav-link"
-              to="/login-page"
-              activeClassName="selected"
-              style={{ marginLeft: 20, fontSize: 20 }}
-            >
-              {this.state.isLoggedIn ? <LogOutButton /> : "Sign In"}
-            </NavLink>
+            {this.state.isLoggedIn ? (
+              <LogOutButton />
+            ) : (
+              <NavLink
+                exact
+                className="nav-link"
+                to="/login-page"
+                activeClassName="selected"
+                style={{ marginLeft: 20, fontSize: 20 }}
+              >
+                Sign In
+              </NavLink>
+            )}
           </Nav>
           {this.props.children}
         </Navbar.Collapse>
