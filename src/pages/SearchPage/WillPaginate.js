@@ -30,6 +30,7 @@ export default class WillPaginate extends Component {
     return (
       <div>
         <Pagination
+          allPagesCount={this.state.allPagesCount}
           activePage={this.state.currentPage}
           totalItemsCount={this.props.totalItemsCount}
           onChange={this.handlePageChange.bind(this)}

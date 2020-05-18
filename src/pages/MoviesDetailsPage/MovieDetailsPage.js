@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { fetchMovies, generateUrl } from "../SearchPage/FetchMovies";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import Footer from "../../components/Footer/Footer";
 // import "./MovieDetails.css";
 
@@ -37,39 +39,57 @@ class Details extends Component {
               <p className="MovieTitle">{movie.Title} </p>
             </div>
             <div className="movieInfoContainer">
-              <p className="MovieInfo">
-                <span>Year:</span> {movie.Year}
-              </p>
-              <p className="MovieInfo">
-                {" "}
-                <span>Run Time:</span> {movie.Runtime}
-              </p>
-              <p className="MovieInfo">
-                {" "}
-                <span>Genre:</span> {movie.Genre}
-              </p>
-              <p className="MovieInfo">
-                <span>Language: </span>
-                {movie.Language}
-              </p>
-              <p className="MovieInfo">
-                <span>Country:</span> {movie.Country}
-              </p>
-              <p className="MovieInfo">
-                <span>IMDb Rating:</span> {movie.imdbRating}
-              </p>
-              <p className="MovieInfo">
-                <span>IMDb Votes:</span> {movie.imdbVotes}
-              </p>
-              <p className="MovieInfo">
-                <span>IMDb ID: </span> {movie.imdbID}
-              </p>
-              <Link to={"/search-movie"}>
-                <button className="goBackButton">Go Back</button>
-              </Link>
-              <a href={link} target="_blank">
-                <button className="goBackButton">See the Trailer</button>
-              </a>
+              <div className="MovieInfo">
+                <p className="TitileInfo">Year:</p>
+                <p>{movie.Year}</p>
+              </div>
+              <div className="MovieInfo">
+                <p className="TitileInfo">Run Time:</p>
+                <p>{movie.Runtime}</p>
+              </div>
+              <div className="MovieInfo">
+                <p className="TitileInfo">Genre:</p>
+                <p>{movie.Genre}</p>
+              </div>
+              <div className="MovieInfo">
+                <p className="TitileInfo">Language: </p>
+                <p>{movie.Language}</p>
+              </div>
+              <div className="MovieInfo">
+                <p className="TitileInfo">Country:</p>
+                <p>{movie.Country}</p>
+              </div>
+              <div className="MovieInfo">
+                <p className="TitileInfo"> IMDb Rating:</p>
+                <p>{movie.imdbRating}</p>
+              </div>
+              <div className="MovieInfo">
+                <p className="TitileInfo">IMDb Votes:</p>
+                <p>{movie.imdbVotes}</p>
+              </div>
+              <div className="MovieInfo">
+                <p className="TitileInfo">IMDb ID: </p>
+                <p>{movie.imdbID}</p>
+              </div>
+            </div>
+            <div className="buttonsDetailsPage">
+              <div className="GoBackButtonContainer">
+                <Link to={"/search-movie"}>
+                  <button className="goBackButton">Go Back</button>
+                </Link>
+              </div>
+              <div className="YouTubeButtonContainer">
+                <p>Go to YouTube here</p>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="youtube social DetailsLink"
+                >
+                  {/* <button className="goBackButton">Go to YouTube</button> */}
+                  <FontAwesomeIcon icon={faYoutube} size="2x" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

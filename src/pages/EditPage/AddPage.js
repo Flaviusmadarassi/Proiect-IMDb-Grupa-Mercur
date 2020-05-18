@@ -2,38 +2,41 @@ import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import Footer from "../../components/Footer/Footer";
 // import "./AddPage.css";
-import { createMoviePost } from "./MoviePost";
+import addMovie from "./AddPageUtils.js";
 
 class Add extends Component {
   state = {
     Title: "",
-    Country: "",
     Year: "",
     Genre: "",
+    Poster: "",
+    Country: "",
     Language: "",
     Runtime: "",
     ImdbVotes: "",
     ImdbRating: "",
-    Poster: "",
+    imdbID: "",
+    Type: "",
   };
 
   submitHandler = (event) => {
     event.preventDefault();
-    event.target.className += " was-validated";
-    console.log(this.state);
-
-    // axios
-    //     .post('https://movies-app-siit.herokuapp.com/movies', this.state)
-    //     .then(response => {
-    //         console.log(response)
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     })
+    // event.target.className += " was-validated";
     let data = this.createData();
-
-    createMoviePost(data);
-    console.log(data);
+    addMovie(data);
+    this.setState({
+      Title: "",
+      Year: "",
+      Genre: "",
+      Poster: "",
+      Country: "",
+      Language: "",
+      Runtime: "",
+      ImdbVotes: "",
+      ImdbRating: "",
+      imdbID: "",
+      Type: "",
+    });
   };
 
   createData = () => {
@@ -47,6 +50,8 @@ class Add extends Component {
       ImdbVotes: this.state.ImdbVotes,
       ImdbRating: this.state.ImdbRating,
       Poster: this.state.Poster,
+      imdbID: this.state.imdbID,
+      Type: this.state.Type,
     };
 
     return data;
@@ -57,16 +62,10 @@ class Add extends Component {
   };
 
   render() {
-    console.log("blalbla");
-
     return (
       <div className="AllPage">
         <div className="container">
-          <form
-            className="needs-validation"
-            onSubmit={this.submitHandler}
-            noValidate
-          >
+          <form className="needs-validation" onSubmit={this.submitHandler}>
             <div className="container-row">
               <MDBRow>
                 <MDBCol md="4">
@@ -86,7 +85,28 @@ class Add extends Component {
                     placeholder="Movie title"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
+                    Please fill out this field.
+                  </div>
+                </MDBCol>
+                <MDBCol md="4">
+                  <label
+                    htmlFor="defaultFormRegisterImdbID"
+                    className="grey-text"
+                  >
+                    Imdb ID title :
+                  </label>
+                  <input
+                    value={this.state.imdbID}
+                    name="imdbID"
+                    onChange={this.changeHandler}
+                    type="text"
+                    id="defaultFormRegisterImdbID"
+                    className="form-control"
+                    placeholder="ImdbID"
+                    required
+                  />
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -111,7 +131,7 @@ class Add extends Component {
                     placeholder="Genre"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -132,7 +152,7 @@ class Add extends Component {
                     placeholder="Year"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -153,7 +173,7 @@ class Add extends Component {
                     placeholder="Country"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -178,7 +198,28 @@ class Add extends Component {
                     placeholder="Poster URL"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
+                    Please fill out this field.
+                  </div>
+                </MDBCol>
+                <MDBCol md="4">
+                  <label
+                    htmlFor="defaultFormRegisterType"
+                    className="grey-text"
+                  >
+                    Type :
+                  </label>
+                  <input
+                    value={this.state.Type}
+                    name="Type"
+                    onChange={this.changeHandler}
+                    type="text"
+                    id="defaultFormRegisterType"
+                    className="form-control"
+                    placeholder="Type"
+                    required
+                  />
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -203,7 +244,7 @@ class Add extends Component {
                     placeholder="Language"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -224,7 +265,7 @@ class Add extends Component {
                     placeholder="Runtime"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -245,7 +286,7 @@ class Add extends Component {
                     placeholder="Imdb Votes"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>
@@ -266,7 +307,7 @@ class Add extends Component {
                     placeholder="Imdb Rating"
                     required
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Please fill out this field.
                   </div>
                 </MDBCol>

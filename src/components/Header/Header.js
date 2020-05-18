@@ -26,11 +26,11 @@ class Header extends Component {
   render() {
     return (
       <div className="container">
-        <Navbar expand="lg" className="nav p-0 header-content">
+        <Navbar expand="lg" className="nav p-0 header-content shadow-sm">
           <HeaderLogo />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className="mr-auto align-items-center">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/search-movie">Search Movie</Nav.Link>
 
@@ -54,11 +54,6 @@ class Header extends Component {
               </Nav.Link>
               <HeaderAuth />
             </Nav>
-
-            {/* <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
           </Navbar.Collapse>
         </Navbar>
       </div>

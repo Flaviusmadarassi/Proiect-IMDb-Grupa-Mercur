@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovies } from "./FetchMovies.js";
-// import "./SearchPage.css";
+import "./SearchPage.css";
 import WillPaginate from "./WillPaginate.js";
 import MovieBox from "./MovieBox.js";
 import Genre from "./GenreFilter.js";
@@ -26,6 +26,7 @@ class Search extends Component {
       pageCount: 0,
       currentPage: 0,
       totalItemsCount: 0,
+      allPagesCount: 0,
       filters: {
         Title: "",
         Genre: "",
@@ -39,34 +40,37 @@ class Search extends Component {
     };
   }
 
-  // handleOnInputChange = (event, skip = undefined) => {
-  //   console.log(event);
-  //   let query = '';
-  //   if (typeof event === 'string') {
-  //     query = event;
-  //   } else {
-  //     query = event.target.value;
-  //   }
+  resetAllFilters = () => {
+    this.setState(
+      {
+        inputYearContent: "",
+        filters: {
+          Title: "",
+          Genre: "",
+          Year: "",
+          Language: "",
+          Country: "",
+          Runtime: "",
+          imdbRating: "",
+        },
+      },
+      () => {
+        console.log("resetare filtre", this.state);
 
-  //   this.setState({ inputContent: query, loading: true, message: "" });
-  //   const all_movies = "https://movies-app-siit.herokuapp.com/movies";
-  //   let searched_movies = all_movies + `?Title=^${query}`; // returns the first 10 movies whose Title contains searched movie
-  //   if (skip) { searched_movies = searched_movies + `&skip=${skip * 5 - 5}`}
-
-  //   fetchMovies(searched_movies).then((json) => {
-  //     console.log("Results after search", json);
-
-  //     this.setState({
-  //       isLoaded: true,
-  //       movies: json.results,
-  //       pageCount: json.pagination.numberOfPages,
-  //       currentPage: json.pagination.currentPage,
-  //       totalItemsCount: json.results.length * json.pagination.numberOfPages,
-  //       inputContent: query
-  //     });
-
-  //   });
-  // };
+        const url = generateUrl(this.state.filters);
+        fetchMovies(url).then((json) => {
+          this.setState({
+            isLoaded: true,
+            movies: json.results,
+            pageCount: json.pagination.numberOfPages,
+            currentPage: json.pagination.currentPage,
+            totalItemsCount:
+              json.results.length * json.pagination.numberOfPages,
+          });
+        });
+      }
+    );
+  };
 
   //Updates dictionary valyes with selected options
   updateDictionary = (filterOption, newValue, skip = "") => {
@@ -103,13 +107,18 @@ class Search extends Component {
             currentPage: json.pagination.currentPage,
             totalItemsCount:
               json.results.length * json.pagination.numberOfPages,
+            allPagesCount: json.pagination.numberOfPages,
           });
+          console.log("all pages", this.state.allPagesCount);
+          // if ( this.state.allPagesCount=== 0) {
+          //   console.log("no results");
+          //   };
         });
         if (skip === "") {
-          console.log("this.state.currentPage", this.state.currentPage);
           this.setState({
             currentPage: 1,
           });
+          console.log("this.state.currentPage", this.state.currentPage);
         }
       }
     );
@@ -169,12 +178,19 @@ class Search extends Component {
         pageCount: json.pagination.numberOfPages,
         currentPage: json.pagination.currentPage,
         totalItemsCount: json.results.length * json.pagination.numberOfPages,
+        allPagesCount: json.pagination.numberOfPages,
       });
     });
   }
 
   render() {
     const { isLoaded, movies } = this.state;
+    const { allPagesCount } = this.state;
+
+    // if ( this.state.allPagesCount=== 0) {
+    //   return <div><WillPaginate /></div>
+    //   console.log("no results");
+    //   };
 
     if (!isLoaded) {
       return <div>Loading...</div>;
@@ -204,6 +220,11 @@ class Search extends Component {
             </div>
             <div className="moviePaginationContainer">
               <div className="all-movies-container">
+                <div className="noResults">
+                  {this.state.allPagesCount === 0 ? (
+                    <p>No Search Results</p>
+                  ) : null}
+                </div>
                 {movies.map((movie, index) => (
                   <MovieBox
                     movie_details={movie}
@@ -212,17 +233,18 @@ class Search extends Component {
                   />
                 ))}
               </div>
-              <div className="paginationContainer">
-                <WillPaginate
-                  parentFetch={this.updateDictionary}
-                  pageCount={this.state.pageCount}
-                  currentPage={this.state.currentPage}
-                  totalItemsCount={this.state.totalItemsCount}
-                  inputContent={this.state.inputContent}
-                  newValue={this.state.newValue}
-                ></WillPaginate>
-              </div>
             </div>
+          </div>
+          <div className="paginationContainer row">
+            <WillPaginate
+              parentFetch={this.updateDictionary}
+              pageCount={this.state.pageCount}
+              currentPage={this.state.currentPage}
+              totalItemsCount={this.state.totalItemsCount}
+              inputContent={this.state.inputContent}
+              newValue={this.state.newValue}
+              allPagesCount={this.state.allPagesCount}
+            ></WillPaginate>
           </div>
           <div className="Footer">
             <Footer />

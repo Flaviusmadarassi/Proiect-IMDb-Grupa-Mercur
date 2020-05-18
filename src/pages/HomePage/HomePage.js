@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Footer from "../../components/Footer/Footer";
 import HomeContent from "./HomeContent";
 import Carousel from "./Carousel";
+import ContactForm from "../../components/ContactForm/ContactForm";
 import "./HomePage.css";
 
 class Home extends Component {
@@ -11,6 +12,8 @@ class Home extends Component {
       <React.Fragment>
         <Carousel />
         <HomeContent />
+        <ContactForm />
+        <Footer />
       </React.Fragment>
     );
   }

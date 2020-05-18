@@ -50,7 +50,7 @@ export default class Delete extends Component {
     const { data } = this.state;
     return (
       <div className="allPage">
-        <div className="container">
+        <div className="container-delete-page">
           <div className="search-movie-input-container">
             <ReactSearchBox
               placeholder="Search for a movie"

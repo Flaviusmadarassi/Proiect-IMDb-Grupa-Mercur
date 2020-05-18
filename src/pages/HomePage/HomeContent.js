@@ -7,10 +7,10 @@ class HomeContent extends Component {
   render() {
     return (
       <div className="content">
-        <div className="content-head">
+        <div className="content-head mb-5 shadow">
           <div className="container">
             <div className="row">
-              <div className="col-12">
+              <div className="col-12 mt-4 mb-2">
                 <h2>New items</h2>
               </div>
               <Nav className="justify-content-start">

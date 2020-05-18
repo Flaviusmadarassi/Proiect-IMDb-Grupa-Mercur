@@ -1,41 +1,53 @@
 import React, { Component } from "react";
 
 class MovieTab extends Component {
-  state = {};
+  state = {
+    movies: [],
+    displayMovies: [],
+    movieYear: "",
+  };
+
+  componentDidMount() {
+    fetch("https://movies-app-siit.herokuapp.com/movies?take=1000")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        const totalMovies = json.results.filter((movie) => movie.Poster);
+        this.setState({
+          movies: totalMovies,
+          displayMovies: totalMovies.slice(0, 12),
+          movieYear: json.results.Year,
+        });
+      });
+    console.log(this.state.movieYear);
+  }
   render() {
     return (
       <div className="container">
         <div className="row">
-          <div class="col-6 col-sm-12 col-lg-6">
-            <div className="custom-card">
-              <div className="row">
-                <div className="col-12 col-sm-4"></div>
-                <div className="col-12 col-sm-8">
-                  <div className="custom-card-content">
-                    <h3 className="custom-card-title">
-                      here is the movie title
-                    </h3>
-                    <span>Action, thriller, genre</span>
-                    <div className="custom-card-wrap">
-                      <span>
-                        <i></i>rating here *****
-                      </span>
-                      <div className="custom-card-description">
-                        <p>
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page when
-                          looking at its layout. The point of using Lorem Ipsum
-                          is that it has a more-or-less normal distribution of
-                          letters, as opposed to using 'Content here, content
-                          here', making it look like readable English.
-                        </p>
+          {this.state.displayMovies.map((item) => (
+            <div class="col-6 col-sm-12 col-lg-6">
+              <div className="custom-card mb-5">
+                <div className="row">
+                  <div className="col-12 col-sm-4 px-3">
+                    <img className="w-100" src={item.Poster}></img>
+                  </div>
+                  <div className="col-12 col-sm-8">
+                    <div className="custom-card-content">
+                      <h3 className="custom-card-title">{item.Title}</h3>
+                      <span>{item.Genre}</span>
+                      <div className="custom-card-wrap">
+                        <p>{item.imdbRating}</p>
+                        <div className="custom-card-year">
+                          {item.Year < 2018 ? <p>{item.Year}</p> : null}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     );
