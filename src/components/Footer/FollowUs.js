@@ -7,7 +7,7 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
-import "./Footer.css";
+// import "./Footer.css";
 
 export default function FollowUs() {
   return (

@@ -6,8 +6,8 @@ class HomeContent extends Component {
   state = {};
   render() {
     return (
-      <div className="content">
-        <div className="content-head mb-5 shadow">
+      <div className="home-content text-light">
+        <div className="home-content-head mb-5 shadow">
           <div className="container">
             <div className="row">
               <div className="col-12 mt-4 mb-2">

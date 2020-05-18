@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovies } from "./FetchMovies.js";
-import "./SearchPage.css";
+// import "./SearchPage.css";
 import WillPaginate from "./WillPaginate.js";
 import MovieBox from "./MovieBox.js";
 import Genre from "./GenreFilter.js";
@@ -198,8 +198,8 @@ class Search extends Component {
       return (
         <div className="search-page-container">
           <SearchFilter onSearchFilter={this.handleOnSearchChange} />
-          <div className="content">
-            <div className="filters-container">
+          <div className="row">
+            <div className="filters-container col-md-4">
               <Genre onFilterChange={this.handleGenreChange} />
               <Year
                 onYearChange={this.handleYearChange}
@@ -218,8 +218,8 @@ class Search extends Component {
                 Reset all filters
               </button>
             </div>
-            <div className="moviePaginationContainer">
-              <div className="all-movies-container">
+            <div className="moviePaginationContainer col-8">
+              <div className="all-movies-container row text-light">
                 <div className="noResults">
                   {this.state.allPagesCount === 0 ? (
                     <p>No Search Results</p>
@@ -227,6 +227,7 @@ class Search extends Component {
                 </div>
                 {movies.map((movie, index) => (
                   <MovieBox
+                    className="col-6 col-sm-12 col-lg-6"
                     movie_details={movie}
                     movie_index={index}
                     key={movie._id}
@@ -235,7 +236,7 @@ class Search extends Component {
               </div>
             </div>
           </div>
-          <div className="paginationContainer row">
+          <div className="paginationContainer">
             <WillPaginate
               parentFetch={this.updateDictionary}
               pageCount={this.state.pageCount}

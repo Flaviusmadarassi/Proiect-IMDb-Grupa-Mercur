@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import Pagination from "react-js-pagination";
 // import "./willPaginate.css"
 
-// import "bootstrap/dist/css/bootstrap.min.css";
-
 export default class WillPaginate extends Component {
   constructor(props) {
     super(props);

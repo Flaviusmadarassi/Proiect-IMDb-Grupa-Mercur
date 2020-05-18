@@ -12,11 +12,11 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <div className="custom-contact-section pb-4">
+      <div className="custom-contact-section pb-4 text-light">
         <div className="container">
           <div className="row">
             <div className="col-12 mt-4 mb-2">
-              <h2 className="mt-2">Get in touch</h2>
+              <h2 className="mt-2 ">Get in touch</h2>
             </div>
           </div>
         </div>
