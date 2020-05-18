@@ -31,17 +31,12 @@ const customStyles = {
 };
 
 class Language extends Component {
-  state = {
-    selectedLanguage: null,
-  };
-
   handleChange = (selectedLanguage) => {
-    this.setState({ selectedLanguage });
     this.props.onLanguageChange(selectedLanguage);
   };
 
   render() {
-    const { selectedLanguage } = this.state;
+    const { selectedLanguage } = this.props;
 
     return (
       <div className="language-container">

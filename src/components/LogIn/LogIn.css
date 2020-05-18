@@ -197,3 +197,21 @@
   color: red;
   text-decoration: underline;
 }
+
+.LogOutButton{
+    color: #9e9898;
+    background-color: #3e3e41;
+    transition: transform 250ms;
+    border-radius: 20px;
+   font-weight: 700;
+   border: 1px solid #ff3c46;
+   
+   
+}
+
+.LogOutButton:hover {
+  transform: translateY(-2px);
+  background-color: #ff5860;
+  box-shadow: 0 5px 15px #ff5860;
+  color:white;
+}

@@ -4,23 +4,22 @@ import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import RangeSlider from "react-bootstrap-range-slider";
 
 export class RuntimeFilter extends Component {
-  state = {
-    value: 0,
-  };
   handleOnChange = (value) => {
-    this.setState({ value });
+    this.props.updateRuntimeValue(value);
   };
   render() {
+    const { runtimeValue } = this.props;
+
     return (
       <div
         className="runtime-container"
         onMouseUp={() => {
-          this.props.onRuntimeChange(this.state.value);
+          this.props.onRuntimeChange(runtimeValue);
         }}
       >
         <p>Movie runtime</p>
         <RangeSlider
-          value={this.state.value}
+          value={runtimeValue}
           onChange={(changeEvent) =>
             this.handleOnChange(changeEvent.target.value)
           }

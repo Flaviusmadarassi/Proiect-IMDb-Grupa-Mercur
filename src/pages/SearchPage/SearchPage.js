@@ -11,14 +11,20 @@ import Country from "./CountryFilter.js";
 import { RuntimeFilter } from "./RuntimeFilter.js";
 import { ImdbRatingFilter } from "./ImdbRatingFilter.js";
 import { generateUrl } from "./SearchPageUtils";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../components/Footer";
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedGenre: null,
+      selectedLanguage: null,
+      selectedCountry: null,
       inputContent: "",
       inputYearContent: "",
+      titleInput: "",
+      runtimeValue: 0,
+      imdbRatingValue: 0,
       movies: [],
       isLoaded: false,
       loading: false,
@@ -43,7 +49,13 @@ class Search extends Component {
   resetAllFilters = () => {
     this.setState(
       {
+        selectedGenre: null,
+        selectedLanguage: null,
+        selectedCountry: null,
         inputYearContent: "",
+        inputContent: "",
+        runtimeValue: 0,
+        imdbRatingValue: 0,
         filters: {
           Title: "",
           Genre: "",
@@ -124,6 +136,12 @@ class Search extends Component {
     );
   };
 
+  handleOnSearchChangeValue = (inputValue) => {
+    this.setState({
+      inputContent: inputValue,
+    });
+  };
+
   handleOnSearchChange = (inputValue) => {
     this.setState({ inputContent: inputValue, loading: true });
 
@@ -134,6 +152,7 @@ class Search extends Component {
   handleGenreChange = (selectedGenre) => {
     //Update dictionary with custom filters
     this.updateDictionary("Genre", selectedGenre.value);
+    this.setState({ selectedGenre });
   };
 
   handleYearChange = (event) => {
@@ -147,11 +166,19 @@ class Search extends Component {
   handleLanguageChange = (selectedLanguage) => {
     //Update dictionary with custom filters
     this.updateDictionary("Language", selectedLanguage.value);
+    this.setState({ selectedLanguage });
   };
 
   handleCountryChange = (selectedCountry) => {
     //Update dictionary with custom filters
     this.updateDictionary("Country", selectedCountry.value);
+    this.setState({ selectedCountry });
+  };
+
+  handleRuntimeChangeValue = (runtimeValue) => {
+    this.setState({
+      runtimeValue,
+    });
   };
 
   handleRuntimeChange = (changeEvent) => {
@@ -161,6 +188,11 @@ class Search extends Component {
     this.updateDictionary("Runtime", selectedRuntime);
   };
 
+  handleImdbRantingChangeValue = (imdbRatingValue) => {
+    this.setState({
+      imdbRatingValue,
+    });
+  };
   handleImdbRatingChange = (changeEvent) => {
     //Update dictionary with custom filters
     this.updateDictionary("imdbRating", changeEvent);
@@ -197,20 +229,38 @@ class Search extends Component {
     } else {
       return (
         <div className="search-page-container">
-          <SearchFilter onSearchFilter={this.handleOnSearchChange} />
-          <div className="row">
-            <div className="col-md-2 ">
-              {/*filters-container  col-md-4 */}
-              <Genre onFilterChange={this.handleGenreChange} />
+          <SearchFilter
+            titleInput={this.state.inputContent}
+            onSearchFilter={this.handleOnSearchChange}
+            updateInputValue={this.handleOnSearchChangeValue}
+          />
+          <div className="content">
+            <div className="filters-container">
+              <Genre
+                onFilterChange={this.handleGenreChange}
+                selectedGenre={this.state.selectedGenre}
+              />
               <Year
                 onYearChange={this.handleYearChange}
-                yearInput={this.inputYearContent}
+                yearInput={this.state.inputYearContent}
               />
-              <Language onLanguageChange={this.handleLanguageChange} />
-              <Country onCountryChange={this.handleCountryChange} />
-              <RuntimeFilter onRuntimeChange={this.handleRuntimeChange} />
+              <Language
+                onLanguageChange={this.handleLanguageChange}
+                selectedLanguage={this.state.selectedLanguage}
+              />
+              <Country
+                onCountryChange={this.handleCountryChange}
+                selectedCountry={this.state.selectedCountry}
+              />
+              <RuntimeFilter
+                onRuntimeChange={this.handleRuntimeChange}
+                runtimeValue={this.state.runtimeValue}
+                updateRuntimeValue={this.handleRuntimeChangeValue}
+              />
               <ImdbRatingFilter
                 onImdbRatingChange={this.handleImdbRatingChange}
+                imdbRatingValue={this.state.imdbRatingValue}
+                updateImdbRatingValue={this.handleImdbRantingChangeValue}
               />
               <button
                 className="button-reset-all-filters"
@@ -219,10 +269,8 @@ class Search extends Component {
                 Reset all filters
               </button>
             </div>
-            <div className="col-md-10 ">
-              {" "}
-              {/*moviePaginationContainer  col-8*/}
-              <div className="all-movies-container row text-light">
+            <div className="moviePaginationContainer">
+              <div className="all-movies-container">
                 <div className="noResults">
                   {this.state.allPagesCount === 0 ? (
                     <p>No Search Results</p>
@@ -230,7 +278,6 @@ class Search extends Component {
                 </div>
                 {movies.map((movie, index) => (
                   <MovieBox
-                    className=""
                     movie_details={movie}
                     movie_index={index}
                     key={movie._id}
@@ -239,7 +286,7 @@ class Search extends Component {
               </div>
             </div>
           </div>
-          <div className="paginationContainer">
+          <div className="paginationContainer row">
             <WillPaginate
               parentFetch={this.updateDictionary}
               pageCount={this.state.pageCount}

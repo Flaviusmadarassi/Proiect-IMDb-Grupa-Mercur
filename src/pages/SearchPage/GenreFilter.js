@@ -33,17 +33,12 @@ const customStyles = {
 };
 
 class Genre extends Component {
-  state = {
-    selectedGenre: null,
-  };
-
   handleChange = (selectedGenre) => {
-    this.setState({ selectedGenre });
     this.props.onFilterChange(selectedGenre);
   };
 
   render() {
-    const { selectedGenre } = this.state;
+    const { selectedGenre } = this.props;
 
     return (
       <div className="genre-container">

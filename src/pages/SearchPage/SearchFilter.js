@@ -2,21 +2,17 @@ import React, { Component } from "react";
 import "./SearchFilter.css";
 
 class SearchFilter extends Component {
-  state = {
-    value: "",
-  };
   handleOnChange = (event) => {
-    this.setState({ value: event.target.value });
-    console.log(event);
+    this.props.updateInputValue(event.target.value);
   };
 
   handleOnEnther = (event) => {
     if (event.key === "Enter") {
-      this.props.onSearchFilter(this.state.value);
+      this.props.onSearchFilter(this.props.titleInput);
     }
   };
   handleOnclick = () => {
-    this.props.onSearchFilter(this.state.value);
+    this.props.onSearchFilter(this.props.titleInput);
   };
   render() {
     return (
@@ -24,7 +20,7 @@ class SearchFilter extends Component {
         <input
           className="search-input"
           type="text"
-          value={this.state.value}
+          value={this.props.titleInput}
           placeholder="Enter a movie title"
           onChange={this.handleOnChange}
           onKeyDown={this.handleOnEnther}
