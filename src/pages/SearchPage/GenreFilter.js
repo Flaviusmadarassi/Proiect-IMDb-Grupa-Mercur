@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
-// import './GenreFilter.css'
+import "./GenreFilter.css";
 
 const options = [
   { value: "adventure", label: "Adventure" },
@@ -23,7 +23,6 @@ const customStyles = {
     color: state.selectProps.menuColor,
     borderBottom: "1px dotted black",
     // color: state.isSelected ? 'red' : 'blue',
-
 
     padding: 20,
     height: 10,

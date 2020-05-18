@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
-// import "./CountryFilter.css"
+import "./CountryFilter.css";
 
 const options = [
   { value: "Canada", label: "Canada" },

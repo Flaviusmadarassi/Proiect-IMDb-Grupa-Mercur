@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Pagination from "react-js-pagination";
-// import "./willPaginate.css"
+import "./willPaginate.css";
 
 export default class WillPaginate extends Component {
   constructor(props) {

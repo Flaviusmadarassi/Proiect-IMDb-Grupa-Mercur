@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovies } from "./FetchMovies.js";
-// import "./SearchPage.css";
+import "./SearchPage.css";
 import WillPaginate from "./WillPaginate.js";
 import MovieBox from "./MovieBox.js";
 import Genre from "./GenreFilter.js";
@@ -199,7 +199,8 @@ class Search extends Component {
         <div className="search-page-container">
           <SearchFilter onSearchFilter={this.handleOnSearchChange} />
           <div className="row">
-            <div className="filters-container col-md-4">
+            <div className="col-md-2 ">
+              {/*filters-container  col-md-4 */}
               <Genre onFilterChange={this.handleGenreChange} />
               <Year
                 onYearChange={this.handleYearChange}
@@ -218,7 +219,9 @@ class Search extends Component {
                 Reset all filters
               </button>
             </div>
-            <div className="moviePaginationContainer col-8">
+            <div className="col-md-10 ">
+              {" "}
+              {/*moviePaginationContainer  col-8*/}
               <div className="all-movies-container row text-light">
                 <div className="noResults">
                   {this.state.allPagesCount === 0 ? (
@@ -227,7 +230,7 @@ class Search extends Component {
                 </div>
                 {movies.map((movie, index) => (
                   <MovieBox
-                    className="col-6 col-sm-12 col-lg-6"
+                    className=""
                     movie_details={movie}
                     movie_index={index}
                     key={movie._id}

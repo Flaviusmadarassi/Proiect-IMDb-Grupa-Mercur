@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
-// import "./LanguageFilter.css"
+import "./LanguageFilter.css";
 
 const options = [
   { value: "English", label: "English" },

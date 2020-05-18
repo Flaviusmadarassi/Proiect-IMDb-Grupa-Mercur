@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-// import "./RuntimeFilter.css";
+import "./RuntimeFilter.css";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import RangeSlider from "react-bootstrap-range-slider";
-// import './ImdbRatingFilter.css'
+import "./ImdbRatingFilter.css";
 
 export class ImdbRatingFilter extends Component {
   state = {

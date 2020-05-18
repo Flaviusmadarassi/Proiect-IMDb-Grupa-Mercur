@@ -7,7 +7,7 @@ import "./Footer.css";
 class Footer extends Component {
   render() {
     return (
-      <div className="FooterContainer">
+      <div className="FooterContainer text-light">
         <div className="contactUs" className="infoContainer">
           <div className="titleTags">
             <h3>Contact Us</h3>
