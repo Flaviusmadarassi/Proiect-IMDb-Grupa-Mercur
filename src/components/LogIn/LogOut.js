@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { useHistory } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
 
 export default function LogOutButton() {
   let history = useHistory();
@@ -10,9 +11,12 @@ export default function LogOutButton() {
   }
 
   return (
-    <button type="button" onClick={handleClick}>
-      LOG OUT
-    </button>
+    <Nav.Link
+      className="d-flex align-items-center justify-content-center rounded sign-in-btn"
+      onClick={handleClick}
+    >
+      <span>log out</span>
+    </Nav.Link>
   );
 }
 

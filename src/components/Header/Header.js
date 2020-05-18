@@ -82,7 +82,6 @@ class Navigation extends Component {
                     Edit Movie
                   </NavDropdown.Item>
                 </NavDropdown>
-                <LogOutButton />
               </React.Fragment>
             ) : null}
 
@@ -90,7 +89,7 @@ class Navigation extends Component {
               href="/login-page"
               style={{ marginLeft: 20, fontSize: 20 }}
             >
-              <HeaderAuth />
+              <> {this.state.isLoggedIn ? <LogOutButton /> : <HeaderAuth />}</>
             </Nav.Link>
 
             {/* <Nav.Link href="/movie-details" className="detailsButton">

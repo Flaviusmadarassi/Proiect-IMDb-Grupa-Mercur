@@ -13,7 +13,6 @@ class HeaderAuth extends Component {
           href="/login-page"
           className="d-flex align-items-center justify-content-center rounded sign-in-btn"
         >
-          <i class="icon"></i>
           <span>sign in</span>
         </Nav.Link>
       </div>
