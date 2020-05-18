@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import Carousel from "../../components/carousel";
 import Footer from "../../components/Footer";
+import HomeContent from "./HomeContent";
+import Carousel from "./Carousel.jsx";
+import ContactForm from "../../components/ContactForm";
 import "./HomePage.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 class Home extends Component {
   render() {
     return (
-      <div className="contentHome">
-        <div className="carousel"> 
-          <Carousel />
-          </div>
-          <div className="Footer">
-            <Footer />
-          </div>
-      </div>
+      <React.Fragment>
+        <Carousel />
+        <HomeContent />
+        <ContactForm />
+        <Footer />
+      </React.Fragment>
     );
   }
 }

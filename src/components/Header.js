@@ -2,18 +2,14 @@ import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Button from "react-bootstrap/Button";
-import './Header.css';
-import { NavLink } from 'react-router-dom';
+import "./Header.css";
+import { NavLink } from "react-router-dom";
 import LogOutButton from "./LogIn/LogOut.js";
-
-
 
 class Navigation extends Component {
   state = {
     isLoggedIn: false,
     editMovie: "Editation",
-
   };
 
   changeHeader = () => {
@@ -33,25 +29,20 @@ class Navigation extends Component {
   };
 
   componentDidUpdate() {
-    const { editMovie } = this.state
+    const { editMovie } = this.state;
     let actualHeader = this.changeHeader();
     if (editMovie != actualHeader) {
-      this.setState({ editMovie: actualHeader },
-        () => {
-          console.log(editMovie)
-        })
+      this.setState({ editMovie: actualHeader }, () => {
+        console.log(editMovie);
+      });
     }
   }
-
-
-
 
   componentDidMount() {
     let token = document.cookie;
     if (token.includes("token")) {
       this.setState({ isLoggedIn: true });
     }
-
   }
 
   render() {
@@ -63,28 +54,57 @@ class Navigation extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-
-            <NavLink exact className='nav-link' to='/' activeClassName="selected" style={{ marginLeft: 20, fontSize: 20 }}>Home </NavLink>
-            <NavLink exact className='nav-link' to='/search-movie' activeClassName="selected" style={{ marginLeft: 20, fontSize: 20 }}>Search Movie</NavLink>
-            <NavLink exact className='nav-link' to='/login-page' activeClassName="selected" style={{ marginLeft: 20, fontSize: 20 }}>Authentication</NavLink>
+            <NavLink
+              exact
+              className="nav-link"
+              to="/"
+              activeClassName="selected"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              Home{" "}
+            </NavLink>
+            <NavLink
+              exact
+              className="nav-link"
+              to="/search-movie"
+              activeClassName="selected"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              Search Movie
+            </NavLink>
 
             {this.state.isLoggedIn ? (
-
-              <React.Fragment >
-
-                <NavDropdown className='nav-link' activeClassName="selected" style={{ marginLeft: 20, fontSize: 20 }} title={this.state.editMovie} id="nav-dropdown" className="nav-dropdown-menu" >
-                  <NavLink exact to="/editation/add" >Add Movie </NavLink>
-                  <NavLink exact to="/editation/delete"> Delete Movie</NavLink>
-                  <NavLink exact to="/editation/edit"> Edit Movie  </NavLink>
+              <React.Fragment>
+                <NavDropdown
+                  className="nav-link"
+                  activeClassName="selected"
+                  style={{ marginLeft: 20, fontSize: 20 }}
+                  title={this.state.editMovie}
+                  id="nav-dropdown"
+                  className="nav-dropdown-menu"
+                >
+                  <NavLink exact to="/editation/add">
+                    Add Movie
+                  </NavLink>
+                  <NavLink exact to="/editation/delete">
+                    Delete Movie
+                  </NavLink>
+                  <NavLink exact to="/editation/edit">
+                    Edit Movie
+                  </NavLink>
                 </NavDropdown>
-                <LogOutButton />
-
               </React.Fragment>
-
             ) : null}
-            {/* <Nav.Link href="/movie-details" className="detailsButton">
-              Movie Details
-            </Nav.Link> */}
+
+            <NavLink
+              exact
+              className="nav-link"
+              to="/login-page"
+              activeClassName="selected"
+              style={{ marginLeft: 20, fontSize: 20 }}
+            >
+              {this.state.isLoggedIn ? <LogOutButton /> : "Sign In"}
+            </NavLink>
           </Nav>
           {this.props.children}
         </Navbar.Collapse>
